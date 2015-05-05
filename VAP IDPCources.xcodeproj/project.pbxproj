@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1F13258D1AF93C150047139E /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 1F13258C1AF93C150047139E /* main.c */; };
+		1F1325951AF93E180047139E /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 1F1325941AF93E180047139E /* main.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -24,7 +24,7 @@
 
 /* Begin PBXFileReference section */
 		1F1325891AF93C150047139E /* VAP IDPCources */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "VAP IDPCources"; sourceTree = BUILT_PRODUCTS_DIR; };
-		1F13258C1AF93C150047139E /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		1F1325941AF93E180047139E /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,9 +57,17 @@
 		1F13258B1AF93C150047139E /* VAP IDPCources */ = {
 			isa = PBXGroup;
 			children = (
-				1F13258C1AF93C150047139E /* main.c */,
+				1F1325931AF93E180047139E /* Source */,
 			);
 			path = "VAP IDPCources";
+			sourceTree = "<group>";
+		};
+		1F1325931AF93E180047139E /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				1F1325941AF93E180047139E /* main.c */,
+			);
+			path = Source;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -118,7 +126,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1F13258D1AF93C150047139E /* main.c in Sources */,
+				1F1325951AF93E180047139E /* main.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
