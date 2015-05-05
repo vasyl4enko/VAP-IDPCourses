@@ -13,13 +13,10 @@
 #include <stdio.h>
 
 #define generetingMethodToPrintType(type, spec) void otput_##type(var) { \
-;\
 printf(spec,var);\
+printf("\n");\
 }
 #define callGenereted(type,var) otput_##type(var)
 
-generetingMethodToPrintType(int, "%d");
-
-generetingMethodToPrintType(char, "%c");
 
 #endif /* defined(__VAP_IDPCources__VAPGenereteMethods__) */

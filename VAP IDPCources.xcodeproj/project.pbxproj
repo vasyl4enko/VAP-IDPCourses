@@ -8,7 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1F1325951AF93E180047139E /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 1F1325941AF93E180047139E /* main.c */; };
-		1F13259A1AF973F30047139E /* VAPGenereteMethods.c in Sources */ = {isa = PBXBuildFile; fileRef = 1F1325981AF973F30047139E /* VAPGenereteMethods.c */; };
+		1F13259E1AF977A20047139E /* VAPTestGenerateMethods.c in Sources */ = {isa = PBXBuildFile; fileRef = 1F13259C1AF977A20047139E /* VAPTestGenerateMethods.c */; };
+		1F1325A11AF978B20047139E /* VAPGenereteMethods.c in Sources */ = {isa = PBXBuildFile; fileRef = 1F13259F1AF978B20047139E /* VAPGenereteMethods.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -26,8 +27,10 @@
 /* Begin PBXFileReference section */
 		1F1325891AF93C150047139E /* VAP IDPCources */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "VAP IDPCources"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F1325941AF93E180047139E /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
-		1F1325981AF973F30047139E /* VAPGenereteMethods.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = VAPGenereteMethods.c; sourceTree = "<group>"; };
-		1F1325991AF973F30047139E /* VAPGenereteMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VAPGenereteMethods.h; sourceTree = "<group>"; };
+		1F13259C1AF977A20047139E /* VAPTestGenerateMethods.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = VAPTestGenerateMethods.c; sourceTree = "<group>"; };
+		1F13259D1AF977A20047139E /* VAPTestGenerateMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VAPTestGenerateMethods.h; sourceTree = "<group>"; };
+		1F13259F1AF978B20047139E /* VAPGenereteMethods.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = VAPGenereteMethods.c; sourceTree = "<group>"; };
+		1F1325A01AF978B20047139E /* VAPGenereteMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VAPGenereteMethods.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +81,7 @@
 		1F1325961AF972A30047139E /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				1F13259B1AF977810047139E /* VAPTestGenereteMethods */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -85,10 +89,19 @@
 		1F1325971AF9736B0047139E /* VAPGeneratingMethods */ = {
 			isa = PBXGroup;
 			children = (
-				1F1325981AF973F30047139E /* VAPGenereteMethods.c */,
-				1F1325991AF973F30047139E /* VAPGenereteMethods.h */,
+				1F13259F1AF978B20047139E /* VAPGenereteMethods.c */,
+				1F1325A01AF978B20047139E /* VAPGenereteMethods.h */,
 			);
 			path = VAPGeneratingMethods;
+			sourceTree = "<group>";
+		};
+		1F13259B1AF977810047139E /* VAPTestGenereteMethods */ = {
+			isa = PBXGroup;
+			children = (
+				1F13259C1AF977A20047139E /* VAPTestGenerateMethods.c */,
+				1F13259D1AF977A20047139E /* VAPTestGenerateMethods.h */,
+			);
+			path = VAPTestGenereteMethods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -147,8 +160,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F13259E1AF977A20047139E /* VAPTestGenerateMethods.c in Sources */,
 				1F1325951AF93E180047139E /* main.c in Sources */,
-				1F13259A1AF973F30047139E /* VAPGenereteMethods.c in Sources */,
+				1F1325A11AF978B20047139E /* VAPGenereteMethods.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,6 +279,7 @@
 				1F1325921AF93C150047139E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
