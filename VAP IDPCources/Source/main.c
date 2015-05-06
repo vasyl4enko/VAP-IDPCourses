@@ -15,8 +15,6 @@
 
 
 int main(int argc, const char * argv[]) {
-//    callGenereted(int,5);
-
     VAPGenerateOutputTests();
     return 0;
 }

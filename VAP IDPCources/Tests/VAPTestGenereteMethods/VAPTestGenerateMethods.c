@@ -12,19 +12,29 @@
 #pragma mark -
 #pragma mark Private
 
-generetingMethodToPrintType(int, "%d");
-generetingMethodToPrintType(char, "%c");
-generetingMethodToPrintType(float, "%d");
-generetingMethodToPrintType(double, "%f");
+void VAPcallGeneretedFunc(void);
+
+generetingMethodToPrintType(int, %d);
+generetingMethodToPrintType(char, %c);
+generetingMethodToPrintType(float, %f);
+generetingMethodToPrintType(double, %f);
 
 #pragma mark -
 #pragma mark Public
 
 void VAPGenerateOutputTests(void) {
+    VAPcallGeneretedFunc();
+    
+}
+
+#pragma mark -
+#pragma mark Private implementation
+
+void VAPcallGeneretedFunc(void) {
     callGenereted(int,5);
     callGenereted(char,67);
     callGenereted(float,3.5);
     callGenereted(double,4.7);
-    
 }
+
 
