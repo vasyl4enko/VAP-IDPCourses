@@ -9,10 +9,20 @@
 /* Begin PBXBuildFile section */
 		1F1325951AF93E180047139E /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 1F1325941AF93E180047139E /* main.c */; };
 		1F13259E1AF977A20047139E /* VAPTestGenerateMethods.c in Sources */ = {isa = PBXBuildFile; fileRef = 1F13259C1AF977A20047139E /* VAPTestGenerateMethods.c */; };
+		1F35D9A01AFEB4D100E57436 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 1F35D99F1AFEB4D100E57436 /* main.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		1F1325871AF93C150047139E /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		1F35D9951AFEB45700E57436 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -29,10 +39,19 @@
 		1F13259C1AF977A20047139E /* VAPTestGenerateMethods.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = VAPTestGenerateMethods.c; sourceTree = "<group>"; };
 		1F13259D1AF977A20047139E /* VAPTestGenerateMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VAPTestGenerateMethods.h; sourceTree = "<group>"; };
 		1F1325A01AF978B20047139E /* VAPGenereteMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VAPGenereteMethods.h; sourceTree = "<group>"; };
+		1F35D9971AFEB45700E57436 /* Structure */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Structure; sourceTree = BUILT_PRODUCTS_DIR; };
+		1F35D99F1AFEB4D100E57436 /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		1F1325861AF93C150047139E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1F35D9941AFEB45700E57436 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -46,6 +65,7 @@
 			isa = PBXGroup;
 			children = (
 				1F13258B1AF93C150047139E /* VAP IDPCources */,
+				1F35D9981AFEB45700E57436 /* Structure */,
 				1F13258A1AF93C150047139E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -54,6 +74,7 @@
 			isa = PBXGroup;
 			children = (
 				1F1325891AF93C150047139E /* VAP IDPCources */,
+				1F35D9971AFEB45700E57436 /* Structure */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -101,6 +122,22 @@
 			path = VAPTestGenereteMethods;
 			sourceTree = "<group>";
 		};
+		1F35D9981AFEB45700E57436 /* Structure */ = {
+			isa = PBXGroup;
+			children = (
+				1F35D99E1AFEB4D100E57436 /* Source */,
+			);
+			path = Structure;
+			sourceTree = "<group>";
+		};
+		1F35D99E1AFEB4D100E57436 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				1F35D99F1AFEB4D100E57436 /* main.c */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -121,6 +158,23 @@
 			productReference = 1F1325891AF93C150047139E /* VAP IDPCources */;
 			productType = "com.apple.product-type.tool";
 		};
+		1F35D9961AFEB45700E57436 /* Structure */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1F35D99D1AFEB45700E57436 /* Build configuration list for PBXNativeTarget "Structure" */;
+			buildPhases = (
+				1F35D9931AFEB45700E57436 /* Sources */,
+				1F35D9941AFEB45700E57436 /* Frameworks */,
+				1F35D9951AFEB45700E57436 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Structure;
+			productName = Structure;
+			productReference = 1F35D9971AFEB45700E57436 /* Structure */;
+			productType = "com.apple.product-type.tool";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -131,6 +185,9 @@
 				ORGANIZATIONNAME = "Aleksandr Vasylchenko";
 				TargetAttributes = {
 					1F1325881AF93C150047139E = {
+						CreatedOnToolsVersion = 6.3;
+					};
+					1F35D9961AFEB45700E57436 = {
 						CreatedOnToolsVersion = 6.3;
 					};
 				};
@@ -148,6 +205,7 @@
 			projectRoot = "";
 			targets = (
 				1F1325881AF93C150047139E /* VAP IDPCources */,
+				1F35D9961AFEB45700E57436 /* Structure */,
 			);
 		};
 /* End PBXProject section */
@@ -159,6 +217,14 @@
 			files = (
 				1F13259E1AF977A20047139E /* VAPTestGenerateMethods.c in Sources */,
 				1F1325951AF93E180047139E /* main.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1F35D9931AFEB45700E57436 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1F35D9A01AFEB4D100E57436 /* main.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,6 +322,24 @@
 			};
 			name = Release;
 		};
+		1F35D99B1AFEB45700E57436 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		1F35D99C1AFEB45700E57436 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -276,6 +360,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		1F35D99D1AFEB45700E57436 /* Build configuration list for PBXNativeTarget "Structure" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1F35D99B1AFEB45700E57436 /* Debug */,
+				1F35D99C1AFEB45700E57436 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
