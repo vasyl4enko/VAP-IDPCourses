@@ -10,5 +10,5 @@
 #define __VAP_IDPCources__BytesNumbersToConsol__
 
 #include <stdio.h>
-
+void printNumbersBits(long long value);
 #endif /* defined(__VAP_IDPCources__BytesNumbersToConsol__) */
