@@ -10,6 +10,7 @@
 		1F1325951AF93E180047139E /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 1F1325941AF93E180047139E /* main.c */; };
 		1F13259E1AF977A20047139E /* VAPTestGenerateMethods.c in Sources */ = {isa = PBXBuildFile; fileRef = 1F13259C1AF977A20047139E /* VAPTestGenerateMethods.c */; };
 		1F35D9A01AFEB4D100E57436 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 1F35D99F1AFEB4D100E57436 /* main.c */; };
+		1F35D9A71AFFEF4A00E57436 /* BytesNumbersToConsol.c in Sources */ = {isa = PBXBuildFile; fileRef = 1F35D9A51AFFEF4A00E57436 /* BytesNumbersToConsol.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -41,6 +42,8 @@
 		1F1325A01AF978B20047139E /* VAPGenereteMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VAPGenereteMethods.h; sourceTree = "<group>"; };
 		1F35D9971AFEB45700E57436 /* Structure */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Structure; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F35D99F1AFEB4D100E57436 /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		1F35D9A51AFFEF4A00E57436 /* BytesNumbersToConsol.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = BytesNumbersToConsol.c; sourceTree = "<group>"; };
+		1F35D9A61AFFEF4A00E57436 /* BytesNumbersToConsol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BytesNumbersToConsol.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +128,7 @@
 		1F35D9981AFEB45700E57436 /* Structure */ = {
 			isa = PBXGroup;
 			children = (
+				1F35D9A21AFFECCD00E57436 /* Tests */,
 				1F35D99E1AFEB4D100E57436 /* Source */,
 			);
 			path = Structure;
@@ -133,9 +137,34 @@
 		1F35D99E1AFEB4D100E57436 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				1F35D9A31AFFEE0B00E57436 /* BytesNymbersToConsol */,
+				1F35D9A41AFFEE0B00E57436 /* ExampleOfStructure */,
 				1F35D99F1AFEB4D100E57436 /* main.c */,
 			);
 			path = Source;
+			sourceTree = "<group>";
+		};
+		1F35D9A21AFFECCD00E57436 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		1F35D9A31AFFEE0B00E57436 /* BytesNymbersToConsol */ = {
+			isa = PBXGroup;
+			children = (
+				1F35D9A51AFFEF4A00E57436 /* BytesNumbersToConsol.c */,
+				1F35D9A61AFFEF4A00E57436 /* BytesNumbersToConsol.h */,
+			);
+			path = BytesNymbersToConsol;
+			sourceTree = "<group>";
+		};
+		1F35D9A41AFFEE0B00E57436 /* ExampleOfStructure */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ExampleOfStructure;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -225,6 +254,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1F35D9A01AFEB4D100E57436 /* main.c in Sources */,
+				1F35D9A71AFFEF4A00E57436 /* BytesNumbersToConsol.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
