@@ -7,9 +7,14 @@
 //
 
 #include <stdio.h>
+#include "TestDataStructure.h"
+#include "BytesNumbersToConsol.h"
+
 
 int main(int argc, const char * argv[]) {
-    // insert code here...
-    printf("Hello, World!\n");
+    
+    VAPOutputTestDataStructures();
+    printNumbersBits(32);
     return 0;
 }
+
