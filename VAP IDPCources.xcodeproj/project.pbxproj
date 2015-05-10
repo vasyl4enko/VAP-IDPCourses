@@ -11,6 +11,7 @@
 		1F13259E1AF977A20047139E /* VAPTestGenerateMethods.c in Sources */ = {isa = PBXBuildFile; fileRef = 1F13259C1AF977A20047139E /* VAPTestGenerateMethods.c */; };
 		1F35D9A01AFEB4D100E57436 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 1F35D99F1AFEB4D100E57436 /* main.c */; };
 		1F35D9A71AFFEF4A00E57436 /* BytesNumbersToConsol.c in Sources */ = {isa = PBXBuildFile; fileRef = 1F35D9A51AFFEF4A00E57436 /* BytesNumbersToConsol.c */; };
+		1F35D9AA1AFFF93A00E57436 /* DataStructure.c in Sources */ = {isa = PBXBuildFile; fileRef = 1F35D9A91AFFF93A00E57436 /* DataStructure.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -44,6 +45,8 @@
 		1F35D99F1AFEB4D100E57436 /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		1F35D9A51AFFEF4A00E57436 /* BytesNumbersToConsol.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = BytesNumbersToConsol.c; sourceTree = "<group>"; };
 		1F35D9A61AFFEF4A00E57436 /* BytesNumbersToConsol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BytesNumbersToConsol.h; sourceTree = "<group>"; };
+		1F35D9A81AFFF7FD00E57436 /* DataStructure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataStructure.h; sourceTree = "<group>"; };
+		1F35D9A91AFFF93A00E57436 /* DataStructure.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = DataStructure.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +166,8 @@
 		1F35D9A41AFFEE0B00E57436 /* ExampleOfStructure */ = {
 			isa = PBXGroup;
 			children = (
+				1F35D9A81AFFF7FD00E57436 /* DataStructure.h */,
+				1F35D9A91AFFF93A00E57436 /* DataStructure.c */,
 			);
 			path = ExampleOfStructure;
 			sourceTree = "<group>";
@@ -254,6 +259,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1F35D9A01AFEB4D100E57436 /* main.c in Sources */,
+				1F35D9AA1AFFF93A00E57436 /* DataStructure.c in Sources */,
 				1F35D9A71AFFEF4A00E57436 /* BytesNumbersToConsol.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -14,7 +14,7 @@ static const int countOfBits = 64;
 static const int lengthOfString = 65;
 
 
-void func(long long value){
+void printNumbersBits(long long value){
     
     long long var = 0;
     int iterator = 0;
