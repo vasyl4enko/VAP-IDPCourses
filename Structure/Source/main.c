@@ -13,7 +13,7 @@
 
 int main(int argc, const char * argv[]) {
     
-//    VAPOutputTestDataStructures();
+    VAPOutputTestDataStructures();
     char testValue = 5;
     printByte(&testValue);
     int val = 432;

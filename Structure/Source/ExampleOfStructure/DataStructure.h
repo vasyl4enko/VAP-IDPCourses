@@ -11,6 +11,9 @@
 
 //there are all very very bad names in structures. >_< it's very hard to come with up new names. for all theese datas...
 
+
+typedef struct DataStructureOne DataStructureOne;
+
 struct DataStructureOne {
     _Bool bool1;
     float floatVar;
@@ -27,6 +30,8 @@ struct DataStructureOne {
     _Bool bool6;
     short shortVar3;
 };
+
+typedef struct DataStructureTwo DataStructureTwo;
 
 struct DataStructureTwo {
     _Bool bool1;
@@ -45,6 +50,8 @@ struct DataStructureTwo {
     short shortVar3;
 };
 
+typedef struct DataStructureThree DataStructureThree;
+
 struct DataStructureThree {
     char *string;
     double doubleValue;
@@ -61,6 +68,8 @@ struct DataStructureThree {
     _Bool bool5;
     _Bool bool6;
 };
+
+typedef struct DataStructureFour DataStructureFour;
 
 struct DataStructureFour {
     char *string;

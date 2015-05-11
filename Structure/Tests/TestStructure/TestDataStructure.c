@@ -30,44 +30,41 @@ void VAPLocationItemsOfDataStructure(){
     
     printf("Print DataStructureOne \n");
     printf("bool1 offset = %lu byte in address structure.\n",
-           offsetof(struct DataStructureOne, bool1));
+           offsetof( DataStructureOne, bool1));
     printf("floatVar offset = %lu byte in address structure.\n",
-           offsetof(struct DataStructureOne, floatVar));
+           offsetof( DataStructureOne, floatVar));
     printf("longVar offset = %lu byte in address structure.\n",
-           offsetof(struct DataStructureOne, longVar));
+           offsetof( DataStructureOne, longVar));
     printf("bool2 offset = %lu byte in address structure.\n",
-           offsetof(struct DataStructureOne, bool2));
+           offsetof( DataStructureOne, bool2));
     printf("bool3 offset = %lu byte in address structure.\n",
-           offsetof(struct DataStructureOne, bool3));
+           offsetof( DataStructureOne, bool3));
     printf("intValue offset = %lu byte in address structure.\n",
-           offsetof(struct DataStructureOne, intValue));
+           offsetof( DataStructureOne, intValue));
     printf("shortVar1 offset = %lu byte in address structure.\n",
-           offsetof(struct DataStructureOne, shortVar1));
+           offsetof( DataStructureOne, shortVar1));
     printf("bool4 offset = %lu byte in address structure.\n",
-           offsetof(struct DataStructureOne, bool4));
+           offsetof( DataStructureOne, bool4));
     printf("shortVar2 offset = %lu byte in address structure.\n",
-           offsetof(struct DataStructureOne, shortVar2));
+           offsetof( DataStructureOne, shortVar2));
     printf("doubleValue offset = %lu byte in address structure.\n",
-           offsetof(struct DataStructureOne, doubleValue));
+           offsetof( DataStructureOne, doubleValue));
     printf("string offset = %lu byte in address structure.\n",
-           offsetof(struct DataStructureOne, string));
+           offsetof( DataStructureOne, string));
     printf("bool5 offset = %lu byte in address structure.\n",
-           offsetof(struct DataStructureOne, bool5));
+           offsetof( DataStructureOne, bool5));
     printf("bool6 offset = %lu byte in address structure.\n",
-           offsetof(struct DataStructureOne, bool6));
+           offsetof( DataStructureOne, bool6));
     printf("shortVar3 offset = %lu byte in address structure.\n",
-           offsetof(struct DataStructureOne, shortVar3));
+           offsetof( DataStructureOne, shortVar3));
 
  
 }
 
 void VAPSizeOfDataStructure() {
-    struct DataStructureOne dataStructureOne;
-    struct DataStructureTwo dataStructureTwo;
-    struct DataStructureThree dataStructureThree;
-    struct DataStructureFour dataStructureFour;
-    printf("Size of structure one - %lu\n",sizeof(dataStructureOne));
-    printf("Size of structure two - %lu\n",sizeof(dataStructureTwo));
-    printf("Size of structure three - %lu\n",sizeof(dataStructureThree));
-    printf("Size of structure four - %lu\n",sizeof(dataStructureFour));
+
+    printf("Size of structure one - %lu\n",sizeof(DataStructureOne));
+    printf("Size of structure two - %lu\n",sizeof(DataStructureTwo));
+    printf("Size of structure three - %lu\n",sizeof(DataStructureThree));
+    printf("Size of structure four - %lu\n",sizeof(DataStructureFour));
 }
