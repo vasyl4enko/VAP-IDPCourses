@@ -10,5 +10,11 @@
 #define __VAP_IDPCources__BytesNumbersToConsol__
 
 #include <stdio.h>
-void printNumbersBits(long long value);
+
+extern
+void printFieldOfByte(void *data, size_t size);
+
+extern
+void printByte(char *byte);
+
 #endif /* defined(__VAP_IDPCources__BytesNumbersToConsol__) */

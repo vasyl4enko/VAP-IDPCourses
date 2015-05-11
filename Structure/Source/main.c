@@ -13,8 +13,11 @@
 
 int main(int argc, const char * argv[]) {
     
-    VAPOutputTestDataStructures();
-    printNumbersBits(32);
+//    VAPOutputTestDataStructures();
+    char testValue = 5;
+    printByte(&testValue);
+    int val = 432;
+    printFieldOfByte(&val,sizeof(int));
     return 0;
 }
 

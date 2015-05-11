@@ -7,32 +7,34 @@
 //
 
 #include "BytesNumbersToConsol.h"
-#include <string.h>
 
-static const long long maskOfLeftBit = 0b1000000000000000000000000000000000000000000000000000000000000000;
-static const int countOfBits = 64;
-static const int lengthOfString = 65;
-static const char *zeroBit = "0";
-static const char *nonZeroBit = "1";
+#pragma mark -
+#pragma mark Private Declarations
 
+static const int mask = 0x80;
 
-void printNumbersBits(long long value){
-    
-    long long var = 0;
-    int iterator = 0;
-    char result[lengthOfString] = "";
-    while (iterator < countOfBits) {
-        
-        if(iterator){
-            var = maskOfLeftBit & value<<iterator;
-            var == 0 ? strcat(result, zeroBit) : strcat(result, nonZeroBit);
-        }else{
-            var = maskOfLeftBit & value;
-            var == 0 ? strcat(result, zeroBit) : strcat(result, nonZeroBit);
-        }
-        
-        iterator++;
+#pragma mark -
+#pragma mark Public Implementations
+
+void printFieldOfByte(void *data, size_t size) {
+    char *value = (char *)data;
+    for (long i = size; i > 0; i--) {
+        printByte(&value[i-1]);
     }
-    
-    printf("%s\n",result);
 }
+
+void printByte(char *byte) {
+    uint8_t buff = *byte;
+    uint8_t value;
+    
+    for (uint8_t i = 0; i < 8; i++) {
+        value = mask & buff<<i;
+
+        printf("%s ",(value & mask) ? "1" : "0");
+    }
+    printf("\n");
+    
+}
+
+#pragma mark -
+#pragma mark Private Implementations
