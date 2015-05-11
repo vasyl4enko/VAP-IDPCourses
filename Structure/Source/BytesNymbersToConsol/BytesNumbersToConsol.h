@@ -11,10 +11,15 @@
 
 #include <stdio.h>
 
-extern
-void printFieldOfByte(void *data, size_t size);
+typedef enum {
+    nonreverse,
+    reverse
+} Reverse;
 
 extern
-void printByte(char *byte);
+void printByte(char *byte, Reverse type);
+
+extern
+void printFieldOfByte(void *data, size_t size, Reverse type);
 
 #endif /* defined(__VAP_IDPCources__BytesNumbersToConsol__) */
