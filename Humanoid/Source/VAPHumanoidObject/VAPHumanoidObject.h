@@ -36,6 +36,7 @@ VAPHuman* VAPHumanCreate(char *name, uint16_t age, VAPGender gender, uint8_t chi
 
 void VAPDivorceHumanoid(VAPHuman *husband, VAPHuman *wife);
 void VAPMarriedHumanoid(VAPHuman *man, VAPHuman *woman);
+void VAPHumanFamalyBirthChild(VAPHuman *husband, VAPHuman *wife);
 
 void VAPHumanSetChild(VAPHuman *humanoid, VAPHuman *child);
 VAPHuman* VAPHumanGetChild(VAPHuman *humanoid);

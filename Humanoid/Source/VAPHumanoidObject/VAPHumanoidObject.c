@@ -52,6 +52,7 @@ VAPHuman* VAPHumanCreate(char *name, uint16_t age, VAPGender gender, uint8_t chi
     VAPHumanSetAge(humanoid, age);
     VAPHumanSetGender(humanoid, gender);
     VAPHumanSetChildrenCount(humanoid, childrenCount);
+
     
     return humanoid;
 }
@@ -80,6 +81,18 @@ void VAPDivorceHumanoid(VAPHuman *husband, VAPHuman *wife) {
     
 }
 
+void VAPHumanFamalyBirthChild(VAPHuman *husband, VAPHuman *wife) {
+    
+    if (husband->_partner == wife && wife->_partner == husband) {
+        VAPHuman *child = VAPHumanCreate("unname", 0, rand()%2, 0);
+        VAPHumanSetChild(husband, child);
+        VAPHumanSetChild(wife, child);
+        VAPHumanSetFather(child, husband);
+        VAPHumanSetMother(child, wife);
+        
+    }
+}
+
 void VAPHumanSetChild(VAPHuman *humanoid, VAPHuman *child) {
     
     if (humanoid->_childrenCount < kMaxchildrenCount) {
@@ -92,8 +105,8 @@ void VAPHumanSetChild(VAPHuman *humanoid, VAPHuman *child) {
 }
 
 VAPHuman* VAPHumanGetChild(VAPHuman *humanoid) {
-    VAPHuman *firstChild;
     
+    VAPHuman *firstChild;
     firstChild = humanoid;
     
     return firstChild;
