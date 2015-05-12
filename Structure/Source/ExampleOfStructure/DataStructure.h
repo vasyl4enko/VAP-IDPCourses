@@ -81,12 +81,16 @@ struct DataStructureFour {
     short shortVar2;
     short shortVar3;
     union Data {
-        _Bool bool1:1;
-        _Bool bool2:1;
-        _Bool bool3:1;
-        _Bool bool4:1;
-        _Bool bool5:1;
-        _Bool bool6:1;
+        struct {
+            _Bool bool1:1;
+            _Bool bool2:1;
+            _Bool bool3:1;
+            _Bool bool4:1;
+            _Bool bool5:1;
+            _Bool bool6:1;
+        };
+        char ch;
+        
     } data;
 };
 
