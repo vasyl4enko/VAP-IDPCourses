@@ -59,12 +59,19 @@ VAPHuman* VAPHumanCreate(char *name, uint16_t age, VAPGender gender, uint8_t chi
 
 void VAPMarriedHumanoid(VAPHuman *man, VAPHuman *woman) {
     
-    if (man->_gender == Male && woman->_gender == Female) {
-        VAPHumanSetMarried(man, true);
-        VAPHumanSetMarried(woman, true);
-        VAPHumanSetPartner(man, woman);
-        VAPHumanSetPartner(woman, man);
-        printf("MARRIED\n");
+    if ((man->_gender == Male && woman->_gender == Female)  ) {
+        if (!(man->_partner || woman->_partner )) {
+            VAPHumanSetMarried(man, true);
+            VAPHumanSetMarried(woman, true);
+            VAPHumanSetPartner(man, woman);
+            VAPHumanSetPartner(woman, man);
+            printf("%s and %s MARRIED\n",woman->_name, man->_name);
+        } else {
+            printf("can't\n");
+        }
+        
+    } else {
+        printf("can't\n");
     }
 }
 
@@ -75,8 +82,10 @@ void VAPDivorceHumanoid(VAPHuman *husband, VAPHuman *wife) {
         VAPHumanSetMarried(wife, false);
         VAPHumanSetPartner(husband, NULL);
         VAPHumanSetPartner(wife, NULL);
-        printf("deMARRIED\n");
+        printf("%s and %s deMARRIED\n",wife->_name, husband->_name);
 
+    } else {
+        printf("can't\n");
     }
     
 }
@@ -98,8 +107,14 @@ void VAPHumanSetChild(VAPHuman *humanoid, VAPHuman *child) {
     if (humanoid->_childrenCount < kMaxchildrenCount) {
         for (int i = 0; i <= humanoid->_childrenCount; i++,humanoid->_children++) {
             if(i == humanoid->_childrenCount) {
-                VAPHumanSetChild(humanoid, child);
+                humanoid->_children = child;
+                uint8_t incrementValue = 0;
+                incrementValue = humanoid->_childrenCount;
+                incrementValue++;
+                VAPHumanSetChildrenCount(humanoid, incrementValue);
+                break;
             }
+//            humanoid->_children++;
         }
     }
 }
