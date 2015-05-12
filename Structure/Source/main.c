@@ -14,8 +14,8 @@
 int main(int argc, const char * argv[]) {
     
     VAPOutputTestDataStructures();
-    char testValue = 3;
-    printByte(&testValue,reverse);
+    char testValue = 5;
+    printByte(&testValue);
     printf("\n");
     int val = 432;
     printFieldOfByte(&val,sizeof(int),reverse);

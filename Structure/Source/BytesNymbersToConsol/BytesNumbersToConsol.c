@@ -13,8 +13,7 @@
 #pragma mark -
 #pragma mark Private Declarations
 
-static const int mask = 0x80;  
-static const int reverseMask = 0x1;
+static const int mask = 0x80;
 static const unsigned short x = 1;
 
 
@@ -22,19 +21,16 @@ static const unsigned short x = 1;
 #pragma mark -
 #pragma mark Public Implementations
 
-void printByte(char *byte, Reverse type) {
+void printByte(char *byte) {
     uint8_t buff = *byte;
     uint8_t value;
     
     for (uint8_t i = 0; i < 8; i++) {
         
-        if (type == nonreverse) {
+        
             value = mask & buff<<i;
             printf("%s",(value & mask) ? "1" : "0");
-        } else {
-            value = reverseMask & buff>>i;
-            printf("%s",(value & reverseMask) ? "1" : "0");
-        }
+        
         
 
         
@@ -48,7 +44,7 @@ void printFieldOfByte(void *data, size_t size, Reverse type) {
     if ((*((unsigned char *) &x) == 0) || type) {
         char *value = (char *)data;
         for (long i = 0; i < size; i++) {
-            printByte(&value[i], type);
+            printByte(&value[i]);
             if (i!=1) {
                 printf(",");
             }
@@ -57,7 +53,7 @@ void printFieldOfByte(void *data, size_t size, Reverse type) {
     } else {
         char *value = (char *)data;
         for (long i = size; i > 0; i--) {
-            printByte(&value[i-1], type);
+            printByte(&value[i-1]);
             if (i != 1) {
                 printf(",");
             }

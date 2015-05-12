@@ -17,7 +17,7 @@ typedef enum {
 } Reverse;
 
 extern
-void printByte(char *byte, Reverse type);
+void printByte(char *byte);
 
 extern
 void printFieldOfByte(void *data, size_t size, Reverse type);
