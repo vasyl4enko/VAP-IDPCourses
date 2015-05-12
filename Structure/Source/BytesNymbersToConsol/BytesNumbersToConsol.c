@@ -45,7 +45,7 @@ void printByte(char *byte, Reverse type) {
 void printFieldOfByte(void *data, size_t size, Reverse type) {
 
 
-    if (type ||(*((unsigned char *) &x) == 0)) {
+    if ((*((unsigned char *) &x) == 0) || type) {
         char *value = (char *)data;
         for (long i = 0; i < size; i++) {
             printByte(&value[i], type);
