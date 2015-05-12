@@ -16,9 +16,10 @@ int main(int argc, const char * argv[]) {
     uint8_t count = 0;
     char *name = "Kirill";
     VAPHuman *Kirill = VAPHumanCreate(name, age, Male, count);
-    VAPHuman *child = VAPHumanCreate(name, age, Male, count);
-    VAPHumanSetChild(Kirill, child);
-    testChild(Kirill);
+    VAPHuman *child = VAPHumanCreate(name, age, Female, count);
+   
+     VAPMarriedHumanoid(Kirill, child);
+     VAPDivorceHumanoid(Kirill, child);
 //    printf("%d\n",VAPHumanGetAge(Kirill));
     return 0;
 }

@@ -34,6 +34,9 @@ enum VAPGender {
 
 VAPHuman* VAPHumanCreate(char *name, uint16_t age, VAPGender gender, uint8_t childrenCount);
 
+void VAPDivorceHumanoid(VAPHuman *husband, VAPHuman *wife);
+void VAPMarriedHumanoid(VAPHuman *man, VAPHuman *woman);
+
 void VAPHumanSetChild(VAPHuman *humanoid, VAPHuman *child);
 VAPHuman* VAPHumanGetChild(VAPHuman *humanoid);
 

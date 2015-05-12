@@ -10,7 +10,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-
+static const int kMaxchildrenCount = 20;
 //
 //Задачи:
 //1. Создать объектную структуру данных человек, имеющую поля имя, возраст, пол, количество детей, женат или нет, указатель на партнера, на родителей и на массив с детьми, где могло бы быть, максимум, 20 детей.
@@ -56,10 +56,37 @@ VAPHuman* VAPHumanCreate(char *name, uint16_t age, VAPGender gender, uint8_t chi
     return humanoid;
 }
 
+void VAPMarriedHumanoid(VAPHuman *man, VAPHuman *woman) {
+    
+    if (man->_gender == Male && woman->_gender == Female) {
+        VAPHumanSetMarried(man, true);
+        VAPHumanSetMarried(woman, true);
+        VAPHumanSetPartner(man, woman);
+        VAPHumanSetPartner(woman, man);
+        printf("MARRIED\n");
+    }
+}
+
+void VAPDivorceHumanoid(VAPHuman *husband, VAPHuman *wife) {
+    
+    if (husband->_partner == wife && wife->_partner == husband) {
+        VAPHumanSetMarried(husband, false);
+        VAPHumanSetMarried(wife, false);
+        VAPHumanSetPartner(husband, NULL);
+        VAPHumanSetPartner(wife, NULL);
+        printf("deMARRIED\n");
+
+    }
+    
+}
+
 void VAPHumanSetChild(VAPHuman *humanoid, VAPHuman *child) {
-    for (int i = 0; i <= humanoid->_childrenCount; i++,humanoid->_children++) {
-        if(i == humanoid->_childrenCount) {
-            humanoid->_children = child;
+    
+    if (humanoid->_childrenCount < kMaxchildrenCount) {
+        for (int i = 0; i <= humanoid->_childrenCount; i++,humanoid->_children++) {
+            if(i == humanoid->_childrenCount) {
+                VAPHumanSetChild(humanoid, child);
+            }
         }
     }
 }
