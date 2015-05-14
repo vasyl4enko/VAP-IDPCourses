@@ -12,16 +12,6 @@
 #include <assert.h>
 
 static const int kMaxchildrenCount = 20;
-//
-//Задачи:
-//1. Создать объектную структуру данных человек, имеющую поля имя, возраст, пол, количество детей, женат или нет, указатель на партнера, на родителей и на массив с детьми, где могло бы быть, максимум, 20 детей.
-//Требования:
-//- каждая из сущностей, будь то строка или массив, должны быть обернуты в свой объект, который, как минимум, умел бы выполнять подсчет ссылок и имел базовые аксессоры и тесты;
-//- реализовать подсчет ссылок, геттеры и сеттеры для полей;
-//- реализовать метод жениться, который бы устанавливал поле женат в true и указатель на партнера, с которым был брак;
-//- реализовать метод развестись, который бы устанавливал поле женат и указатель на партнера;
-//- реализовать метод произвести потомство, который бы создавал ребенка, устанавливал ему родителей, а у родителей добавлял бы ребенка;
-//- создать тесты на все поведение человека.
 
 #pragma mark -
 #pragma mark Private Declaration
@@ -29,7 +19,7 @@ static const int kMaxchildrenCount = 20;
 
 
 struct VAPHuman {
-    VAPHuman *_children[kMaxchildrenCount];// = (VAPHuman *)malloc(20 * sizeof(VAPHuman));
+    VAPHuman *_children[kMaxchildrenCount];
     VAPHuman *_partner;
     VAPHuman *_mother;
     VAPHuman *_father;
@@ -58,6 +48,21 @@ VAPHuman* VAPHumanCreate(char *name, uint16_t age, VAPGender gender) {
 
     return humanoid;
 }
+
+//void VAPHumanDealoc(VAPHuman *humanoid) {
+//    if (humanoid) {
+//        if (VAPHumanGetChildrenCount(humanoid) == 0) {
+//            free(humanoid);
+//        } else if (VAPHumanGetChildrenCount(humanoid) != 0) {
+//            VAPHuman **children = VAPHumanGetArrayOfChildren(humanoid);
+//            for (int i = 0;i < VAPHumanGetChildrenCount(humanoid) ; i++, children++) {
+//                free(children);
+//            }
+////            free(humanoid);
+//        }
+//    }
+//    
+//}
 
 void VAPMarriedHumanoid(VAPHuman *man, VAPHuman *woman) {
     

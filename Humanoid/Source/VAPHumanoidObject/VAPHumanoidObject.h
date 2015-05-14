@@ -38,6 +38,9 @@ extern
 VAPHuman* VAPHumanCreate(char *name, uint16_t age, VAPGender gender);
 
 extern
+void VAPHumanDealoc(VAPHuman *humanoid);
+
+extern
 void VAPDivorceHumanoid(VAPHuman *husband, VAPHuman *wife);
 
 extern

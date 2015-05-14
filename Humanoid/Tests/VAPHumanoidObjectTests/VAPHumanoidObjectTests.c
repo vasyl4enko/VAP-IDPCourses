@@ -76,12 +76,14 @@ void VAPHumanoidFamallyTest(void) {
         printf("%s age %d\n",VAPHumanGetName(*children),VAPHumanGetAge(*children));
     }
 
-    
+//    VAPHumanDealoc(Roger);
+//    VAPHumanDealoc(Natasha);
+//    VAPHumanDealoc(Nikita);
+//    VAPHumanDealoc(Olya);
+//    VAPHumanDealoc(Vladik);
+//    VAPHumanDealoc(Katya);
 
-    
-    
-    
-    
+ 
 }
 
 
