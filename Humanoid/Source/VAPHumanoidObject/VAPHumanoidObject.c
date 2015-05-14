@@ -163,7 +163,7 @@ void VAPHumanSetName(VAPHuman *humanoid, char* name) {
 
 char* VAPHumanGetName(VAPHuman *humanoid) {
     
-    return humanoid ? humanoid->_name : "unnamed";
+    return humanoid ? humanoid->_name : "unname";
     
 }
 

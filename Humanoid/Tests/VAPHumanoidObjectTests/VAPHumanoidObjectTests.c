@@ -34,7 +34,7 @@ void VAPHumanoidFamallyTest(void) {
     VAPHuman *Olya = VAPHumanCreate("Olya", 23, Female);
     VAPHuman *Vladik = VAPHumanCreate("Vladik", 54, Male);
     VAPHuman *Katya = VAPHumanCreate("Kate", 30, Female);
-    VAPHuman *Katy;
+    VAPHuman *Junk;
     VAPMarriedHumanoid(Roger, Natasha);
     VAPMarriedHumanoid(Roger, Katya);
     VAPMarriedHumanoid(Nikita, Vladik);
@@ -47,7 +47,7 @@ void VAPHumanoidFamallyTest(void) {
     VAPHumanFamalyBirthChild(Vladik, Olya);
     printf("Count child %d\n", VAPHumanGetChildrenCount(Vladik));
     printf("Count child %d\n", VAPHumanGetChildrenCount(Olya));
-    printf("Count child %d\n", VAPHumanGetChildrenCount(Katy));
+    printf(" \"Bug with junk\" Count child %d\n", VAPHumanGetChildrenCount(Junk)); // little bug with junk
     
     
     VAPDivorceHumanoid(Vladik, Olya);
