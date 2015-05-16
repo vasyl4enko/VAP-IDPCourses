@@ -12,39 +12,28 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-//struct VAPHuman {
-//    VAPHuman *_children;// = (VAPHuman *)malloc(20 * sizeof(VAPHuman));
-//    VAPHuman *_partner;
-//    VAPHuman *_mother;
-//    VAPHuman *_father;
-//    char *_name;
-//    uint16_t _age; //
-//    VAPGender _gender;
-//    uint8_t _childrenCount:5; // посмотрим что из этого выйдет.
-//    bool _married:1;
-//};
-
 typedef struct VAPHuman VAPHuman;
-typedef enum VAPGender VAPGender;
+
 
 void VAPHumanSetChild(VAPHuman *humanoid, VAPHuman *child) ;
 
-enum VAPGender {
-    Other,
-    Male,
-    Female
-};
+typedef enum {
+    VAPGenderOther,
+    VAPGenderMale,
+    VAPGenderFemale
+} VAPGender;
+
 extern
-VAPHuman* VAPHumanCreate(char *name, uint16_t age, VAPGender gender);
+VAPHuman *VAPHumanCreate(char *name, uint16_t age, VAPGender gender);
 
 extern
 void VAPHumanDealoc(VAPHuman *humanoid);
 
 extern
-void VAPDivorceHumanoid(VAPHuman *husband, VAPHuman *wife);
+void VAPHumanoidDivorce(VAPHuman *husband, VAPHuman *wife);
 
 extern
-void VAPMarriedHumanoid(VAPHuman *man, VAPHuman *woman);
+void VAPHumanoidMarry(VAPHuman *man, VAPHuman *woman);
 
 extern
 void VAPHumanFamalyBirthChild(VAPHuman *husband, VAPHuman *wife);
@@ -53,34 +42,31 @@ void VAPHumanFamalyBirthChild(VAPHuman *husband, VAPHuman *wife);
 //void VAPHumanSetChild(VAPHuman *humanoid, VAPHuman *child);
 
 extern
-VAPHuman* VAPHumanGetFirstChild(VAPHuman *humanoid);
-
-extern
-VAPHuman** VAPHumanGetArrayOfChildren(VAPHuman *humanoid);
+VAPHuman **VAPHumanGetArrayOfChildren(VAPHuman *humanoid);
 
 extern
 void VAPHumanSetPartner(VAPHuman *humanoid, VAPHuman *partner);
 
 extern
-VAPHuman* VAPHumanGetPartner(VAPHuman *humanoid);
+VAPHuman *VAPHumanGetPartner(VAPHuman *humanoid);
 
 extern
 void VAPHumanSetMother(VAPHuman *humanoid, VAPHuman *mother);
 
 extern
-VAPHuman* VAPHumanGetMother(VAPHuman *humanoid);
+VAPHuman *VAPHumanGetMother(VAPHuman *humanoid);
 
 extern
 void VAPHumanSetFather(VAPHuman *humanoid, VAPHuman *father);
 
 extern
-VAPHuman* VAPHumanGetFaTher(VAPHuman *humanoid);
+VAPHuman *VAPHumanGetFaTher(VAPHuman *humanoid);
 
 extern
-void VAPHumanSetName(VAPHuman *humanoid, char* name);
+void VAPHumanSetName(VAPHuman *humanoid, char *name);
 
 extern
-char* VAPHumanGetName(VAPHuman *humanoid);
+char *VAPHumanGetName(VAPHuman *humanoid);
 
 extern
 void VAPHumanSetAge(VAPHuman *humanoid, uint16_t age);

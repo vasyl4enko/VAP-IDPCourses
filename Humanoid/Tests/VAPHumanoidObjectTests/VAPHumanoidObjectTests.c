@@ -28,18 +28,18 @@ void VAPHumanoidObjectTest() {
 
 void VAPHumanoidFamallyTest(void) {
     // childcount need make private
-    VAPHuman *Roger = VAPHumanCreate("Roger", 32, Male);
-    VAPHuman *Natasha = VAPHumanCreate("Natasha", 25, Female);
-    VAPHuman *Nikita = VAPHumanCreate("Nikita", 20, Male);
-    VAPHuman *Olya = VAPHumanCreate("Olya", 23, Female);
-    VAPHuman *Vladik = VAPHumanCreate("Vladik", 54, Male);
-    VAPHuman *Katya = VAPHumanCreate("Kate", 30, Female);
+    VAPHuman *Roger = VAPHumanCreate("Roger", 32, VAPGenderMale);
+    VAPHuman *Natasha = VAPHumanCreate("Natasha", 25, VAPGenderFemale);
+    VAPHuman *Nikita = VAPHumanCreate("Nikita", 20, VAPGenderMale);
+    VAPHuman *Olya = VAPHumanCreate("Olya", 23, VAPGenderFemale);
+    VAPHuman *Vladik = VAPHumanCreate("Vladik", 54, VAPGenderMale);
+    VAPHuman *Katya = VAPHumanCreate("Kate", 30, VAPGenderFemale);
     VAPHuman *Junk;
-    VAPMarriedHumanoid(Roger, Natasha);
-    VAPMarriedHumanoid(Roger, Katya);
-    VAPMarriedHumanoid(Nikita, Vladik);
-    VAPMarriedHumanoid(Nikita, Katya);
-    VAPMarriedHumanoid(Vladik, Olya);
+    VAPHumanoidMarry(Roger, Natasha);
+    VAPHumanoidMarry(Roger, Katya);
+    VAPHumanoidMarry(Nikita, Vladik);
+    VAPHumanoidMarry(Nikita, Katya);
+    VAPHumanoidMarry(Vladik, Olya);
     
     VAPHumanFamalyBirthChild(Vladik, Olya);
     printf("Count child %d\n", VAPHumanGetChildrenCount(Vladik));
@@ -50,11 +50,11 @@ void VAPHumanoidFamallyTest(void) {
     printf(" \"Bug with junk\" Count child %d\n", VAPHumanGetChildrenCount(Junk)); // little bug with junk
     
     
-    VAPDivorceHumanoid(Vladik, Olya);
-    VAPDivorceHumanoid(Roger, Katya);
-    VAPDivorceHumanoid(Roger, Natasha);
-    VAPMarriedHumanoid(Roger, Olya);
-    VAPMarriedHumanoid(Vladik, Natasha);
+    VAPHumanoidDivorce(Vladik, Olya);
+    VAPHumanoidDivorce(Roger, Katya);
+    VAPHumanoidDivorce(Roger, Natasha);
+    VAPHumanoidMarry(Roger, Olya);
+    VAPHumanoidMarry(Vladik, Natasha);
     
     VAPHumanSetChild(Vladik, Roger);
     VAPHumanSetChild(Vladik, Natasha);

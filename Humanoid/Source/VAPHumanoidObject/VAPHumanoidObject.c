@@ -17,7 +17,6 @@ static const int kMaxchildrenCount = 20;
 #pragma mark Private Declaration
 
 
-
 struct VAPHuman {
     VAPHuman *_children[kMaxchildrenCount];
     VAPHuman *_partner;
@@ -36,8 +35,7 @@ struct VAPHuman {
 #pragma mark -
 #pragma mark Public Implementation
 
-VAPHuman* VAPHumanCreate(char *name, uint16_t age, VAPGender gender) {
-
+VAPHuman *VAPHumanCreate(char *name, uint16_t age, VAPGender gender) {
     VAPHuman *humanoid =calloc(1, sizeof(VAPHuman));
     
     assert(humanoid != NULL);
@@ -64,11 +62,10 @@ VAPHuman* VAPHumanCreate(char *name, uint16_t age, VAPGender gender) {
 //    
 //}
 
-void VAPMarriedHumanoid(VAPHuman *man, VAPHuman *woman) {
-    
+void VAPHumanoidMarry(VAPHuman *man, VAPHuman *woman) {
     if (man != NULL && woman != NULL) {
-        if ((man->_gender == Male && woman->_gender == Female)  ) {
-            if (!(man->_partner || woman->_partner )) {
+        if ((man->_gender == VAPGenderMale && woman->_gender == VAPGenderFemale)  ) {
+            if (!(VAPHumanGetPartner(man) || VAPHumanGetPartner(woman))) {
                 VAPHumanSetMarried(man, true);
                 VAPHumanSetMarried(woman, true);
                 VAPHumanSetPartner(man, woman);
@@ -84,8 +81,7 @@ void VAPMarriedHumanoid(VAPHuman *man, VAPHuman *woman) {
     }
 }
 
-void VAPDivorceHumanoid(VAPHuman *man, VAPHuman *woman) {
-    
+void VAPHumanoidDivorce(VAPHuman *man, VAPHuman *woman) {
     if (man != NULL && woman != NULL) {
         if (man->_partner == woman && woman->_partner == man) {
             VAPHumanSetMarried(man, false);
@@ -101,11 +97,9 @@ void VAPDivorceHumanoid(VAPHuman *man, VAPHuman *woman) {
 }
 
 void VAPHumanFamalyBirthChild(VAPHuman *man, VAPHuman *woman) {
-    
     if (man != NULL && woman != NULL) {
-        if (man->_partner == woman && woman->_partner == man) {
+        if (VAPHumanGetPartner(man) == woman && VAPHumanGetPartner(woman) == man) {
             VAPHuman *child = VAPHumanCreate("unname", 0, rand()%3);
-            
             VAPHumanSetChild(man, child);
             VAPHumanSetChild(woman, child);
             VAPHumanSetFather(child, man);
@@ -115,65 +109,46 @@ void VAPHumanFamalyBirthChild(VAPHuman *man, VAPHuman *woman) {
     }
 }
 
+#pragma mark -
+#pragma mark Accesors
 
-
-VAPHuman* VAPHumanGetFirsrChild(VAPHuman *humanoid) {
-    
-    VAPHuman *firstChild;
-    firstChild = humanoid;
-    
-    return firstChild;
-}
-
-VAPHuman* VAPHumanGetFirstChild(VAPHuman *humanoid) {
-    
-    
-    VAPHuman **children = humanoid->_children;
-    return *children;
-}
-
-VAPHuman** VAPHumanGetArrayOfChildren(VAPHuman *humanoid) {
+VAPHuman **VAPHumanGetArrayOfChildren(VAPHuman *humanoid) {
     VAPHuman **childr = humanoid->_children;
     return childr;
 }
 
 void VAPHumanSetPartner(VAPHuman *humanoid, VAPHuman *partner) {
-    
     if (humanoid) {
         humanoid->_partner = partner;
     }
 }
 
 void VAPHumanSetMother(VAPHuman *humanoid, VAPHuman *mother) {
-    
     if (humanoid) {
         humanoid->_mother = mother;
     }
 }
 
 void VAPHumanSetFather(VAPHuman *humanoid, VAPHuman *father) {
-    
     if (humanoid) {
         humanoid->_father = father;
     }
 }
 
-void VAPHumanSetName(VAPHuman *humanoid, char* name) {
-    
+void VAPHumanSetName(VAPHuman *humanoid, char *name) {
     if (humanoid) {
         humanoid->_name = strdup(name);
     }
     
 }
 
-char* VAPHumanGetName(VAPHuman *humanoid) {
+char *VAPHumanGetName(VAPHuman *humanoid) {
     
     return humanoid ? humanoid->_name : "unname";
     
 }
 
 void VAPHumanSetAge(VAPHuman *humanoid, uint16_t age) {
-    
     if (humanoid) {
         humanoid->_age = age;
     }
@@ -185,7 +160,6 @@ uint16_t VAPHumanGetAge(VAPHuman *humanoid) {
 }
 
 void VAPHumanSetGender(VAPHuman *humanoid, VAPGender gender) {
-    
     if (humanoid) {
         humanoid->_gender = gender;
     }
@@ -193,7 +167,7 @@ void VAPHumanSetGender(VAPHuman *humanoid, VAPGender gender) {
 
 VAPGender VAPHumanGetGender(VAPHuman *humanoid) {
     
-    return humanoid ? humanoid->_gender : 0;
+    return humanoid ? VAPHumanGetGender(humanoid) : 0;
 }
 
 void VAPHumanSetChildrenCount(VAPHuman *humanoid, uint8_t count) {
@@ -209,7 +183,6 @@ uint8_t VAPHumanGetChildrenCount(VAPHuman *humanoid) {
 }
 
 void VAPHumanSetMarried(VAPHuman *humanoid, bool isMarried) {
-    
     if (humanoid){
         humanoid->_isMarried = isMarried;
     }
@@ -218,22 +191,18 @@ void VAPHumanSetMarried(VAPHuman *humanoid, bool isMarried) {
 #pragma mark -
 #pragma mark Private Implementation
 
-
 void VAPHumanSetChild(VAPHuman *humanoid, VAPHuman *child) {
-
     if (humanoid != NULL && child != NULL) {
-        if (humanoid->_childrenCount < kMaxchildrenCount) {
+        if ( VAPHumanGetChildrenCount(humanoid) < kMaxchildrenCount) {
             for (int i = 0; i <= humanoid->_childrenCount; i++) {
                 if(i == humanoid->_childrenCount) {
                     humanoid->_children[i] = child;
-                    //                uint8_t incrementValue = 0;
-                    //                incrementValue = humanoid->_childrenCount;
-                    //                incrementValue++;
-                    //                VAPHumanSetChildrenCount(humanoid, incrementValue); как лучше через сеттер? или можно так?
-                    humanoid->_childrenCount = humanoid->_childrenCount + 1;
+                    uint8_t incrementValue = 0;
+                    incrementValue = humanoid->_childrenCount;
+                    incrementValue++;
+                    VAPHumanSetChildrenCount(humanoid, incrementValue);
                     break;
                 }
-                
             }
         } else {
             printf("Famaly tired\n");

@@ -12,7 +12,8 @@
 
 
 int main(int argc, const char * argv[]) {
-//    VAPHuman *Kirill = VAPHumanCreate("Kirill", 22, Male , );
+    
     VAPHumanoidObjectTest();
+    
     return 0;
 }
