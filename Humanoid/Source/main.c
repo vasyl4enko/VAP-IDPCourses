@@ -17,13 +17,11 @@
 
 int main(int argc, const char * argv[]) {
     
-//    VAPHumanoidObjectTest();
     VAPHuman *Roger = VAPHumanCreate("Roger", 32, VAPGenderMale);
-    VAPHuman *Huegur = VAPHumanCreate("Huegur", 43, VAPGenderMale);
-    VAPArray *array = VAPArrayCreate(Roger);
-    VAPArrayAddElement(array, Huegur);
-    void *returArr = VAPArrayGetObjects(array);
-    
+    VAPHuman *Natasha = VAPHumanCreate("Natasha", 25, VAPGenderFemale);
+
+    VAPHumanoidMarry(Roger, Natasha);
+    VAPHumanFamalyBirthChild(Roger, Natasha);
 
     return 0;
 }

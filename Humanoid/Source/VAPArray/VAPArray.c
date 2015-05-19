@@ -30,7 +30,7 @@ uint64_t VAPArrayGetCount(void *array) {
     return array != NULL ? ((VAPArray *)array)->_count : 0; // MACROS TO GETTERS
 }
 
-void VAPArrayAddElement(void *array, void *element) {
+void VAPArrayAddElement(VAPArray *array, void *element) {
     if (array != NULL && element != NULL) {
         if (((VAPArray *) array)->_elements == NULL ) {
             ((VAPArray *) array)->_elements = calloc(1, sizeof(element));

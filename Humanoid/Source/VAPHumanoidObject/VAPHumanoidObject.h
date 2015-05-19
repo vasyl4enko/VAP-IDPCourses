@@ -11,6 +11,8 @@
 
 #include <stdio.h>
 #include <stdbool.h>
+#include "VAPArray.h"
+
 
 typedef struct VAPHuman VAPHuman;
 
@@ -40,11 +42,8 @@ void VAPHumanoidMarry(VAPHuman *man, VAPHuman *woman);
 extern
 void VAPHumanFamalyBirthChild(VAPHuman *husband, VAPHuman *wife);
 
-//extern
-//void VAPHumanSetChild(VAPHuman *humanoid, VAPHuman *child);
-
 extern
-VAPHuman** VAPHumanGetArrayOfChildren(VAPHuman *humanoid);
+VAPArray* VAPHumanGetChildren(void *humanoid);
 
 extern
 void VAPHumanSetPartner(VAPHuman *humanoid, VAPHuman *partner);
@@ -81,9 +80,6 @@ void VAPHumanSetGender(VAPHuman *humanoid, VAPGender gender);
 
 extern
 VAPGender VAPHumanGetGender(VAPHuman *humanoid);
-
-extern
-uint8_t VAPHumanGetChildrenCount(VAPHuman *humanoid);
 
 extern
 void VAPHumanSetMarried(VAPHuman *humanoid);

@@ -32,7 +32,7 @@ extern
 uint64_t VAPArrayGetCount(void *array);
 
 extern
-void VAPArrayAddElement(void *array, void *element);
+void VAPArrayAddElement(VAPArray *array, void *element);
 
 extern
 

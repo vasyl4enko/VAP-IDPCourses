@@ -8,6 +8,7 @@
 
 #include "VAPHumanoidObject.h"
 #include "VAPString.h"
+#include "VAPArray.h"
 #include "VAPObject.h"
 
 #include <stdlib.h>
@@ -24,7 +25,7 @@ static const int kMaxchildrenCount = 20;
 
 struct VAPHuman {
     VAPObject _super;
-    VAPHuman *_children[kMaxchildrenCount]; // change to class
+    VAPArray *children; // change to class
     VAPHuman *_partner;
     VAPHuman *_mother;
     VAPHuman *_father;
@@ -42,15 +43,10 @@ struct VAPHuman {
 #pragma mark Public Implementation
 
 VAPHuman* VAPHumanCreate(char *name, uint16_t age, VAPGender gender) {
-//    VAPHuman *humanoid = calloc(1, sizeof(VAPHuman *));
-//    
-//    assert(humanoid != NULL);
-//    humanoid->_name = malloc(sizeof(VAPString *));
-//
-//    VAPHumanSetName(humanoid, name);
-//    VAPHumanSetAge(humanoid, age);
-//    VAPHumanSetGender(humanoid, gender);
+
     VAPString *string = VAPStringCreate(name);
+//    VAPArray *array = VAPArrayCreate(<#void *element#>)
+    
     VAPHuman *humanoid = VAPObjectCreateType(VAPHuman);
     humanoid->_name = string;
     
@@ -64,21 +60,6 @@ VAPHuman* VAPHumanCreate(char *name, uint16_t age, VAPGender gender) {
 
     return humanoid;
 }
-
-//void VAPHumanDealoc(VAPHuman *humanoid) {
-//    if (humanoid) {
-//        if (VAPHumanGetChildrenCount(humanoid) == 0) {
-//            free(humanoid);
-//        } else if (VAPHumanGetChildrenCount(humanoid) != 0) {
-//            VAPHuman **children = VAPHumanGetArrayOfChildren(humanoid);
-//            for (int i = 0;i < VAPHumanGetChildrenCount(humanoid) ; i++, children++) {
-//                free(children);
-//            }
-////            free(humanoid);
-//        }
-//    }
-//    
-//}
 
 void VAPHumanoidMarry(VAPHuman *man, VAPHuman *woman) {
     if (man != NULL && woman != NULL) {
@@ -128,9 +109,12 @@ void VAPHumanFamalyBirthChild(VAPHuman *man, VAPHuman *woman) {
 #pragma mark -
 #pragma mark Accessors
 
-VAPHuman** VAPHumanGetArrayOfChildren(VAPHuman *humanoid) {
-    VAPHuman **childr = humanoid->_children;
-    return childr;
+
+
+
+
+VAPArray* VAPHumanGetChildren(void *humanoid) {
+    return humanoid != NULL ? ((VAPHuman *)humanoid)->children : NULL ;
 }
 
 void VAPHumanSetPartner(VAPHuman *humanoid, VAPHuman *partner) {
@@ -214,16 +198,7 @@ uint8_t VAPHumanGetChildrenCount(VAPHuman *humanoid) {
 void VAPHumanSetChild(VAPHuman *humanoid, VAPHuman *child) {
     if (humanoid != NULL && child != NULL) {
         if ( VAPHumanGetChildrenCount(humanoid) < kMaxchildrenCount) {
-            for (int i = 0; i <= humanoid->_childrenCount; i++) {
-                if(i == humanoid->_childrenCount) {
-                    humanoid->_children[i] = child;
-                    uint8_t incrementValue = 0;
-                    incrementValue = humanoid->_childrenCount;
-                    incrementValue++;
-                    VAPHumanSetChildrenCount(humanoid, incrementValue);
-                    break;
-                }
-            }
+            VAPArrayAddElement(humanoid->children, child);
         } else {
             printf("Famaly tired\n");
         }
