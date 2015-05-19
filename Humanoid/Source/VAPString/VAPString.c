@@ -1,0 +1,74 @@
+//
+//  VAPString.c
+//  VAP IDPCources
+//
+//  Created by Aleksandr Vasylchenko on 18.05.15.
+//  Copyright (c) 2015 Aleksandr Vasylchenko. All rights reserved.
+//
+
+#include "VAPString.h"
+#include <string.h>
+#include <assert.h>
+
+#pragma mark -
+#pragma mark Private implementation
+
+struct VAPString {
+    VAPObject _super;
+    char *_name;
+    
+};
+
+//static
+//void VAPStringSetName(VAPString *string, char *newName);
+
+#pragma mark -
+#pragma mark Public implementation
+
+void *VAPStringCreate(char *name) {
+    
+    
+    VAPString *object = VAPObjectCreateType(VAPString) ;
+    VAPStringSetName(object, name);
+
+    
+    return object;
+}
+
+
+void __VAPStringDeallocate(void *object) {
+    
+    __VAPObjectDeallocate(object);
+}
+
+#pragma mark -
+#pragma mark Accessers 
+
+
+char *VAPStringGetName(VAPString *string){
+    return string ? string->_name : NULL;
+}
+
+void VAPStringSetName(VAPString *string, char *newName) {
+    if (string != NULL) {
+        char *previousName = string->_name;
+        if (previousName != NULL) {
+//            free(previousName);
+        }
+        
+        char *copiedName = NULL;
+        if (NULL != newName) {
+            copiedName = strdup(newName);
+            
+            assert(copiedName != NULL);
+            
+        }
+        string->_name = copiedName;
+    }
+    
+}
+
+#pragma mark -
+#pragma mark Private implementation
+
+

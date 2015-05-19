@@ -49,7 +49,6 @@ void VAPHumanoidFamallyTest(void) {
     printf("Count child %d\n", VAPHumanGetChildrenCount(Olya));
     printf(" \"Bug with junk\" Count child %d\n", VAPHumanGetChildrenCount(Junk)); // little bug with junk
     
-    
     VAPHumanoidDivorce(Vladik, Olya);
     VAPHumanoidDivorce(Roger, Katya);
     VAPHumanoidDivorce(Roger, Natasha);

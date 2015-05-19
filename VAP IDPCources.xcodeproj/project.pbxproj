@@ -10,6 +10,8 @@
 		1F1325951AF93E180047139E /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 1F1325941AF93E180047139E /* main.c */; };
 		1F13259E1AF977A20047139E /* VAPTestGenerateMethods.c in Sources */ = {isa = PBXBuildFile; fileRef = 1F13259C1AF977A20047139E /* VAPTestGenerateMethods.c */; };
 		1F1C525C1B0292DC0057621A /* VAPHumanoidObjectTests.c in Sources */ = {isa = PBXBuildFile; fileRef = 1F1C525A1B0292DC0057621A /* VAPHumanoidObjectTests.c */; };
+		1F1C52611B08F9AE0057621A /* VAPObject.c in Sources */ = {isa = PBXBuildFile; fileRef = 1F1C525F1B08F9AE0057621A /* VAPObject.c */; };
+		1F1C52651B0A4A6D0057621A /* VAPString.c in Sources */ = {isa = PBXBuildFile; fileRef = 1F1C52631B0A4A6D0057621A /* VAPString.c */; };
 		1F20DCBF1B0000E00014ACE4 /* TestDataStructure.c in Sources */ = {isa = PBXBuildFile; fileRef = 1F20DCBD1B0000E00014ACE4 /* TestDataStructure.c */; };
 		1F35D9A01AFEB4D100E57436 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 1F35D99F1AFEB4D100E57436 /* main.c */; };
 		1F35D9A71AFFEF4A00E57436 /* BytesNumbersToConsol.c in Sources */ = {isa = PBXBuildFile; fileRef = 1F35D9A51AFFEF4A00E57436 /* BytesNumbersToConsol.c */; };
@@ -55,6 +57,10 @@
 		1F1325A01AF978B20047139E /* VAPGenereteMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VAPGenereteMethods.h; sourceTree = "<group>"; };
 		1F1C525A1B0292DC0057621A /* VAPHumanoidObjectTests.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = VAPHumanoidObjectTests.c; path = VAPHumanoidObjectTests/VAPHumanoidObjectTests.c; sourceTree = "<group>"; };
 		1F1C525B1B0292DC0057621A /* VAPHumanoidObjectTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VAPHumanoidObjectTests.h; path = VAPHumanoidObjectTests/VAPHumanoidObjectTests.h; sourceTree = "<group>"; };
+		1F1C525F1B08F9AE0057621A /* VAPObject.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = VAPObject.c; sourceTree = "<group>"; };
+		1F1C52601B08F9AE0057621A /* VAPObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VAPObject.h; sourceTree = "<group>"; };
+		1F1C52631B0A4A6D0057621A /* VAPString.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = VAPString.c; path = Humanoid/Source/VAPString/VAPString.c; sourceTree = SOURCE_ROOT; };
+		1F1C52641B0A4A6D0057621A /* VAPString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VAPString.h; path = Humanoid/Source/VAPString/VAPString.h; sourceTree = SOURCE_ROOT; };
 		1F20DCBD1B0000E00014ACE4 /* TestDataStructure.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = TestDataStructure.c; sourceTree = "<group>"; };
 		1F20DCBE1B0000E00014ACE4 /* TestDataStructure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestDataStructure.h; sourceTree = "<group>"; };
 		1F35D9971AFEB45700E57436 /* Structure */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Structure; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -165,6 +171,25 @@
 			name = VAPHumanoidObjectTests;
 			sourceTree = "<group>";
 		};
+		1F1C525E1B08F8870057621A /* VAPObject */ = {
+			isa = PBXGroup;
+			children = (
+				1F1C525F1B08F9AE0057621A /* VAPObject.c */,
+				1F1C52601B08F9AE0057621A /* VAPObject.h */,
+			);
+			path = VAPObject;
+			sourceTree = "<group>";
+		};
+		1F1C52621B0A3C0F0057621A /* VAPString */ = {
+			isa = PBXGroup;
+			children = (
+				1F1C52631B0A4A6D0057621A /* VAPString.c */,
+				1F1C52641B0A4A6D0057621A /* VAPString.h */,
+			);
+			name = VAPString;
+			path = "untitled folder";
+			sourceTree = "<group>";
+		};
 		1F20DCBC1B0000D10014ACE4 /* TestStructure */ = {
 			isa = PBXGroup;
 			children = (
@@ -232,6 +257,8 @@
 		1F3DCAAB1B02448D0052B37C /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				1F1C52621B0A3C0F0057621A /* VAPString */,
+				1F1C525E1B08F8870057621A /* VAPObject */,
 				1F3DCAB01B02459C0052B37C /* VAPHumanoidObject */,
 				1F3DCAAD1B02448D0052B37C /* main.c */,
 			);
@@ -373,7 +400,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				1F3DCAAF1B02448D0052B37C /* main.c in Sources */,
+				1F1C52651B0A4A6D0057621A /* VAPString.c in Sources */,
 				1F3DCAB31B0245B10052B37C /* VAPHumanoidObject.c in Sources */,
+				1F1C52611B08F9AE0057621A /* VAPObject.c in Sources */,
 				1F1C525C1B0292DC0057621A /* VAPHumanoidObjectTests.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
