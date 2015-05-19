@@ -15,10 +15,6 @@
 int main(int argc, const char * argv[]) {
     
     VAPHumanoidObjectTest();
-//    VAPObject *object = VAPObjectCreateType(VAPObject);
-    
-//    VAPObject *red = VAPObjectRetain(object);
-//    VAPString *string = VAPStringCreate("Saska");
-//    VAPObjectRelease(string);
+
     return 0;
 }

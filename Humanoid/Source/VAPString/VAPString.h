@@ -12,12 +12,12 @@
 #include <stdio.h>
 #include "VAPObject.h"
 
-typedef struct VAPString VAPString;
-struct VAPString {
+
+typedef struct {
     VAPObject _super;
     char *_name;
     
-};
+} VAPString;
 
 
 //typedef void (*VAPStringDeallocCallBack)(void *);

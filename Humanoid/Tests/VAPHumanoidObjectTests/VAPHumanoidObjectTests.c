@@ -60,7 +60,7 @@ void VAPHumanoidFamallyTest(void) {
     
     VAPHumanFamalyBirthChild(Roger, Olya);
     printf("Roger Count child %d\n", VAPHumanGetChildrenCount(Roger));
-    printf("olya Count child %d\n", VAPHumanGetChildrenCount(Olya));
+    printf("Olya Count child %d\n", VAPHumanGetChildrenCount(Olya));
     VAPHumanFamalyBirthChild(Vladik, Natasha);
     printf("Vladik Count child %d\n", VAPHumanGetChildrenCount(Vladik));
     printf("Natasha Count child %d\n", VAPHumanGetChildrenCount(Natasha));

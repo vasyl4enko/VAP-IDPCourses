@@ -32,7 +32,7 @@ struct VAPHuman {
     uint16_t _age;
     VAPGender _gender;
     uint8_t _childrenCount:5; //don't need
-    bool _isMarried:1; // don't need
+
 };
 
 //static
@@ -84,8 +84,7 @@ void VAPHumanoidMarry(VAPHuman *man, VAPHuman *woman) {
     if (man != NULL && woman != NULL) {
         if ((man->_gender == VAPGenderMale && woman->_gender == VAPGenderFemale)  ) {
             if (!(VAPHumanGetPartner(man) || VAPHumanGetPartner(woman))) {
-                VAPHumanSetMarried(man, true);
-                VAPHumanSetMarried(woman, true);
+
                 VAPHumanSetPartner(man, woman);
                 VAPHumanSetPartner(woman, man);
                 printf("%s and %s MARRIED1\n",VAPStringGetName(man->_name),VAPStringGetName(woman->_name));
@@ -102,8 +101,7 @@ void VAPHumanoidMarry(VAPHuman *man, VAPHuman *woman) {
 void VAPHumanoidDivorce(VAPHuman *man, VAPHuman *woman) {
     if (man != NULL && woman != NULL) {
         if (man->_partner == woman && woman->_partner == man) {
-            VAPHumanSetMarried(man, false);
-            VAPHumanSetMarried(woman, false);
+
             VAPHumanSetPartner(man, NULL);
             VAPHumanSetPartner(woman, NULL);
             printf("%s and %s deMARRIED\n",VAPHumanGetName(woman), VAPHumanGetName(man));
@@ -128,7 +126,7 @@ void VAPHumanFamalyBirthChild(VAPHuman *man, VAPHuman *woman) {
 }
 
 #pragma mark -
-#pragma mark Accesors
+#pragma mark Accessors
 
 VAPHuman** VAPHumanGetArrayOfChildren(VAPHuman *humanoid) {
     VAPHuman **childr = humanoid->_children;
@@ -208,12 +206,6 @@ uint8_t VAPHumanGetChildrenCount(VAPHuman *humanoid) {
     
     return humanoid ? humanoid->_childrenCount : 0;
 
-}
-
-void VAPHumanSetMarried(VAPHuman *humanoid, bool isMarried) {
-    if (humanoid){
-        humanoid->_isMarried = isMarried;
-    }
 }
 
 #pragma mark -
