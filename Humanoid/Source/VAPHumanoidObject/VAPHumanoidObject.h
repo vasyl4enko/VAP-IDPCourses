@@ -15,7 +15,7 @@
 typedef struct VAPHuman VAPHuman;
 
 
-void VAPHumanSetChild(VAPHuman *humanoid, VAPHuman *child) ;
+void VAPHumanSetChild(VAPHuman *humanoid, VAPHuman *child);
 
 typedef enum {
     VAPGenderOther,

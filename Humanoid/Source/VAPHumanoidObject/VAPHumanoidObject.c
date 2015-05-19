@@ -7,9 +7,14 @@
 //
 
 #include "VAPHumanoidObject.h"
+#include "VAPString.h"
+#include "VAPObject.h"
+
 #include <stdlib.h>
 #include <string.h>
 #include <assert.h>
+
+
 
 static const int kMaxchildrenCount = 20;
 
@@ -18,11 +23,12 @@ static const int kMaxchildrenCount = 20;
 
 
 struct VAPHuman {
-    VAPHuman *_children[kMaxchildrenCount];
+    VAPObject _super;
+    VAPHuman *_children[kMaxchildrenCount]; // change to class
     VAPHuman *_partner;
     VAPHuman *_mother;
     VAPHuman *_father;
-    char *_name;
+    VAPString *_name;
     uint16_t _age;
     VAPGender _gender;
     uint8_t _childrenCount:5; 
@@ -36,9 +42,10 @@ struct VAPHuman {
 #pragma mark Public Implementation
 
 VAPHuman *VAPHumanCreate(char *name, uint16_t age, VAPGender gender) {
-    VAPHuman *humanoid =calloc(1, sizeof(VAPHuman));
+    VAPHuman *humanoid = calloc(1, sizeof(VAPHuman *));
     
     assert(humanoid != NULL);
+    humanoid->_name = malloc(sizeof(VAPString *));
 
     VAPHumanSetName(humanoid, name);
     VAPHumanSetAge(humanoid, age);
@@ -70,7 +77,7 @@ void VAPHumanoidMarry(VAPHuman *man, VAPHuman *woman) {
                 VAPHumanSetMarried(woman, true);
                 VAPHumanSetPartner(man, woman);
                 VAPHumanSetPartner(woman, man);
-                printf("%s and %s MARRIED\n",woman->_name, man->_name);
+                printf("%s and %s MARRIED1\n",VAPStringGetName(man->_name),VAPStringGetName(woman->_name));
             } else {
                 printf("can't\n");
             }
@@ -123,6 +130,13 @@ void VAPHumanSetPartner(VAPHuman *humanoid, VAPHuman *partner) {
     }
 }
 
+VAPHuman *VAPHumanGetPartner(VAPHuman *humanoid) {
+//    if (humanoid) {
+//        return NULL;
+//    }
+    return humanoid ? humanoid->_partner :NULL;
+}
+
 void VAPHumanSetMother(VAPHuman *humanoid, VAPHuman *mother) {
     if (humanoid) {
         humanoid->_mother = mother;
@@ -136,15 +150,15 @@ void VAPHumanSetFather(VAPHuman *humanoid, VAPHuman *father) {
 }
 
 void VAPHumanSetName(VAPHuman *humanoid, char *name) {
-    if (humanoid) {
-        humanoid->_name = strdup(name);
+    if (humanoid != NULL) {
+       VAPStringSetName(humanoid->_name, name);
     }
     
 }
 
 char *VAPHumanGetName(VAPHuman *humanoid) {
     
-    return humanoid ? humanoid->_name : "unname";
+    return humanoid ? VAPStringGetName(humanoid->_name) : 0;
     
 }
 
@@ -166,8 +180,11 @@ void VAPHumanSetGender(VAPHuman *humanoid, VAPGender gender) {
 }
 
 VAPGender VAPHumanGetGender(VAPHuman *humanoid) {
+    if (!humanoid) {
+        return 0;
+    }
     
-    return humanoid ? VAPHumanGetGender(humanoid) : 0;
+    return humanoid->_gender;
 }
 
 void VAPHumanSetChildrenCount(VAPHuman *humanoid, uint8_t count) {
