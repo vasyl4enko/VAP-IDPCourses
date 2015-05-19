@@ -16,19 +16,18 @@ void* VAPArrayCreate(void *element) {
     VAPArray *array = VAPObjectCreateType(VAPArray);
     VAPArrayAddElement(array, element);
     
-    
     return array;
 }
-
-extern
-void* VAPArrayCreate(void *element);
 
 extern
 void* VAPArrayGetObjectAtIndex(void *array, uint64_t index);
 
 void* VAPArrayGetObjects(void *array) {
+    return array != NULL ? ((VAPArray *)array)->_elements : NULL; // macros to getters
+}
 
-    return NULL;
+uint64_t VAPArrayGetCount(void *array) {
+    return array != NULL ? ((VAPArray *)array)->_count : 0; // MACROS TO GETTERS
 }
 
 void VAPArrayAddElement(void *array, void *element) {

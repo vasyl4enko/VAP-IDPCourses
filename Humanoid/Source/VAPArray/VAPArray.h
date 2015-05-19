@@ -29,6 +29,9 @@ extern
 void* VAPArrayGetObjects(void *array);
 
 extern
+uint64_t VAPArrayGetCount(void *array);
+
+extern
 void VAPArrayAddElement(void *array, void *element);
 
 extern

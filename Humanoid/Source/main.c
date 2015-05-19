@@ -22,6 +22,7 @@ int main(int argc, const char * argv[]) {
     VAPHuman *Huegur = VAPHumanCreate("Huegur", 43, VAPGenderMale);
     VAPArray *array = VAPArrayCreate(Roger);
     VAPArrayAddElement(array, Huegur);
+    void *returArr = VAPArrayGetObjects(array);
     
 
     return 0;
