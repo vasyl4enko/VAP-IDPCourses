@@ -31,8 +31,8 @@ struct VAPHuman {
     VAPString *_name;
     uint16_t _age;
     VAPGender _gender;
-    uint8_t _childrenCount:5; 
-    bool _isMarried:1;
+    uint8_t _childrenCount:5; //don't need
+    bool _isMarried:1; // don't need
 };
 
 //static
@@ -41,12 +41,23 @@ struct VAPHuman {
 #pragma mark -
 #pragma mark Public Implementation
 
-VAPHuman *VAPHumanCreate(char *name, uint16_t age, VAPGender gender) {
-    VAPHuman *humanoid = calloc(1, sizeof(VAPHuman *));
+VAPHuman* VAPHumanCreate(char *name, uint16_t age, VAPGender gender) {
+//    VAPHuman *humanoid = calloc(1, sizeof(VAPHuman *));
+//    
+//    assert(humanoid != NULL);
+//    humanoid->_name = malloc(sizeof(VAPString *));
+//
+//    VAPHumanSetName(humanoid, name);
+//    VAPHumanSetAge(humanoid, age);
+//    VAPHumanSetGender(humanoid, gender);
+    VAPString *string = VAPObjectCreateType(VAPString);
+    VAPHuman *humanoid = VAPObjectCreateType(VAPHuman);
+    humanoid->_name = string;
     
     assert(humanoid != NULL);
-    humanoid->_name = malloc(sizeof(VAPString *));
-
+//    humanoid->_name = malloc(sizeof(VAPString *));
+   
+    
     VAPHumanSetName(humanoid, name);
     VAPHumanSetAge(humanoid, age);
     VAPHumanSetGender(humanoid, gender);
@@ -95,10 +106,10 @@ void VAPHumanoidDivorce(VAPHuman *man, VAPHuman *woman) {
             VAPHumanSetMarried(woman, false);
             VAPHumanSetPartner(man, NULL);
             VAPHumanSetPartner(woman, NULL);
-            printf("%s and %s deMARRIED\n",woman->_name, man->_name);
+            printf("%s and %s deMARRIED\n",VAPHumanGetName(woman), VAPHumanGetName(man));
             
         } else {
-            printf("%s and %s can't demarried\n",woman->_name, man->_name);
+            printf("%s and %s can't demarried\n",VAPHumanGetName(woman), VAPHumanGetName(man));
         }
     }
 }
@@ -119,7 +130,7 @@ void VAPHumanFamalyBirthChild(VAPHuman *man, VAPHuman *woman) {
 #pragma mark -
 #pragma mark Accesors
 
-VAPHuman **VAPHumanGetArrayOfChildren(VAPHuman *humanoid) {
+VAPHuman** VAPHumanGetArrayOfChildren(VAPHuman *humanoid) {
     VAPHuman **childr = humanoid->_children;
     return childr;
 }
@@ -156,7 +167,7 @@ void VAPHumanSetName(VAPHuman *humanoid, char *name) {
     
 }
 
-char *VAPHumanGetName(VAPHuman *humanoid) {
+char* VAPHumanGetName(VAPHuman *humanoid) {
     
     return humanoid ? VAPStringGetName(humanoid->_name) : 0;
     
@@ -227,4 +238,8 @@ void VAPHumanSetChild(VAPHuman *humanoid, VAPHuman *child) {
     }
 }
 
+void __VAPHumanDeallocate(void *object) {
+    
+    __VAPObjectDeallocate(object);
+}
 

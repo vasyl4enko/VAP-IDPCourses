@@ -18,7 +18,7 @@ int main(int argc, const char * argv[]) {
 //    VAPObject *object = VAPObjectCreateType(VAPObject);
     
 //    VAPObject *red = VAPObjectRetain(object);
-    VAPString *string = VAPStringCreate("Saska");
+//    VAPString *string = VAPStringCreate("Saska");
 //    VAPObjectRelease(string);
     return 0;
 }

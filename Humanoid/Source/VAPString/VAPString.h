@@ -13,6 +13,11 @@
 #include "VAPObject.h"
 
 typedef struct VAPString VAPString;
+struct VAPString {
+    VAPObject _super;
+    char *_name;
+    
+};
 
 
 //typedef void (*VAPStringDeallocCallBack)(void *);

@@ -7,17 +7,15 @@
 //
 
 #include "VAPString.h"
+
+
 #include <string.h>
 #include <assert.h>
 
 #pragma mark -
 #pragma mark Private implementation
 
-struct VAPString {
-    VAPObject _super;
-    char *_name;
-    
-};
+
 
 //static
 //void VAPStringSetName(VAPString *string, char *newName);
@@ -38,6 +36,7 @@ void *VAPStringCreate(char *name) {
 
 void __VAPStringDeallocate(void *object) {
     
+    VAPStringSetName(object, NULL);
     __VAPObjectDeallocate(object);
 }
 

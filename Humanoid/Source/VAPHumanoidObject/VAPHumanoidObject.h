@@ -14,6 +14,8 @@
 
 typedef struct VAPHuman VAPHuman;
 
+//typedef struct VAPString VAPString;
+
 
 void VAPHumanSetChild(VAPHuman *humanoid, VAPHuman *child);
 
@@ -24,7 +26,7 @@ typedef enum {
 } VAPGender;
 
 extern
-VAPHuman *VAPHumanCreate(char *name, uint16_t age, VAPGender gender);
+VAPHuman* VAPHumanCreate(char *name, uint16_t age, VAPGender gender);
 
 extern
 void VAPHumanDealoc(VAPHuman *humanoid);
@@ -42,31 +44,31 @@ void VAPHumanFamalyBirthChild(VAPHuman *husband, VAPHuman *wife);
 //void VAPHumanSetChild(VAPHuman *humanoid, VAPHuman *child);
 
 extern
-VAPHuman **VAPHumanGetArrayOfChildren(VAPHuman *humanoid);
+VAPHuman** VAPHumanGetArrayOfChildren(VAPHuman *humanoid);
 
 extern
 void VAPHumanSetPartner(VAPHuman *humanoid, VAPHuman *partner);
 
 extern
-VAPHuman *VAPHumanGetPartner(VAPHuman *humanoid);
+VAPHuman* VAPHumanGetPartner(VAPHuman *humanoid);
 
 extern
 void VAPHumanSetMother(VAPHuman *humanoid, VAPHuman *mother);
 
 extern
-VAPHuman *VAPHumanGetMother(VAPHuman *humanoid);
+VAPHuman* VAPHumanGetMother(VAPHuman *humanoid);
 
 extern
 void VAPHumanSetFather(VAPHuman *humanoid, VAPHuman *father);
 
 extern
-VAPHuman *VAPHumanGetFaTher(VAPHuman *humanoid);
+VAPHuman* VAPHumanGetFaTher(VAPHuman *humanoid);
 
 extern
 void VAPHumanSetName(VAPHuman *humanoid, char *name);
 
 extern
-char *VAPHumanGetName(VAPHuman *humanoid);
+char* VAPHumanGetName(VAPHuman *humanoid);
 
 extern
 void VAPHumanSetAge(VAPHuman *humanoid, uint16_t age);
@@ -88,5 +90,8 @@ void VAPHumanSetMarried(VAPHuman *humanoid, bool isMarried);
 
 extern
 bool VAPHumanGetMarried(VAPHuman *humanoid);
+
+extern
+void __VAPHumanDeallocate(void *object);
 
 #endif /* defined(__VAP_IDPCources__VAPHumanoidObject__) */
