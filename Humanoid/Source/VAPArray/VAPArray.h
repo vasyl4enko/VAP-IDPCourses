@@ -11,4 +11,33 @@
 
 #include <stdio.h>
 
+#include "VAPObject.h"
+
+typedef struct {
+    VAPObject _super;
+    void *_elements;
+    uint64_t _count;
+} VAPArray;
+
+extern
+void* VAPArrayCreate(void *element);
+
+extern
+void* VAPArrayGetObjectAtIndex(void *array, uint64_t index);
+
+extern
+void* VAPArrayGetObjects(void *array);
+
+extern
+void VAPArrayAddElement(void *array, void *element);
+
+extern
+
+void __VAPArrayDeallocate(void *object);
+
+
+
+
+
+
 #endif /* defined(__VAP_IDPCources__VAPArray__) */

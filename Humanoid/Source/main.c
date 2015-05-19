@@ -7,6 +7,9 @@
 //
 #include "VAPString.h"
 #include "VAPObject.h"
+#include "VAPArray.h"
+#include "VAPHumanoidObject.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -14,7 +17,12 @@
 
 int main(int argc, const char * argv[]) {
     
-    VAPHumanoidObjectTest();
+//    VAPHumanoidObjectTest();
+    VAPHuman *Roger = VAPHumanCreate("Roger", 32, VAPGenderMale);
+    VAPHuman *Huegur = VAPHumanCreate("Huegur", 43, VAPGenderMale);
+    VAPArray *array = VAPArrayCreate(Roger);
+    VAPArrayAddElement(array, Huegur);
+    
 
     return 0;
 }

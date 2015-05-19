@@ -16,7 +16,6 @@
 typedef struct {
     VAPObject _super;
     char *_name;
-    
 } VAPString;
 
 

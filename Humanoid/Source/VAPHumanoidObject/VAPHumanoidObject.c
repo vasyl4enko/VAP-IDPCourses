@@ -50,7 +50,7 @@ VAPHuman* VAPHumanCreate(char *name, uint16_t age, VAPGender gender) {
 //    VAPHumanSetName(humanoid, name);
 //    VAPHumanSetAge(humanoid, age);
 //    VAPHumanSetGender(humanoid, gender);
-    VAPString *string = VAPObjectCreateType(VAPString);
+    VAPString *string = VAPStringCreate(name);
     VAPHuman *humanoid = VAPObjectCreateType(VAPHuman);
     humanoid->_name = string;
     
@@ -204,7 +204,7 @@ void VAPHumanSetChildrenCount(VAPHuman *humanoid, uint8_t count) {
 
 uint8_t VAPHumanGetChildrenCount(VAPHuman *humanoid) {
     
-    return humanoid ? humanoid->_childrenCount : 0;
+    return humanoid != NULL ? humanoid->_childrenCount : 0;
 
 }
 
