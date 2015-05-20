@@ -12,42 +12,66 @@
 #pragma mark -
 #pragma mark Public Implementation
 
-void* VAPArrayCreate(void *element) {
+void *VAPArrayCreate(void *element) {
     VAPArray *array = VAPObjectCreateType(VAPArray);
     VAPArrayAddElement(array, element);
     
     return array;
 }
 
-extern
-void* VAPArrayGetObjectAtIndex(void *array, uint64_t index);
 
-void* VAPArrayGetObjects(void *array) {
-    return array != NULL ? ((VAPArray *)array)->_elements : NULL; // macros to getters
+void *VAPArrayGetObjectAtIndex(void *array, uint64_t index) {
+    void *elements = VAPArrayGetObjects(array);
+    uint64_t count = VAPArrayGetCount(array);
+    if (count < index) {
+        printf("Array index out of bounds");
+        
+        return NULL;
+    }
+    
+    void *objectAtIndex = NULL;
+    for (uint64_t cycleIndex = 0; cycleIndex <= index; cycleIndex++, elements++) {
+        if (cycleIndex == index) {
+            objectAtIndex = elements;
+        }
+    }
+    
+    return objectAtIndex;
+}
+
+void *VAPArrayGetObjects(void *array) {
+    
+    return array != NULL ? ((VAPArray *)array)->_elements : NULL;
 }
 
 uint64_t VAPArrayGetCount(void *array) {
-    return array != NULL ? ((VAPArray *)array)->_count : 0; // MACROS TO GETTERS
+    
+    return array != NULL ? ((VAPArray *)array)->_count : 0;
 }
 
-void VAPArrayAddElement(VAPArray *array, void *element) {
+void VAPArrayAddElement(void *array, void *element) {
     if (array != NULL && element != NULL) {
         if (((VAPArray *) array)->_elements == NULL ) {
-            ((VAPArray *) array)->_elements = calloc(1, sizeof(element));
+            ((VAPArray *) array)->_elements = malloc(sizeof(element));
             ((VAPArray *) array)->_elements = element;
             ((VAPArray *) array)->_count = 1;
         } else {
             uint64_t count = ((VAPArray *) array)->_count + 1;
             VAPArray *buff;
-           ((VAPArray *)buff)->_elements = realloc(((VAPArray *)array)->_elements, count * sizeof(element));
-            printf("%lu\n",sizeof(buff));
-            printf("%lu\n",sizeof(array));
-            for (int i = 0; i <  count; i++,((VAPArray *)buff)->_elements++) {
+            buff->_elements = realloc(((VAPArray *)array)->_elements, count * sizeof(*element));
+            
+            if (NULL != buff ) {
+                ((VAPArray *)array)->_elements = buff->_elements;
+            }
+
+            for (int i = 0; i <  count; i++,((VAPArray *)array)->_elements++) {
                 if (i == (((VAPArray *) array)->_count)) {
-                    ((VAPArray *)buff)->_elements = element;
+                    ((VAPArray *)array)->_elements = element;
+                    ((VAPArray *) array)->_count += 1;
+                    
                 }
             }
-            printf("%lu\n",sizeof(buff));
+//            printf("%lu\n",sizeof(buff));
         }
     }
 }

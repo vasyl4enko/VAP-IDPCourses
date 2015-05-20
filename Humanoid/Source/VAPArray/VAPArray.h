@@ -20,19 +20,19 @@ typedef struct {
 } VAPArray;
 
 extern
-void* VAPArrayCreate(void *element);
+void *VAPArrayCreate(void *element);
 
 extern
-void* VAPArrayGetObjectAtIndex(void *array, uint64_t index);
+void *VAPArrayGetObjectAtIndex(void *array, uint64_t index);
 
 extern
-void* VAPArrayGetObjects(void *array);
+void *VAPArrayGetObjects(void *array);
 
 extern
 uint64_t VAPArrayGetCount(void *array);
 
 extern
-void VAPArrayAddElement(VAPArray *array, void *element);
+void VAPArrayAddElement(void *array, void *element);
 
 extern
 
