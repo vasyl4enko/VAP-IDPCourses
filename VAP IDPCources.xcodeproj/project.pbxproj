@@ -17,6 +17,7 @@
 		1F35D9A71AFFEF4A00E57436 /* BytesNumbersToConsol.c in Sources */ = {isa = PBXBuildFile; fileRef = 1F35D9A51AFFEF4A00E57436 /* BytesNumbersToConsol.c */; };
 		1F3DCAAF1B02448D0052B37C /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 1F3DCAAD1B02448D0052B37C /* main.c */; };
 		1F3DCAB31B0245B10052B37C /* VAPHumanoidObject.c in Sources */ = {isa = PBXBuildFile; fileRef = 1F3DCAB11B0245B10052B37C /* VAPHumanoidObject.c */; };
+		1F498F961B0CF0A80010EC03 /* VAPArrayTests.c in Sources */ = {isa = PBXBuildFile; fileRef = 1F498F941B0CF0A80010EC03 /* VAPArrayTests.c */; };
 		1FD5CE881B0BAC9300183D14 /* VAPArray.c in Sources */ = {isa = PBXBuildFile; fileRef = 1FD5CE861B0BAC9300183D14 /* VAPArray.c */; };
 /* End PBXBuildFile section */
 
@@ -73,6 +74,8 @@
 		1F3DCAAD1B02448D0052B37C /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		1F3DCAB11B0245B10052B37C /* VAPHumanoidObject.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = VAPHumanoidObject.c; sourceTree = "<group>"; };
 		1F3DCAB21B0245B10052B37C /* VAPHumanoidObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VAPHumanoidObject.h; sourceTree = "<group>"; };
+		1F498F941B0CF0A80010EC03 /* VAPArrayTests.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = VAPArrayTests.c; sourceTree = "<group>"; };
+		1F498F951B0CF0A80010EC03 /* VAPArrayTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VAPArrayTests.h; sourceTree = "<group>"; };
 		1FD5CE861B0BAC9300183D14 /* VAPArray.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = VAPArray.c; sourceTree = "<group>"; };
 		1FD5CE871B0BAC9300183D14 /* VAPArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VAPArray.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -168,6 +171,7 @@
 		1F1C525D1B0292E30057621A /* VAPHumanoidObjectTests */ = {
 			isa = PBXGroup;
 			children = (
+				1F498F931B0CF05F0010EC03 /* VAPArrayTests */,
 				1F1C525A1B0292DC0057621A /* VAPHumanoidObjectTests.c */,
 				1F1C525B1B0292DC0057621A /* VAPHumanoidObjectTests.h */,
 			);
@@ -284,6 +288,15 @@
 				1F3DCAB21B0245B10052B37C /* VAPHumanoidObject.h */,
 			);
 			path = VAPHumanoidObject;
+			sourceTree = "<group>";
+		};
+		1F498F931B0CF05F0010EC03 /* VAPArrayTests */ = {
+			isa = PBXGroup;
+			children = (
+				1F498F941B0CF0A80010EC03 /* VAPArrayTests.c */,
+				1F498F951B0CF0A80010EC03 /* VAPArrayTests.h */,
+			);
+			path = VAPArrayTests;
 			sourceTree = "<group>";
 		};
 		1FD5CE851B0BAC4E00183D14 /* VAPArray */ = {
@@ -416,6 +429,7 @@
 				1FD5CE881B0BAC9300183D14 /* VAPArray.c in Sources */,
 				1F1C52651B0A4A6D0057621A /* VAPString.c in Sources */,
 				1F3DCAB31B0245B10052B37C /* VAPHumanoidObject.c in Sources */,
+				1F498F961B0CF0A80010EC03 /* VAPArrayTests.c in Sources */,
 				1F1C52611B08F9AE0057621A /* VAPObject.c in Sources */,
 				1F1C525C1B0292DC0057621A /* VAPHumanoidObjectTests.c in Sources */,
 			);
