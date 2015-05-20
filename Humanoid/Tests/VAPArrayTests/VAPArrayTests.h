@@ -11,4 +11,7 @@
 
 #include <stdio.h>
 
+extern
+void VAPArrayTests();
+
 #endif /* defined(__VAP_IDPCources__VAPArrayTests__) */
