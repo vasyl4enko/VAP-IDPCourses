@@ -9,17 +9,21 @@
 #include "VAPStringTests.h"
 #include "VAPString.h"
 
-//object created with char *name
-//object get char name
-//object set another name
-//object reference count should be 1
+#pragma mark -
+#pragma mark Private Declaration
 
 static
 void VAPStringCreationTest(void);
 
+#pragma mark -
+#pragma mark Public Implementation
+
 void VAPStringTests(void) {
     VAPStringCreationTest();
 }
+
+#pragma mark -
+#pragma mark Private Implementation
 
 void VAPStringCreationTest(void) {
     char *randomNameInMyMind = "Pushkin";
