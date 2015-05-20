@@ -30,14 +30,14 @@ typedef enum {
 extern
 VAPHuman* VAPHumanCreate(char *name, uint16_t age, VAPGender gender);
 
-extern
-void VAPHumanDealoc(VAPHuman *humanoid);
+//extern
+//void VAPHumanDealoc(VAPHuman *humanoid);
 
 extern
-void VAPHumanoidDivorce(VAPHuman *husband, VAPHuman *wife);
+void VAPHumanDivorce(VAPHuman *husband, VAPHuman *wife);
 
 extern
-void VAPHumanoidMarry(VAPHuman *man, VAPHuman *woman);
+void VAPHumanMarry(VAPHuman *man, VAPHuman *woman);
 
 extern
 void VAPHumanFamalyBirthChild(VAPHuman *husband, VAPHuman *wife);
@@ -61,7 +61,7 @@ extern
 void VAPHumanSetFather(VAPHuman *humanoid, VAPHuman *father);
 
 extern
-VAPHuman* VAPHumanGetFaTher(VAPHuman *humanoid);
+VAPHuman *VAPHumanGetFaTher(VAPHuman *humanoid); // style guide
 
 extern
 void VAPHumanSetName(VAPHuman *humanoid, char *name);

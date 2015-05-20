@@ -14,6 +14,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <assert.h>
+#include "VAPMacros.h"
 
 
 
@@ -61,7 +62,7 @@ VAPHuman* VAPHumanCreate(char *name, uint16_t age, VAPGender gender) {
     return humanoid;
 }
 
-void VAPHumanoidMarry(VAPHuman *man, VAPHuman *woman) {
+void VAPHumanMarry(VAPHuman *man, VAPHuman *woman) {
     if (man != NULL && woman != NULL) {
         if ((man->_gender == VAPGenderMale && woman->_gender == VAPGenderFemale)  ) {
             if (!(VAPHumanGetPartner(man) || VAPHumanGetPartner(woman))) {
@@ -79,7 +80,7 @@ void VAPHumanoidMarry(VAPHuman *man, VAPHuman *woman) {
     }
 }
 
-void VAPHumanoidDivorce(VAPHuman *man, VAPHuman *woman) {
+void VAPHumanDivorce(VAPHuman *man, VAPHuman *woman) {
     if (man != NULL && woman != NULL) {
         if (man->_partner == woman && woman->_partner == man) {
 
@@ -127,7 +128,7 @@ VAPHuman *VAPHumanGetPartner(VAPHuman *humanoid) {
 //    if (humanoid) {
 //        return NULL;
 //    }
-    return humanoid ? humanoid->_partner :NULL;
+    return humanoid ? humanoid->_partner : NULL;
 }
 
 void VAPHumanSetMother(VAPHuman *humanoid, VAPHuman *mother) {
@@ -137,9 +138,7 @@ void VAPHumanSetMother(VAPHuman *humanoid, VAPHuman *mother) {
 }
 
 void VAPHumanSetFather(VAPHuman *humanoid, VAPHuman *father) {
-    if (humanoid) {
-        humanoid->_father = father;
-    }
+    VAPMacrosAssign(humanoid, father)
 }
 
 void VAPHumanSetName(VAPHuman *humanoid, char *name) {

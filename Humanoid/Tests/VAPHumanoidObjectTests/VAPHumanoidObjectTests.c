@@ -36,11 +36,11 @@ void VAPHumanoidFamallyTest(void) {
     VAPHuman *Vladik = VAPHumanCreate("Vladik", 54, VAPGenderMale);
     VAPHuman *Katya = VAPHumanCreate("Kate", 30, VAPGenderFemale);
     VAPHuman *Junk;
-    VAPHumanoidMarry(Roger, Natasha);
-    VAPHumanoidMarry(Roger, Katya);
-    VAPHumanoidMarry(Nikita, Vladik);
-    VAPHumanoidMarry(Nikita, Katya);
-    VAPHumanoidMarry(Vladik, Olya);
+    VAPHumanMarry(Roger, Natasha);
+    VAPHumanMarry(Roger, Katya);
+    VAPHumanMarry(Nikita, Vladik);
+    VAPHumanMarry(Nikita, Katya);
+    VAPHumanMarry(Vladik, Olya);
     
     VAPHumanFamalyBirthChild(Vladik, Olya);
 //    printf("Count child %d\n", VAPHumanGetChildrenCount(Vladik));
@@ -50,11 +50,11 @@ void VAPHumanoidFamallyTest(void) {
 //    printf("Count child %d\n", VAPHumanGetChildrenCount(Olya));
 //    printf(" \"Bug with junk\" Count child %d\n", VAPHumanGetChildrenCount(Junk)); // little bug with junk
     
-    VAPHumanoidDivorce(Vladik, Olya);
-    VAPHumanoidDivorce(Roger, Katya);
-    VAPHumanoidDivorce(Roger, Natasha);
-    VAPHumanoidMarry(Roger, Olya);
-    VAPHumanoidMarry(Vladik, Natasha);
+    VAPHumanDivorce(Vladik, Olya);
+    VAPHumanDivorce(Roger, Katya);
+    VAPHumanDivorce(Roger, Natasha);
+    VAPHumanMarry(Roger, Olya);
+    VAPHumanMarry(Vladik, Natasha);
     
     VAPHumanSetChild(Vladik, Roger);
     VAPHumanSetChild(Vladik, Natasha);
