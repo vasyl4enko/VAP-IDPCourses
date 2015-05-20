@@ -25,10 +25,10 @@ extern
 void *VAPStringCreate(char *name);
 
 extern
-char *VAPStringGetName(VAPString *string);
+char *VAPStringGetName(void *string);
 
 extern
-void VAPStringSetName(VAPString *string, char *newName);
+void VAPStringSetName(void *string, char *newName);
 
 extern
 void __VAPStringDeallocate(void *object);

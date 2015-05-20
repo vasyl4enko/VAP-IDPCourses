@@ -43,13 +43,13 @@ void __VAPStringDeallocate(void *object) {
 #pragma mark Accessors 
 
 
-char *VAPStringGetName(VAPString *string){
-    return string ? string->_name : NULL;
+char *VAPStringGetName(void *string){
+    return string ?((VAPString *) string)->_name : NULL;
 }
 
-void VAPStringSetName(VAPString *string, char *newName) {
+void VAPStringSetName(void *string, char *newName) {
     if (string != NULL) {
-        char *previousName = string->_name;
+        char *previousName = ((VAPString *) string)->_name;
         if (previousName != NULL) {
             free(previousName);
         }
@@ -61,7 +61,7 @@ void VAPStringSetName(VAPString *string, char *newName) {
             assert(copiedName != NULL);
             
         }
-        string->_name = copiedName;
+        ((VAPString *) string)->_name = copiedName;
     }
     
 }
