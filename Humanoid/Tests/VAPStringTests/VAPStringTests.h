@@ -11,4 +11,7 @@
 
 #include <stdio.h>
 
+extern
+void VAPStringTests(void);
+
 #endif /* defined(__VAP_IDPCources__VAPStringTests__) */

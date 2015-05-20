@@ -28,7 +28,6 @@ void *VAPStringCreate(char *name) {
     
     VAPString *object = VAPObjectCreateType(VAPString) ;
     VAPStringSetName(object, name);
-
     
     return object;
 }
@@ -41,7 +40,7 @@ void __VAPStringDeallocate(void *object) {
 }
 
 #pragma mark -
-#pragma mark Accessers 
+#pragma mark Accessors 
 
 
 char *VAPStringGetName(VAPString *string){
@@ -52,7 +51,7 @@ void VAPStringSetName(VAPString *string, char *newName) {
     if (string != NULL) {
         char *previousName = string->_name;
         if (previousName != NULL) {
-//            free(previousName);
+            free(previousName);
         }
         
         char *copiedName = NULL;
