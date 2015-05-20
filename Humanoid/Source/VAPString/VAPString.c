@@ -63,7 +63,6 @@ void VAPStringSetName(void *string, char *newName) {
         }
         ((VAPString *) string)->_name = copiedName;
     }
-    
 }
 
 #pragma mark -

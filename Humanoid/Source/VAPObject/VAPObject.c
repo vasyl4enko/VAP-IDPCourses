@@ -43,7 +43,7 @@ void VAPObjectRelease(void *object) {
     }
 }
 
-uint64_t IDPGetReferenceCount(void *object) {
+uint64_t VAPGetReferenceCount(void *object) {
     return object ? ((VAPObject *)object)->_referenceCount : 0;
 }
 

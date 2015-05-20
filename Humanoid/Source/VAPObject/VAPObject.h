@@ -32,7 +32,7 @@ extern
 void VAPObjectRelease(void *object);
 
 extern
-uint64_t IDPGetReferenceCount(void *object);
+uint64_t VAPGetReferenceCount(void *object);
 
 extern
 void __VAPObjectDeallocate(void *object);
