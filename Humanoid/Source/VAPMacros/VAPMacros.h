@@ -9,9 +9,9 @@
 #ifndef VAP_IDPCources_VAPMacros_h
 #define VAP_IDPCources_VAPMacros_h
 
-#define VAPMacrosAssign(object, element) \
+#define VAPMacrosSetter(object, element, type) \
     if(NULL != object) { \
-        object->_##element = element; \
+        ((type *)object)->_##element = element; \
     }
 
 #endif
