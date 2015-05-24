@@ -26,22 +26,22 @@ void VAPStringTests(void) {
 #pragma mark Private Implementation
 
 void VAPStringCreationTest(void) {
-    char *randomNameInMyMind = "Pushkin";
-    char *changingName = "Lermontov";
-    //object created with char *randomNameInMyMind
-    VAPString *object = VAPStringCreate(randomNameInMyMind);
-    //object get char randomNameInMyMind
-    printf("%s - randomNameInMyMind\n",VAPStringGetName(object));
-    //object set another name
-    VAPStringSetName(object, changingName);
-    //object get changingName
-    printf("%s - changingName\n",VAPStringGetName(object));
-    //object retained
-    VAPString *anotherObject = VAPObjectRetain(object);
-    //anotherObject get reference count should be 2
-    printf("%llu - anotherObject\n",VAPGetReferenceCount(anotherObject));
-    VAPObjectRelease(anotherObject);
-    //object get reference count should be 1
-    printf("%llu - object\n",VAPGetReferenceCount(object));
-    VAPObjectRelease(object);
+//    char *randomNameInMyMind = "Pushkin";
+//    char *changingName = "Lermontov";
+//    //object created with char *randomNameInMyMind
+//    VAPString *object = VAPStringCreate(randomNameInMyMind);
+//    //object get char randomNameInMyMind
+//    printf("%s - randomNameInMyMind\n",VAPStringGetName(object));
+//    //object set another name
+//    VAPStringSetName(object, changingName);
+//    //object get changingName
+//    printf("%s - changingName\n",VAPStringGetName(object));
+//    //object retained
+//    VAPString *anotherObject = VAPObjectRetain(object);
+//    //anotherObject get reference count should be 2
+//    printf("%llu - anotherObject\n",VAPGetReferenceCount(anotherObject));
+//    VAPObjectRelease(anotherObject);
+//    //object get reference count should be 1
+//    printf("%llu - object\n",VAPGetReferenceCount(object));
+//    VAPObjectRelease(object);
 }

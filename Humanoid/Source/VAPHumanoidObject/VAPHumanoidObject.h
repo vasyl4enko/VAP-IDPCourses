@@ -28,22 +28,19 @@ typedef enum {
 } VAPGender;
 
 extern
-VAPHuman* VAPHumanCreate(char *name, uint16_t age, VAPGender gender);
-
-//extern
-//void VAPHumanDealoc(VAPHuman *humanoid);
+VAPHuman* VAPHumanCreateWithParameters(char *name, uint16_t age, VAPGender gender);
 
 extern
-void VAPHumanDivorce(VAPHuman *husband, VAPHuman *wife);
+void VAPHumanDivorce(VAPHuman *human);
 
 extern
-void VAPHumanMarry(VAPHuman *man, VAPHuman *woman);
+void VAPHumanMarry(VAPHuman *human, VAPHuman *partner);
 
 extern
-void VAPHumanFamalyBirthChild(VAPHuman *husband, VAPHuman *wife);
+void VAPHumanFamilyBirthChild(VAPHuman *human, VAPHuman *partner);
 
 extern
-VAPArray* VAPHumanGetChildren(void *humanoid);
+VAPArray *VAPHumanGetChildren(VAPHuman *humanoid);
 
 extern
 void VAPHumanSetPartner(VAPHuman *humanoid, VAPHuman *partner);
@@ -61,7 +58,7 @@ extern
 void VAPHumanSetFather(VAPHuman *humanoid, VAPHuman *father);
 
 extern
-VAPHuman *VAPHumanGetFaTher(VAPHuman *humanoid); // style guide
+VAPHuman *VAPHumanGetFaTher(VAPHuman *humanoid);
 
 extern
 void VAPHumanSetName(VAPHuman *humanoid, char *name);
@@ -83,6 +80,9 @@ VAPGender VAPHumanGetGender(VAPHuman *humanoid);
 
 extern
 void VAPHumanSetMarried(VAPHuman *humanoid);
+
+extern
+uint8_t VAPHumanGetChildrenCount(VAPHuman *humanoid);
 
 extern
 void __VAPHumanDeallocate(void *object);

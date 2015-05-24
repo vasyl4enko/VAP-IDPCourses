@@ -9,10 +9,15 @@
 #include "VAPArray.h"
 #include "VAPString.h"
 #include "VAPMacros.h"
+
 #include <stdlib.h>
+#include <stdbool.h>
 
 #pragma mark -
 #pragma mark Private Declaration
+
+static
+bool VAPArrayIsElementContains(VAPArray *array, void *element);
 
 static
 void VAPArraySetCount(VAPArray *array, uint64_t count);
@@ -68,11 +73,12 @@ uint64_t VAPArrayGetCapacity(VAPArray *array) {
 void VAPArrayAddElement(VAPArray *array, void *element) {
     uint64_t localCount = VAPArrayGetCount(array);
     uint64_t localCapacity = VAPArrayGetCapacity(array);
-    if (NULL != array && NULL != element) {
+    VAPArrayIsElementContains(array, element);
+    if (NULL != array && NULL != element && false == VAPArrayIsElementContains(array, element)) {
         if (localCount < localCapacity) {
             for (uint64_t index = 0; index <= localCount; index++) {
                 if (index == localCount) {
-                    array->_elements[index] = element;
+                    array->_elements[index] = VAPObjectRetain(element);
                 }
             }
             VAPArraySetCount(array, localCount + 1);
@@ -84,7 +90,7 @@ void VAPArrayAddElement(VAPArray *array, void *element) {
                 VAPArraySetCapacity(array, localCapacity + 1);
                 for (uint64_t index = 0; index <= localCount; index++) {
                     if (index == localCount) {
-                        array->_elements[index] = element;
+                        array->_elements[index] = VAPObjectRetain(element);
                     }
                 }
             }
@@ -96,6 +102,21 @@ void VAPArrayAddElement(VAPArray *array, void *element) {
 
 #pragma mark -
 #pragma mark Private Implementation
+
+bool VAPArrayIsElementContains(VAPArray *array, void *element) {
+    bool isContains = false;
+    if (NULL != array && NULL != element) {
+        uint64_t count = VAPArrayGetCount(array);
+        void **localElements = VAPArrayGetElements(array);
+        for (uint64_t index = 0; index < count; index++) {
+            if (element == localElements[index]) {
+                isContains = true;
+                break;
+            }
+        }
+    }
+    return isContains;
+}
 
 void VAPArraySetCount(VAPArray *array, uint64_t count) {
     VAPMacrosSetter(array, count, VAPArray);
@@ -111,6 +132,10 @@ void VAPArraySetCapacity(VAPArray *array, uint64_t capacity) {
 }
 
 void __VAPArrayDeallocate(void *object) {
+    void **localElements = VAPArrayGetElements(object);
+    for (uint64_t index = 0; index < VAPArrayGetCount(object); index++) {
+        VAPObjectRelease(localElements[index]);
+    }
     __VAPObjectDeallocate(object);
 }
 

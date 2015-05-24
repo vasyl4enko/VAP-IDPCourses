@@ -23,7 +23,7 @@
 #pragma mark -
 #pragma mark Public implementation
 
-void *VAPStringCreate(char *name) {
+void *VAPStringCreateWithString(char *name) {
     
     
     VAPString *object = VAPObjectCreateType(VAPString) ;
@@ -44,7 +44,7 @@ void __VAPStringDeallocate(void *object) {
 
 
 char *VAPStringGetName(void *string){
-    return string ?((VAPString *) string)->_name : NULL;
+    return string != NULL ? ((VAPString *) string)->_name : NULL;
 }
 
 void VAPStringSetName(void *string, char *newName) {

@@ -14,73 +14,42 @@
 #pragma mark Private Declaration
 
 static
-void VAPHumanoidFamallyTest(void);
+void VAPHumanoidFamillyTest(void);
 
 #pragma mark -
 #pragma mark Public impl
 
 
 void VAPHumanoidObjectTest() {
-    VAPHumanoidFamallyTest();
+    VAPHumanoidFamillyTest();
 }
 
 #pragma mark -
 #pragma mark Private Implement
 
-void VAPHumanoidFamallyTest(void) {
-    // childcount need make private
-    VAPHuman *Roger = VAPHumanCreate("Roger", 32, VAPGenderMale);
-    VAPHuman *Natasha = VAPHumanCreate("Natasha", 25, VAPGenderFemale);
-    VAPHuman *Nikita = VAPHumanCreate("Nikita", 20, VAPGenderMale);
-    VAPHuman *Olya = VAPHumanCreate("Olya", 23, VAPGenderFemale);
-    VAPHuman *Vladik = VAPHumanCreate("Vladik", 54, VAPGenderMale);
-    VAPHuman *Katya = VAPHumanCreate("Kate", 30, VAPGenderFemale);
-    VAPHuman *Junk;
-    VAPHumanMarry(Roger, Natasha);
-    VAPHumanMarry(Roger, Katya);
-    VAPHumanMarry(Nikita, Vladik);
-    VAPHumanMarry(Nikita, Katya);
-    VAPHumanMarry(Vladik, Olya);
-    
-    VAPHumanFamalyBirthChild(Vladik, Olya);
-//    printf("Count child %d\n", VAPHumanGetChildrenCount(Vladik));
-//    printf("Count child %d\n", VAPHumanGetChildrenCount(Olya));
-    VAPHumanFamalyBirthChild(Vladik, Olya);
-//    printf("Count child %d\n", VAPHumanGetChildrenCount(Vladik));
-//    printf("Count child %d\n", VAPHumanGetChildrenCount(Olya));
-//    printf(" \"Bug with junk\" Count child %d\n", VAPHumanGetChildrenCount(Junk)); // little bug with junk
-    
-    VAPHumanDivorce(Vladik, Olya);
-    VAPHumanDivorce(Roger, Katya);
-    VAPHumanDivorce(Roger, Natasha);
-    VAPHumanMarry(Roger, Olya);
-    VAPHumanMarry(Vladik, Natasha);
-    
-    VAPHumanSetChild(Vladik, Roger);
-    VAPHumanSetChild(Vladik, Natasha);
-    
-    VAPHumanFamalyBirthChild(Roger, Olya);
-    VAPHumanFamalyBirthChild(Vladik, Natasha);
-
-    
-    
-  
-    VAPArray *children = VAPArrayGetObjects(Vladik);
-    ((VAPArray *)children)->_elements;
-    for (int i = 0; i < 5; i++, ((VAPArray *)children)->_elements++) {
-        printf("child name %s\n", VAPHumanGetName(((VAPArray *)children)->_elements));
-        printf("%s gender %u\n ",VAPHumanGetName(((VAPArray *)children)->_elements));
-        printf("%s age %d\n",VAPHumanGetName(((VAPArray *)children)->_elements));
-    }
-
-//    VAPHumanDealoc(Roger);
-//    VAPHumanDealoc(Natasha);
-//    VAPHumanDealoc(Nikita);
-//    VAPHumanDealoc(Olya);
-//    VAPHumanDealoc(Vladik);
-//    VAPHumanDealoc(Katya);
-
- 
+void VAPHumanoidFamillyTest(void) {
+    VAPHuman *humanMan = VAPHumanCreateWithParameters("Lermontov", 30, VAPGenderMale);
+    printf("Name - %s\n", VAPHumanGetName(humanMan));
+    printf("Reference count - %llu\n", VAPGetReferenceCount(humanMan));
+    printf("\n");
+    VAPHuman *humanFemale = VAPHumanCreateWithParameters("Ahmatova", 25, VAPGenderFemale);
+    printf("Name - %s\n", VAPHumanGetName(humanFemale));
+    printf("Reference count - %llu\n", VAPGetReferenceCount(humanFemale));
+    printf("\n");
+    VAPHumanMarry(humanFemale, humanMan);
+    printf("Name - %s\n", VAPHumanGetName(humanFemale));
+    printf("Reference count - %llu\n", VAPGetReferenceCount(humanFemale));
+    printf("\n");
+    printf("Name - %s\n", VAPHumanGetName(humanMan));
+    printf("Reference count - %llu\n", VAPGetReferenceCount(humanMan));
+    printf("\n");
+    VAPHumanDivorce(humanFemale);
+    printf("Name - %s\n", VAPHumanGetName(humanFemale));
+    printf("Reference count - %llu\n", VAPGetReferenceCount(humanFemale));
+    printf("\n");
+    printf("Name - %s\n", VAPHumanGetName(humanMan));
+    printf("Reference count - %llu\n", VAPGetReferenceCount(humanMan));
+    printf("\n");
 }
 
 

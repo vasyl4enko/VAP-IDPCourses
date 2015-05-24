@@ -26,82 +26,109 @@ static const int kMaxchildrenCount = 20;
 
 struct VAPHuman {
     VAPObject _super;
-    VAPArray *children; // change to class
+    VAPArray *children;
     VAPHuman *_partner;
     VAPHuman *_mother;
     VAPHuman *_father;
     VAPString *_name;
     uint16_t _age;
     VAPGender _gender;
-    uint8_t _childrenCount:5; //don't need
+    uint8_t _childrenCount;
 
 };
 
-//static
-//void VAPHumanSetChild(VAPHuman *humanoid, VAPHuman *child);
+static
+void VAPHumanSetChildrenCount(VAPHuman *humanoid, uint8_t childrenCount);
 
 #pragma mark -
 #pragma mark Public Implementation
 
-VAPHuman* VAPHumanCreate(char *name, uint16_t age, VAPGender gender) {
-
-    VAPString *string = VAPStringCreate(name);
-//    VAPArray *array = VAPArrayCreate(<#void *element#>)
+VAPHuman* VAPHumanCreateWithParameters(char *name, uint16_t age, VAPGender gender) {
     
     VAPHuman *humanoid = VAPObjectCreateType(VAPHuman);
-    humanoid->_name = string;
-    
     assert(humanoid != NULL);
-//    humanoid->_name = malloc(sizeof(VAPString *));
-   
-    
-    VAPHumanSetName(humanoid, name);
+    VAPString *string = VAPStringCreateWithString(name);
+    VAPArray *array = VAPObjectCreateType(VAPArray);
+    humanoid->_name = string; // setter
+    humanoid->children = array; // setter;
     VAPHumanSetAge(humanoid, age);
     VAPHumanSetGender(humanoid, gender);
 
     return humanoid;
 }
 
-void VAPHumanMarry(VAPHuman *man, VAPHuman *woman) {
-    if (man != NULL && woman != NULL) {
-        if ((man->_gender == VAPGenderMale && woman->_gender == VAPGenderFemale)  ) {
-            if (!(VAPHumanGetPartner(man) || VAPHumanGetPartner(woman))) {
-
-                VAPHumanSetPartner(man, woman);
-                VAPHumanSetPartner(woman, man);
-                printf("%s and %s MARRIED1\n",VAPStringGetName(man->_name),VAPStringGetName(woman->_name));
-            } else {
-                printf("can't\n");
+void VAPHumanMarry(VAPHuman *human, VAPHuman *partner) { // change logic
+//    if (human != NULL && partner != NULL) {
+//        if ((human->_gender == VAPGenderMale && partner->_gender == VAPGenderFemale)  ) {
+//            if (!(VAPHumanGetPartner(human) || VAPHumanGetPartner(partner))) {
+//                VAPHumanSetPartner(human, partner);
+//                VAPHumanSetPartner(partner, human);
+//                printf("%s and %s MARRIED1\n",VAPStringGetName(human->_name),VAPStringGetName(partner->_name));
+//            } else {
+//                printf("can't\n");
+//            }
+//        } else {
+//            printf("can't\n");
+//        }
+//    }
+    if (NULL != human && NULL != partner && human != partner) {
+        if (VAPHumanGetGender(human) != VAPHumanGetGender(partner)) {
+            if (!VAPHumanGetPartner(human) || !VAPHumanGetPartner(partner)) {
+                if (VAPHumanGetGender(human) == VAPGenderMale) {
+                    VAPObjectRetain(partner);
+                } else if (VAPHumanGetGender(partner) == VAPGenderMale) {
+                    VAPObjectRetain(human);
+                }
+                VAPHumanSetPartner(human, partner);
+                VAPHumanSetPartner(partner, human);
+                
             }
-            
-        } else {
-            printf("can't\n");
         }
     }
 }
 
-void VAPHumanDivorce(VAPHuman *man, VAPHuman *woman) {
-    if (man != NULL && woman != NULL) {
-        if (man->_partner == woman && woman->_partner == man) {
-
-            VAPHumanSetPartner(man, NULL);
-            VAPHumanSetPartner(woman, NULL);
-            printf("%s and %s deMARRIED\n",VAPHumanGetName(woman), VAPHumanGetName(man));
-            
-        } else {
-            printf("%s and %s can't demarried\n",VAPHumanGetName(woman), VAPHumanGetName(man));
+void VAPHumanDivorce(VAPHuman *human) { // change logic
+//    if (man != NULL && woman != NULL) {
+//        if (man->_partner == woman && woman->_partner == man) {
+//
+//            VAPHumanSetPartner(man, NULL);
+//            VAPHumanSetPartner(woman, NULL);
+//            printf("%s and %s deMARRIED\n",VAPHumanGetName(woman), VAPHumanGetName(man));
+//            
+//        } else {
+//            printf("%s and %s can't demarried\n",VAPHumanGetName(woman), VAPHumanGetName(man));
+//        }
+//    }
+    if (NULL != human) {
+        VAPHuman *partner = VAPHumanGetPartner(human);
+        VAPHumanSetPartner(human, NULL);
+        VAPHumanSetPartner(partner, NULL);
+        if (VAPHumanGetGender(human) == VAPGenderMale) {
+            VAPObjectRelease(partner);
+        } else if (VAPHumanGetGender(partner) == VAPGenderMale) {
+            VAPObjectRelease(human);
         }
     }
 }
 
-void VAPHumanFamalyBirthChild(VAPHuman *man, VAPHuman *woman) {
-    if (man != NULL && woman != NULL) {
-        if (VAPHumanGetPartner(man) == woman && VAPHumanGetPartner(woman) == man) {
-            VAPHuman *child = VAPHumanCreate("unname", 0, rand()%3);
-            VAPHumanSetChild(man, child);
-            VAPHumanSetChild(woman, child);
-            VAPHumanSetFather(child, man);
-            VAPHumanSetMother(child, woman);
+void VAPHumanFamilyBirthChild(VAPHuman *human, VAPHuman *partner) { // change logic
+//    if (man != NULL && woman != NULL) {
+//        if (VAPHumanGetPartner(man) == woman && VAPHumanGetPartner(woman) == man) {
+//            VAPHuman *child = VAPHumanCreate("unname", 0, rand()%3);
+//            VAPHumanSetChild(man, child);
+//            VAPHumanSetChild(woman, child);
+//            VAPHumanSetFather(child, man);
+//            VAPHumanSetMother(child, woman);
+//            
+//        }
+//    }
+    if (NULL != human && NULL != partner) {
+        if (VAPHumanGetPartner(human) == partner && VAPHumanGetPartner(partner) == human) {
+            VAPHuman *child = VAPHumanCreateWithParameters("unname", 0, arc4random_uniform(3));
+            VAPHumanSetChild(human, child);
+            VAPHumanSetChild(partner, child);
+            VAPHumanSetFather(child, human);
+            VAPHumanSetMother(child, partner);
             
         }
     }
@@ -111,78 +138,57 @@ void VAPHumanFamalyBirthChild(VAPHuman *man, VAPHuman *woman) {
 #pragma mark Accessors
 
 
-
-
-
-VAPArray* VAPHumanGetChildren(void *humanoid) {
-    return humanoid != NULL ? ((VAPHuman *)humanoid)->children : NULL ;
+VAPArray *VAPHumanGetChildren(VAPHuman *humanoid) {
+    return humanoid != NULL ? humanoid->children : NULL ;
 }
 
 void VAPHumanSetPartner(VAPHuman *humanoid, VAPHuman *partner) {
-    if (humanoid) {
-        humanoid->_partner = partner;
-    }
+    VAPMacrosSetter(humanoid, partner, VAPHuman);
 }
 
 VAPHuman *VAPHumanGetPartner(VAPHuman *humanoid) {
-//    if (humanoid) {
-//        return NULL;
-//    }
     return humanoid ? humanoid->_partner : NULL;
 }
 
 void VAPHumanSetMother(VAPHuman *humanoid, VAPHuman *mother) {
-    if (humanoid) {
-        humanoid->_mother = mother;
-    }
+    VAPMacrosSetter(humanoid, mother, VAPHuman);
 }
 
 void VAPHumanSetFather(VAPHuman *humanoid, VAPHuman *father) {
-    VAPMacrosAssign(humanoid, father)
+    VAPMacrosSetter(humanoid, father, VAPHuman);
 }
 
 void VAPHumanSetName(VAPHuman *humanoid, char *name) {
     if (humanoid != NULL) {
        VAPStringSetName(humanoid->_name, name);
     }
-    
 }
 
-char* VAPHumanGetName(VAPHuman *humanoid) {
+char *VAPHumanGetName(VAPHuman *humanoid) {
     
     return humanoid ? VAPStringGetName(humanoid->_name) : 0;
-    
 }
 
 void VAPHumanSetAge(VAPHuman *humanoid, uint16_t age) {
-    if (humanoid) {
-        humanoid->_age = age;
-    }
+    VAPMacrosSetter(humanoid, age, VAPHuman);
 }
 
 uint16_t VAPHumanGetAge(VAPHuman *humanoid) {
 
-    return humanoid ? humanoid->_age : 0;
+    return NULL != humanoid ? humanoid->_age : 0;
 }
 
 void VAPHumanSetGender(VAPHuman *humanoid, VAPGender gender) {
-    if (humanoid) {
-        humanoid->_gender = gender;
-    }
+    VAPMacrosSetter(humanoid, gender, VAPHuman);
 }
 
 VAPGender VAPHumanGetGender(VAPHuman *humanoid) {
-    if (!humanoid) {
-        return 0;
-    }
     
-    return humanoid->_gender;
+    return NULL != humanoid ? humanoid->_gender : 0;
 }
 
-void VAPHumanSetChildrenCount(VAPHuman *humanoid, uint8_t count) {
-    if (humanoid){
-        humanoid->_childrenCount = count;
-    }
+void VAPHumanSetChildrenCount(VAPHuman *humanoid, uint8_t childrenCount) {
+    VAPMacrosSetter(humanoid, childrenCount, VAPHuman);
 }
 
 uint8_t VAPHumanGetChildrenCount(VAPHuman *humanoid) {
@@ -195,11 +201,11 @@ uint8_t VAPHumanGetChildrenCount(VAPHuman *humanoid) {
 #pragma mark Private Implementation
 
 void VAPHumanSetChild(VAPHuman *humanoid, VAPHuman *child) {
-    if (humanoid != NULL && child != NULL) {
-        if ( VAPHumanGetChildrenCount(humanoid) < kMaxchildrenCount) {
-            VAPArrayAddElement(humanoid->children, child);
+    if (humanoid != NULL && child != NULL && humanoid != child) {
+        if (VAPHumanGetChildrenCount(humanoid) < kMaxchildrenCount) {
+            VAPArrayAddElement(VAPHumanGetChildren(humanoid), child);
         } else {
-            printf("Famaly tired\n");
+            printf("Family tired\n");
         }
     }
 }

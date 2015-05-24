@@ -22,7 +22,7 @@ typedef struct {
 //typedef void (*VAPStringDeallocCallBack)(void *);
 
 extern
-void *VAPStringCreate(char *name);
+void *VAPStringCreateWithString(char *name);
 
 extern
 char *VAPStringGetName(void *string);
