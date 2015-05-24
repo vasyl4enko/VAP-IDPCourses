@@ -15,27 +15,30 @@
 
 typedef struct {
     VAPObject _super;
-    void *_elements;
+    void **_elements;
     uint64_t _count;
+    uint64_t _capacity;
 } VAPArray;
 
 extern
-void *VAPArrayCreate(void *element);
+void *VAPArrayCreateWithCapacity(uint64_t _capacity);
 
 extern
-void *VAPArrayGetObjectAtIndex(void *array, uint64_t index);
+void *VAPArrayGetObjectAtIndex(VAPArray *array, uint64_t index);
 
 extern
-void *VAPArrayGetObjects(void *array);
+void **VAPArrayGetElements(VAPArray *array);
 
 extern
-uint64_t VAPArrayGetCount(void *array);
+uint64_t VAPArrayGetCount(VAPArray *array);
 
 extern
-void VAPArrayAddElement(void *array, void *element);
+uint64_t VAPArrayGetCapacity(VAPArray *array);
 
 extern
+void VAPArrayAddElement(VAPArray *array, void *element);
 
+extern
 void __VAPArrayDeallocate(void *object);
 
 
