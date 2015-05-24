@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include "VAPArray.h"
+#include "VAPString.h"
 
 
 typedef struct VAPHuman VAPHuman;

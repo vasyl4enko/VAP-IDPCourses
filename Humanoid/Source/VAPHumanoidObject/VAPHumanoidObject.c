@@ -7,8 +7,6 @@
 //
 
 #include "VAPHumanoidObject.h"
-#include "VAPString.h"
-#include "VAPArray.h"
 #include "VAPObject.h"
 
 #include <stdlib.h>
