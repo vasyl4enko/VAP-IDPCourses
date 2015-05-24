@@ -39,11 +39,9 @@ extern
 void VAPArrayAddElement(VAPArray *array, void *element);
 
 extern
+void VAPArrayRemoveAllObjects(VAPArray *array);
+
+extern
 void __VAPArrayDeallocate(void *object);
-
-
-
-
-
 
 #endif /* defined(__VAP_IDPCources__VAPArray__) */
