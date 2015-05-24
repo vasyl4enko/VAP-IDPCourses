@@ -26,7 +26,7 @@ static const int kMaxchildrenCount = 20;
 
 struct VAPHuman {
     VAPObject _super;
-    VAPArray *children;
+    VAPArray *_children;
     VAPHuman *_partner;
     VAPHuman *_mother;
     VAPHuman *_father;
@@ -40,6 +40,9 @@ struct VAPHuman {
 static
 void VAPHumanSetChildrenCount(VAPHuman *humanoid, uint8_t childrenCount);
 
+static
+void VAPHumanSetChildren(VAPHuman *humanoid, VAPArray *children);
+
 #pragma mark -
 #pragma mark Public Implementation
 
@@ -49,8 +52,8 @@ VAPHuman* VAPHumanCreateWithParameters(char *name, uint16_t age, VAPGender gende
     assert(humanoid != NULL);
     VAPString *string = VAPStringCreateWithString(name);
     VAPArray *array = VAPObjectCreateType(VAPArray);
-    humanoid->_name = string; // setter
-    humanoid->children = array; // setter;
+    VAPHumanSetChildren(humanoid, array);
+    VAPHumanSetName(humanoid, string);
     VAPHumanSetAge(humanoid, age);
     VAPHumanSetGender(humanoid, gender);
 
@@ -139,7 +142,7 @@ void VAPHumanFamilyBirthChild(VAPHuman *human, VAPHuman *partner) { // change lo
 
 
 VAPArray *VAPHumanGetChildren(VAPHuman *humanoid) {
-    return humanoid != NULL ? humanoid->children : NULL ;
+    return humanoid != NULL ? humanoid->_children : NULL ;
 }
 
 void VAPHumanSetPartner(VAPHuman *humanoid, VAPHuman *partner) {
@@ -158,10 +161,8 @@ void VAPHumanSetFather(VAPHuman *humanoid, VAPHuman *father) {
     VAPMacrosSetter(humanoid, father, VAPHuman);
 }
 
-void VAPHumanSetName(VAPHuman *humanoid, char *name) {
-    if (humanoid != NULL) {
-       VAPStringSetName(humanoid->_name, name);
-    }
+void VAPHumanSetName(VAPHuman *humanoid, VAPString *name) {
+    VAPMacrosSetter(humanoid, name, VAPHuman);
 }
 
 char *VAPHumanGetName(VAPHuman *humanoid) {
@@ -208,6 +209,10 @@ void VAPHumanSetChild(VAPHuman *humanoid, VAPHuman *child) {
             printf("Family tired\n");
         }
     }
+}
+
+void VAPHumanSetChildren(VAPHuman *humanoid, VAPArray *children) {
+    VAPMacrosSetter(humanoid, children, VAPHuman);
 }
 
 void __VAPHumanDeallocate(void *object) {

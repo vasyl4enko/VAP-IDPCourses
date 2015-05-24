@@ -61,7 +61,7 @@ extern
 VAPHuman *VAPHumanGetFaTher(VAPHuman *humanoid);
 
 extern
-void VAPHumanSetName(VAPHuman *humanoid, char *name);
+void VAPHumanSetName(VAPHuman *humanoid, VAPString *name);
 
 extern
 char* VAPHumanGetName(VAPHuman *humanoid);
