@@ -15,6 +15,7 @@
 #include "VAPString.h"
 
 
+
 typedef struct VAPHuman VAPHuman;
 
 //typedef struct VAPString VAPString;
@@ -38,13 +39,13 @@ extern
 void VAPHumanMarry(VAPHuman *human, VAPHuman *partner);
 
 extern
-void VAPHumanFamilyBirthChild(VAPHuman *human, VAPHuman *partner);
+void VAPHumanBirthChild(VAPHuman *human);
 
 extern
 VAPArray *VAPHumanGetChildren(VAPHuman *humanoid);
 
-extern
-void VAPHumanSetPartner(VAPHuman *humanoid, VAPHuman *partner);
+//extern
+//void VAPHumanSetPartner(VAPHuman *humanoid, VAPHuman *partner);
 
 extern
 VAPHuman* VAPHumanGetPartner(VAPHuman *humanoid);

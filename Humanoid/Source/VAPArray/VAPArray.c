@@ -12,6 +12,7 @@
 
 #include <stdlib.h>
 #include <stdbool.h>
+#include <string.h>
 
 #pragma mark -
 #pragma mark Private Declaration
@@ -99,6 +100,30 @@ void VAPArrayAddElement(VAPArray *array, void *element) {
     }
 }
 
+void VAPArrayRemoveObjectAtIndex(VAPArray *array, uint64_t index) {
+    if (NULL != array && index < VAPArrayGetCount(array) - 1) {
+        void *object = VAPArrayGetObjectAtIndex(array, index);
+//        object = NULL;
+        if (index < VAPArrayGetCount(array) - 1) {
+            uint64_t elementCount = VAPArrayGetCount(array) - index - 1;
+            void **elements = VAPArrayGetElements(array);
+            
+            memmove(elements[index], elements[index + 1], elementCount);
+        }
+        VAPObjectRelease(object);
+//        object = NULL;
+    }
+}
+
+void VAPArrayRemoveAllObjects(VAPArray *array) {
+    if (NULL != array) {
+        void **elements = VAPArrayGetElements(array);
+        uint64_t count = VAPArrayGetCount(array);
+//        for (<#initialization#>; <#condition#>; <#increment#>) {
+//            <#statements#>
+//        }
+    }
+}
 
 #pragma mark -
 #pragma mark Private Implementation
@@ -130,6 +155,7 @@ void VAPArraySetCapacity(VAPArray *array, uint64_t capacity) {
         }
     }
 }
+
 
 void __VAPArrayDeallocate(void *object) {
     void **localElements = VAPArrayGetElements(object);
