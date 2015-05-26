@@ -20,8 +20,6 @@ typedef struct {
     uint64_t _capacity;
 } VAPArray;
 
-extern
-void *VAPArrayCreateWithCapacity(uint64_t _capacity);
 
 extern
 void *VAPArrayGetObjectAtIndex(VAPArray *array, uint64_t index);
