@@ -17,7 +17,6 @@
 
 int main(int argc, const char * argv[]) {
 
-//    VAPStringTests();
     VAPArrayTests();
     VAPHumanoidObjectTest();
     return 0;
