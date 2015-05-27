@@ -18,6 +18,6 @@
 int main(int argc, const char * argv[]) {
 
     VAPArrayTests();
-    VAPHumanoidObjectTest();
+//    VAPHumanoidObjectTest();
     return 0;
 }

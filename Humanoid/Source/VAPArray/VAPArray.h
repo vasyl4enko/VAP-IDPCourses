@@ -10,7 +10,7 @@
 #define __VAP_IDPCources__VAPArray__
 
 #include <stdio.h>
-
+#include <stdbool.h>
 #include "VAPObject.h"
 
 typedef struct {
@@ -20,6 +20,8 @@ typedef struct {
     uint64_t _capacity;
 } VAPArray;
 
+extern
+bool VAPArrayIsContainsObject(VAPArray *array, void *element);
 
 extern
 void *VAPArrayGetObjectAtIndex(VAPArray *array, uint64_t index);
@@ -34,13 +36,15 @@ extern
 uint64_t VAPArrayGetCapacity(VAPArray *array);
 
 extern
-void VAPArrayAddElement(VAPArray *array, void *element);
+void VAPArrayAddObject(VAPArray *array, void *object);
+
+extern
+void VAPArrayRemoveObjectAtIndex(VAPArray *array, uint64_t index);
 
 extern
 void VAPArrayRemoveAllObjects(VAPArray *array);
 
-extern
-void VAPArrayRemoveAllObjects(VAPArray *array);
+
 
 extern
 void __VAPArrayDeallocate(void *object);
