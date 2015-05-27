@@ -163,7 +163,7 @@ uint8_t VAPHumanGetChildrenCount(VAPHuman *humanoid) {
 void VAPHumanSetChild(VAPHuman *humanoid, VAPHuman *child) {
     if (humanoid != NULL && child != NULL && humanoid != child) {
         if (VAPHumanGetChildrenCount(humanoid) < kMaxChildrenCount) {
-            VAPArrayAddElement(VAPHumanGetChildren(humanoid), child);
+            VAPArrayAddObject(VAPHumanGetChildren(humanoid), child);
         } else {
             printf("Family tired\n");
         }

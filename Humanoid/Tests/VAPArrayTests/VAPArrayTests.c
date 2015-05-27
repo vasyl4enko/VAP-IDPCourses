@@ -30,50 +30,70 @@ void VAPArrayBehaviorTest(void) {
     //create array
     VAPArray *array = VAPObjectCreateType(VAPArray);
     
+    //create array
+    VAPArray *array2 = VAPObjectCreateType(VAPArray);
+    
     //reference count 1
     assert(1 == VAPGetReferenceCount(array));
     
+    //reference count 1
+    assert(1 == VAPGetReferenceCount(array2));
+    
     //create object
     VAPObject *object = VAPObjectCreateType(VAPObject);
+    
+    //create another object;
     VAPObject *object2 = VAPObjectCreateType(VAPObject);
-    VAPObject *object3 = VAPObjectCreateType(VAPObject);
-    VAPObject *object4 = VAPObjectCreateType(VAPObject);
-    VAPObject *object5 = VAPObjectCreateType(VAPObject);
-    VAPObject *object6 = VAPObjectCreateType(VAPObject);
-    VAPObject *object7 = VAPObjectCreateType(VAPObject);
-    VAPObject *object8 = VAPObjectCreateType(VAPObject);
-    VAPObject *object9 = VAPObjectCreateType(VAPObject);
-    VAPObject *object10 = VAPObjectCreateType(VAPObject);
+    
     //reference count 1
     assert(1 == VAPGetReferenceCount(object));
     
-    for (uint64_t index = 0 ; index < 5; index++) {
-        VAPArrayAddElement(array, object);
-    }
+    //reference count 1
+    assert(1 == VAPGetReferenceCount(object2));
     
+    //add object to array
+    VAPArrayAddObject(array, object);
+  
+    //reference count 2
+    assert(2 == VAPGetReferenceCount(object));
     
+    VAPArrayGetCount(array);
     
+    //count of objects in array
     assert(1 == VAPArrayGetCount(array));
     
-    for (uint64_t index = 0 ; index < 1; index++) {
-        VAPArrayAddElement(array, object);
-        VAPArrayAddElement(array, object2);
-        VAPArrayAddElement(array, object3);
-        VAPArrayAddElement(array, object4);
-        VAPArrayAddElement(array, object5);
-        VAPArrayAddElement(array, object6);
-        VAPArrayAddElement(array, object7);
-        VAPArrayAddElement(array, object8);
-        VAPArrayAddElement(array, object9);
-        VAPArrayAddElement(array, object10);
-        
-    }
+    //try to add the same object 1
+    VAPArrayAddObject(array, object);
+    
+    //count of objects in array
+    assert(1 == VAPArrayGetCount(array));
+    
+    //add object2;
+    VAPArrayAddObject(array, object2);
+    
+    //count of objects in array 2
+    assert(2 == VAPArrayGetCount(array));
+    
+    
+    //remove object at index
+    VAPArrayRemoveObjectAtIndex(array, 0);
+    
+    //count of objects in array 2
+    assert(1 == VAPArrayGetCount(array));
+    
     
     //release object
     VAPObjectRelease(object);
     
+    //release another object
+    VAPObjectRelease(object2);
     
     //release array
     VAPObjectRelease(array);
+    
+    //release array2
+    VAPObjectRelease(array2);
+    
+   
 }
 

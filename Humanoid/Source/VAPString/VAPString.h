@@ -15,20 +15,18 @@
 
 typedef struct {
     VAPObject _super;
-    char *_name;
+    char *_string;
+    
 } VAPString;
 
-
-//typedef void (*VAPStringDeallocCallBack)(void *);
-
 extern
-void *VAPStringCreateWithString(char *name);
+void *VAPStringCreateWithString(char *string);
 
 extern
 char *VAPStringGetName(void *string);
 
 extern
-void VAPStringSetName(void *string, char *newName);
+void VAPStringSetName(void *string, char *newString);
 
 extern
 void __VAPStringDeallocate(void *object);

@@ -23,11 +23,11 @@
 #pragma mark -
 #pragma mark Public implementation
 
-void *VAPStringCreateWithString(char *name) {
+void *VAPStringCreateWithString(char *string) {
     
     
     VAPString *object = VAPObjectCreateType(VAPString) ;
-    VAPStringSetName(object, name);
+    VAPStringSetName(object, string);
     
     return object;
 }
@@ -44,24 +44,24 @@ void __VAPStringDeallocate(void *object) {
 
 
 char *VAPStringGetName(void *string){
-    return string != NULL ? ((VAPString *) string)->_name : NULL;
+    return string != NULL ? ((VAPString *) string)->_string : NULL;
 }
 
-void VAPStringSetName(void *string, char *newName) {
-    if (string != NULL) {
-        char *previousName = ((VAPString *) string)->_name;
+void VAPStringSetName(void *string, char *newString) {
+    if (string != NULL && newString != string) {
+        char *previousName = ((VAPString *) string)->_string;
         if (previousName != NULL) {
             free(previousName);
         }
         
         char *copiedName = NULL;
-        if (NULL != newName) {
-            copiedName = strdup(newName);
+        if (NULL != newString) {
+            copiedName = strdup(newString);
             
             assert(copiedName != NULL);
             
         }
-        ((VAPString *) string)->_name = copiedName;
+        ((VAPString *) string)->_string = copiedName;
     }
 }
 
