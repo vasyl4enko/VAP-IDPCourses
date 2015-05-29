@@ -113,19 +113,13 @@ void VAPArrayRemoveObjectAtIndex(VAPArray *array, uint64_t index) {
         void *object = VAPArrayGetObjectAtIndex(array, index);
         VAPObjectRelease(object);
         array->_elements[index] = NULL;
-        
-        void **elements = array->_elements;
-        if (index < (count - 1)) {
-            uint64_t elementsCount = count - (index + 1);
-            
-            memmove(&elements[index], &elements[index + 1], elementsCount * sizeof(*elements));
+        for (uint64_t localIndex = index + 1; localIndex < count; localIndex++) {
+            array->_elements[localIndex - 1] = array->_elements[localIndex];
         }
         
+        void **elements = VAPArrayGetElements(array);
         elements[count - 1] = NULL;
-        
         VAPArraySetCount(array, count - 1);
-        
-        
     }
     
 }
@@ -134,10 +128,7 @@ void VAPArrayRemoveAllObjects(VAPArray *array) {
     if (NULL != array) {
         uint64_t count = VAPArrayGetCount(array);
         for (uint64_t index = 0; index < count; index++) {
-            void *object = array->_elements[index];
-            VAPObjectRelease(object);
-            object = NULL;
-            array->_elements[index] = object;
+            VAPArrayRemoveObjectAtIndex(array, 0);
         }
         VAPArraySetCapacity(array, 0);
     }
@@ -188,15 +179,13 @@ uint64_t VAPArrayPreferedCapacity(VAPArray *array) {
     if (NULL != array) {
         uint64_t localCount = VAPArrayGetCount(array);
         uint64_t localCapacity = VAPArrayGetCapacity(array);
-//        if (localCount == localCapacity) {
-//            return localCapacity;
-//        }
+        if (localCount <= localCapacity) {
+            return localCapacity;
+        }
         
-        if (localCapacity <= localCount) {
+        if (localCapacity < localCount) {
             return  localCapacity + 1 + localCount * 0.65;
             
-        } else if (1 / 3 * localCapacity > localCount) {
-            return localCapacity / 2 ;
         }
     }
 
@@ -220,11 +209,5 @@ void __VAPArrayDeallocate(void *object) {
     }
     __VAPObjectDeallocate(object);
 }
-
-//extern
-//void __VAPArrayDeallocate(void *object);
-
-
-
 
 

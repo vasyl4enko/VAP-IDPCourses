@@ -177,8 +177,7 @@
 			children = (
 				1F498F971B0CF1A40010EC03 /* VAPStringTests */,
 				1F498F931B0CF05F0010EC03 /* VAPArrayTests */,
-				1F1C525A1B0292DC0057621A /* VAPHumanoidObjectTests.c */,
-				1F1C525B1B0292DC0057621A /* VAPHumanoidObjectTests.h */,
+				1F9FB27B1B18D7230057641C /* VAPHumanTest */,
 			);
 			name = VAPHumanoidObjectTests;
 			sourceTree = "<group>";
@@ -320,6 +319,15 @@
 				1F498F9C1B0D109C0010EC03 /* VAPMacros.h */,
 			);
 			path = VAPMacros;
+			sourceTree = "<group>";
+		};
+		1F9FB27B1B18D7230057641C /* VAPHumanTest */ = {
+			isa = PBXGroup;
+			children = (
+				1F1C525A1B0292DC0057621A /* VAPHumanoidObjectTests.c */,
+				1F1C525B1B0292DC0057621A /* VAPHumanoidObjectTests.h */,
+			);
+			name = VAPHumanTest;
 			sourceTree = "<group>";
 		};
 		1FD5CE851B0BAC4E00183D14 /* VAPArray */ = {
