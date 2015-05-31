@@ -10,22 +10,21 @@
 #include "VAPArray.h"
 #include <assert.h>
 
-
-#define VAPArrayTestsPrintCount(object) \
-    printf("%llu - counts of objects in "#object "\n", VAPArrayGetCount(object))
-
 #pragma mark -
 #pragma mark Private Declaration
+
 static
 void VAPArrayBehaviorTest(void);
 
 #pragma mark -
 #pragma mark Public Implementation
+
 void VAPArrayTests() {
     VAPArrayBehaviorTest();
 }
 #pragma mark -
 #pragma mark Private Implementation
+
 void VAPArrayBehaviorTest(void) {
     //create array
     VAPArray *array = VAPObjectCreateType(VAPArray);
@@ -82,11 +81,39 @@ void VAPArrayBehaviorTest(void) {
     assert(1 == VAPArrayGetCount(array));
     
     
+    //create object
+    VAPObject *object3 = VAPObjectCreateType(VAPObject);
+    
+    //add object and object 3 to array
+    VAPArrayAddObject(array, object);
+    VAPArrayAddObject(array, object3);
+    
+    //count of objects in array 3
+    assert(3 == VAPArrayGetCount(array));
+    
+    //get object from array by index 1
+    void *objectFromArray = VAPArrayGetObjectAtIndex(array, 1);
+    
+    //compare object and object from array
+    assert(VAPGetReferenceCount(object) == VAPGetReferenceCount(objectFromArray));
+    
+    //is object contains in array
+    assert(true == VAPArrayIsContainsObject(array, object2));
+    
+    //remove all objects
+    VAPArrayRemoveAllObjects(array);
+    
+    //count of objects in array 0
+    assert(0 == VAPArrayGetCount(array));
+    
     //release object
     VAPObjectRelease(object);
     
     //release another object
     VAPObjectRelease(object2);
+    
+    //release third object
+    VAPObjectRelease(object3);
     
     //release array
     VAPObjectRelease(array);
