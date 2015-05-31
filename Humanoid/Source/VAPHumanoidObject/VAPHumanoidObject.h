@@ -84,7 +84,7 @@ extern
 uint8_t VAPHumanGetChildrenCount(VAPHuman *humanoid);
 
 extern
-bool VAPHumanIsMarriedWithPartner(VAPHuman *human, VAPHuman *partner) ;
+bool VAPHumanIsMarriedWithPartner(VAPHuman *human, VAPHuman *partner);
 
 extern
 void __VAPHumanDeallocate(void *object);

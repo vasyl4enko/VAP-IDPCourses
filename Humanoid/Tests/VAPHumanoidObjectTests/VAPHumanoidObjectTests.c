@@ -65,13 +65,19 @@ void VAPHumanoidFamillyTest(void) {
     }
     
     //create second male person
-    VAPHuman *doncova = VAPHumanCreateWithParameters("Doncova", 40, VAPGenderMale);
+    VAPHuman *doncova = VAPHumanCreateWithParameters("Doncova", 40, VAPGenderFemale);
     
     //reference count should be 1
     assert(1 == VAPGetReferenceCount(doncova));
     
     //divorce
     VAPHumanDivorce(ahmatova);
+    
+    //get partner ahmatova
+    assert(NULL == VAPHumanGetPartner(ahmatova));
+    
+    //get partner chehov
+    assert(NULL == VAPHumanGetPartner(chehov));
     
     //reference count should be 1
     assert(1 == VAPGetReferenceCount(ahmatova));
@@ -89,6 +95,12 @@ void VAPHumanoidFamillyTest(void) {
     
     //marry doncova & chehov
     VAPHumanMarry(doncova, chehov);
+    
+    //get partner doncova
+    assert(chehov == VAPHumanGetPartner(doncova));
+    
+    //get partner chehov
+    assert(doncova == VAPHumanGetPartner(chehov));
     
     //
     VAPHumanBirthChild(chehov, doncova);

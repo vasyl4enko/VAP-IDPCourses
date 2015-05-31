@@ -111,7 +111,7 @@ void VAPHumanDivorce(VAPHuman *human) {
     }
 }
 
-void VAPHumanBirthChild(VAPHuman *human, VAPHuman *partner) { // change logic
+void VAPHumanBirthChild(VAPHuman *human, VAPHuman *partner) {
 
     if (NULL != human && NULL != partner && partner != human) {
         if (VAPHumanIsMarriedWithPartner(human, partner)) {
@@ -181,7 +181,12 @@ uint8_t VAPHumanGetChildrenCount(VAPHuman *humanoid) {
 }
 
 bool VAPHumanIsMarriedWithPartner(VAPHuman *human, VAPHuman *partner) {
-    return true;
+    if (NULL != human && NULL != partner) {
+        if (VAPHumanGetPartner(human) == partner && VAPHumanGetPartner(partner) == human) {
+            return true;
+        }
+    }
+    return false;
 }
 
 #pragma mark -
