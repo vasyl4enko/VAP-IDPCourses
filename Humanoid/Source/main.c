@@ -16,8 +16,9 @@
 #include "VAPStringTests.h"
 
 int main(int argc, const char * argv[]) {
-
+    
+    VAPStringTests();
     VAPArrayTests();
-//    VAPHumanoidObjectTest();
+    VAPHumanoidObjectTest();
     return 0;
 }
