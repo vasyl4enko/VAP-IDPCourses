@@ -68,7 +68,7 @@ void *VAPArrayGetObjectAtIndex(VAPArray *array, uint64_t index) {
 //        }
 //    }
     void *objectAtIndex = NULL;
-    if (NULL != array && index < VAPArrayGetCount(array) - 1) {
+    if (NULL != array && index < VAPArrayGetCount(array)) {
         objectAtIndex = array->_elements[index];
     }
     

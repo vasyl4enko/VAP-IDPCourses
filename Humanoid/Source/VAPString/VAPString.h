@@ -16,17 +16,20 @@
 typedef struct {
     VAPObject _super;
     char *_string;
-    
+    uint64_t _length;
 } VAPString;
 
 extern
 void *VAPStringCreateWithString(char *string);
 
 extern
-char *VAPStringGetName(void *string);
+char *VAPStringGetString(void *string);
 
 extern
-void VAPStringSetName(void *string, char *newString);
+void VAPStringSetString(void *string, char *newString);
+
+extern
+uint64_t VAPStringGetLength(VAPString *object);
 
 extern
 void __VAPStringDeallocate(void *object);

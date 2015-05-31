@@ -13,21 +13,19 @@
 #include <assert.h>
 
 #pragma mark -
-#pragma mark Private implementation
+#pragma mark Private Declaration
 
-
-
-//static
-//void VAPStringSetName(VAPString *string, char *newName);
+static
+void VAPStringSetLength(VAPString *object, char *string);
 
 #pragma mark -
-#pragma mark Public implementation
+#pragma mark Public Implementation
 
 void *VAPStringCreateWithString(char *string) {
     
     
     VAPString *object = VAPObjectCreateType(VAPString) ;
-    VAPStringSetName(object, string);
+    VAPStringSetString(object, string);
     
     return object;
 }
@@ -35,7 +33,7 @@ void *VAPStringCreateWithString(char *string) {
 
 void __VAPStringDeallocate(void *object) {
     
-    VAPStringSetName(object, NULL);
+    VAPStringSetString(object, NULL);
     __VAPObjectDeallocate(object);
 }
 
@@ -43,29 +41,46 @@ void __VAPStringDeallocate(void *object) {
 #pragma mark Accessors 
 
 
-char *VAPStringGetName(void *string){
+char *VAPStringGetString(void *string){
     return string != NULL ? ((VAPString *) string)->_string : NULL;
 }
 
-void VAPStringSetName(void *string, char *newString) {
+void VAPStringSetString(void *string, char *newString) {
     if (string != NULL && newString != string) {
-        char *previousName = ((VAPString *) string)->_string;
-        if (previousName != NULL) {
-            free(previousName);
+        
+        char *previousString = ((VAPString *) string)->_string;
+        if (previousString != NULL) {
+            free(previousString);
         }
         
-        char *copiedName = NULL;
+        char *copiedString = NULL;
         if (NULL != newString) {
-            copiedName = strdup(newString);
+            copiedString = strdup(newString);
             
-            assert(copiedName != NULL);
+            assert(copiedString != NULL);
             
         }
-        ((VAPString *) string)->_string = copiedName;
+        ((VAPString *) string)->_string = copiedString;
+        VAPStringSetLength(string, copiedString);
     }
 }
 
+uint64_t VAPStringGetLength(VAPString *object) {
+    
+    return NULL != object ? object->_length : 0;
+}
+
 #pragma mark -
-#pragma mark Private implementation
+#pragma mark Private Implementation
+
+void VAPStringSetLength(VAPString *object, char *string) {
+    if (NULL != object) {
+        if (NULL != string) {
+            object->_length = strlen(string);
+        } else {
+            object->_length = 0;
+        }
+    }
+}
 
 
