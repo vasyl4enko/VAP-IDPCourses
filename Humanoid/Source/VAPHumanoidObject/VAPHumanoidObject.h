@@ -14,14 +14,7 @@
 #include "VAPArray.h"
 #include "VAPString.h"
 
-
-
 typedef struct VAPHuman VAPHuman;
-
-//typedef struct VAPString VAPString;
-
-
-void VAPHumanSetChild(VAPHuman *humanoid, VAPHuman *child);
 
 typedef enum {
     VAPGenderOther,
@@ -32,6 +25,8 @@ typedef enum {
 extern
 VAPHuman *VAPHumanCreateWithParameters(char *name, uint16_t age, VAPGender gender);
 
+void VAPHumanSetChild(VAPHuman *humanoid, VAPHuman *child);
+
 extern
 void VAPHumanDivorce(VAPHuman *human);
 
@@ -39,13 +34,10 @@ extern
 void VAPHumanMarry(VAPHuman *human, VAPHuman *partner);
 
 extern
-void VAPHumanBirthChild(VAPHuman *human, VAPHuman *partner);
+VAPHuman *VAPHumanCreateChild(VAPHuman *human, VAPHuman *partner);
 
 extern
 VAPArray *VAPHumanGetChildren(VAPHuman *humanoid);
-
-//extern
-//void VAPHumanSetPartner(VAPHuman *humanoid, VAPHuman *partner);
 
 extern
 VAPHuman *VAPHumanGetPartner(VAPHuman *humanoid);
@@ -85,6 +77,9 @@ uint8_t VAPHumanGetChildrenCount(VAPHuman *humanoid);
 
 extern
 bool VAPHumanIsMarriedWithPartner(VAPHuman *human, VAPHuman *partner);
+
+extern
+bool VAPHumanIsMarried(VAPHuman *human);
 
 extern
 void __VAPHumanDeallocate(void *object);
