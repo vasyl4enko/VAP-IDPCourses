@@ -47,7 +47,6 @@ void VAPStringCreationTest(void) {
     //get char string and their length
     printf("%s and their length %lld \n",VAPStringGetString(string2), VAPStringGetLength(string2));
     
-    
     //release VAPstring object
     VAPObjectRelease(string);
     

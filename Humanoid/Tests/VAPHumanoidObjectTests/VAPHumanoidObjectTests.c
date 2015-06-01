@@ -51,16 +51,15 @@ void VAPHumanoidFamillyTest(void) {
     assert(1 == VAPGetReferenceCount(chehov));
     
     //birth child
-    VAPHumanBirthChild(ahmatova, chehov);
+    VAPHuman *firstChild = VAPHumanCreateChild(ahmatova, chehov);
     
     //create next child
-    VAPHumanBirthChild(ahmatova, chehov);
+    VAPHuman *secondChild = VAPHumanCreateChild(ahmatova, chehov);
     
     //get array with children
     VAPArray *children = VAPHumanGetChildren(chehov);
     
     for (uint64_t index = 0; index < VAPHumanGetChildrenCount(chehov); index++) {
-//        printf("%llu\n",VAPGetReferenceCount(VAPArrayGetObjectAtIndex(children, index)));
        assert(3 == VAPGetReferenceCount(VAPArrayGetObjectAtIndex(children, index)))  ;
     }
     
@@ -89,12 +88,13 @@ void VAPHumanoidFamillyTest(void) {
     
     //cycle with children
     for (uint64_t index = 0; index < VAPHumanGetChildrenCount(chehov); index++) {
-        //        printf("%llu\n",VAPGetReferenceCount(VAPArrayGetObjectAtIndex(children, index)));
         assert(2 == VAPGetReferenceCount(VAPArrayGetObjectAtIndex(children, index)));
     }
     
     //marry doncova & chehov
     VAPHumanMarry(doncova, chehov);
+    
+    VAPHumanMarry(doncova, VAPHumanCreateWithParameters("Batman", 42, VAPGenderMale));
     
     //get partner doncova
     assert(chehov == VAPHumanGetPartner(doncova));
@@ -103,10 +103,13 @@ void VAPHumanoidFamillyTest(void) {
     assert(doncova == VAPHumanGetPartner(chehov));
     
     //
-    VAPHumanBirthChild(chehov, doncova);
+    VAPHuman *thirdChild = VAPHumanCreateChild(chehov, doncova);
     
     //get chehov's children
     children = VAPHumanGetChildren(chehov);
+    
+    //get reference count child at index 0 of parrent chehov
+    assert(2 == VAPGetReferenceCount(VAPArrayGetObjectAtIndex(children, 0)));
     
     //get reference count child at index 1 of parrent chehov
     assert(2 == VAPGetReferenceCount(VAPArrayGetObjectAtIndex(children, 1)));
@@ -125,6 +128,26 @@ void VAPHumanoidFamillyTest(void) {
     
     //release chehov
     VAPObjectRelease(chehov);
+    
+    //check reference count of firstChild
+    assert(1 == VAPGetReferenceCount(firstChild));
+    
+    //check reference count of secondChild
+    assert(1 == VAPGetReferenceCount(secondChild));
+    
+    //check reference count of thirdChild
+    assert(1 == VAPGetReferenceCount(thirdChild));
+    
+    //release first child
+    VAPObjectRelease(firstChild);
+    
+    //release second child
+    VAPObjectRelease(secondChild);
+    
+    //release third child
+    VAPObjectRelease(thirdChild);
+           
+    
 }
 
 
