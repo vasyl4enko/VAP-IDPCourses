@@ -25,6 +25,7 @@ typedef enum {
 extern
 VAPHuman *VAPHumanCreateWithParameters(char *name, uint16_t age, VAPGender gender);
 
+extern
 void VAPHumanSetChild(VAPHuman *humanoid, VAPHuman *child);
 
 extern

@@ -41,7 +41,6 @@ void VAPHumanSetChildren(VAPHuman *humanoid, VAPArray *children);
 #pragma mark Public Implementation
 
 VAPHuman *VAPHumanCreateWithParameters(char *name, uint16_t age, VAPGender gender) {
-    
     VAPHuman *humanoid = VAPObjectCreateType(VAPHuman);
     VAPHumanSetChildren(humanoid, VAPObjectCreateType(VAPArray));
     VAPHumanSetName(humanoid, VAPStringCreateWithString(name));
@@ -64,7 +63,7 @@ void __VAPHumanDeallocate(void *object) {
     __VAPObjectDeallocate(human);
 }
 
-void VAPHumanMarry(VAPHuman *human, VAPHuman *partner) { // change logic
+void VAPHumanMarry(VAPHuman *human, VAPHuman *partner) {
 
     if (NULL != human && NULL != partner && human != partner) {
         VAPGender humanGender = VAPHumanGetGender(human);
@@ -78,10 +77,7 @@ void VAPHumanMarry(VAPHuman *human, VAPHuman *partner) { // change logic
                 }
                 human->_partner = partner;
                 partner->_partner = human;
-                
             }
-        } else {
-            printf("print\n");
         }
     }
 }
@@ -189,7 +185,6 @@ void VAPHumanSetName(VAPHuman *humanoid, VAPString *name) {
         if (oldName != name) {
             VAPObjectRetain(name);
             VAPObjectRelease(oldName);
-            
             humanoid->_name = name;
         }
     }

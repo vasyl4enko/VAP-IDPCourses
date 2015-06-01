@@ -52,21 +52,6 @@ bool VAPArrayIsContainsObject(VAPArray *array, void *element) {
 }
 
 void *VAPArrayGetObjectAtIndex(VAPArray *array, uint64_t index) {
-//    void *objectAtIndex;
-//    if (NULL != array) {
-//        void **elements = VAPArrayGetElements(array);
-//        uint64_t count = VAPArrayGetCount(array);
-//        if (count < index) {
-//            printf("Array index out of bounds");
-//            
-//            return NULL;
-//        }
-//        for (uint64_t cycleIndex = 0; cycleIndex <= index; cycleIndex++) {
-//            if (cycleIndex == index) {
-//                objectAtIndex = elements[index];
-//            }
-//        }
-//    }
     void *objectAtIndex = NULL;
     if (NULL != array && index < VAPArrayGetCount(array)) {
         objectAtIndex = array->_elements[index];
@@ -132,8 +117,6 @@ void VAPArrayRemoveAllObjects(VAPArray *array) {
         }
         VAPArraySetCapacity(array, 0);
     }
-    
-    
 }
 
 #pragma mark -
@@ -159,7 +142,7 @@ void VAPArraySetCapacity(VAPArray *array, uint64_t capacity) {
             free(array->_elements);
             array->_elements = 0;
         } else {
-            array->_elements = realloc(array->_elements, size);
+            array->_elements = realloc(*array->_elements, size);
             
             assert(NULL != array->_elements);
         }

@@ -44,8 +44,6 @@ void VAPArrayRemoveObjectAtIndex(VAPArray *array, uint64_t index);
 extern
 void VAPArrayRemoveAllObjects(VAPArray *array);
 
-
-
 extern
 void __VAPArrayDeallocate(void *object);
 
