@@ -12,7 +12,9 @@
 		1F20DCBF1B0000E00014ACE4 /* TestDataStructure.c in Sources */ = {isa = PBXBuildFile; fileRef = 1F20DCBD1B0000E00014ACE4 /* TestDataStructure.c */; };
 		1F35D9A01AFEB4D100E57436 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 1F35D99F1AFEB4D100E57436 /* main.c */; };
 		1F35D9A71AFFEF4A00E57436 /* BytesNumbersToConsol.c in Sources */ = {isa = PBXBuildFile; fileRef = 1F35D9A51AFFEF4A00E57436 /* BytesNumbersToConsol.c */; };
-		1F6F4FC31B1E24AC00C2777B /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 1F6F4FC21B1E24AC00C2777B /* main.c */; };
+		1F6F4FD11B1E297400C2777B /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 1F6F4FCC1B1E297400C2777B /* main.c */; };
+		1F6F4FD21B1E297400C2777B /* VAPObject.c in Sources */ = {isa = PBXBuildFile; fileRef = 1F6F4FCE1B1E297400C2777B /* VAPObject.c */; };
+		1F6F4FD61B1E2A6700C2777B /* LinkedListNode.c in Sources */ = {isa = PBXBuildFile; fileRef = 1F6F4FD41B1E2A6700C2777B /* LinkedListNode.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -59,7 +61,11 @@
 		1F35D9A61AFFEF4A00E57436 /* BytesNumbersToConsol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BytesNumbersToConsol.h; sourceTree = "<group>"; };
 		1F35D9A81AFFF7FD00E57436 /* DataStructure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataStructure.h; sourceTree = "<group>"; };
 		1F6F4FC01B1E24AC00C2777B /* LinkedList */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = LinkedList; sourceTree = BUILT_PRODUCTS_DIR; };
-		1F6F4FC21B1E24AC00C2777B /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		1F6F4FCC1B1E297400C2777B /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		1F6F4FCE1B1E297400C2777B /* VAPObject.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = VAPObject.c; sourceTree = "<group>"; };
+		1F6F4FCF1B1E297400C2777B /* VAPObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VAPObject.h; sourceTree = "<group>"; };
+		1F6F4FD41B1E2A6700C2777B /* LinkedListNode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = LinkedListNode.c; sourceTree = "<group>"; };
+		1F6F4FD51B1E2A6700C2777B /* LinkedListNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinkedListNode.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,9 +212,45 @@
 		1F6F4FC11B1E24AC00C2777B /* LinkedList */ = {
 			isa = PBXGroup;
 			children = (
-				1F6F4FC21B1E24AC00C2777B /* main.c */,
+				1F6F4FCB1B1E297400C2777B /* Source */,
+				1F6F4FD01B1E297400C2777B /* Tests */,
 			);
 			path = LinkedList;
+			sourceTree = "<group>";
+		};
+		1F6F4FCB1B1E297400C2777B /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				1F6F4FCC1B1E297400C2777B /* main.c */,
+				1F6F4FCD1B1E297400C2777B /* VAPObject */,
+				1F6F4FD31B1E2A3000C2777B /* LinkedListNode */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		1F6F4FCD1B1E297400C2777B /* VAPObject */ = {
+			isa = PBXGroup;
+			children = (
+				1F6F4FCE1B1E297400C2777B /* VAPObject.c */,
+				1F6F4FCF1B1E297400C2777B /* VAPObject.h */,
+			);
+			path = VAPObject;
+			sourceTree = "<group>";
+		};
+		1F6F4FD01B1E297400C2777B /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		1F6F4FD31B1E2A3000C2777B /* LinkedListNode */ = {
+			isa = PBXGroup;
+			children = (
+				1F6F4FD41B1E2A6700C2777B /* LinkedListNode.c */,
+				1F6F4FD51B1E2A6700C2777B /* LinkedListNode.h */,
+			);
+			path = LinkedListNode;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -328,7 +370,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1F6F4FC31B1E24AC00C2777B /* main.c in Sources */,
+				1F6F4FD61B1E2A6700C2777B /* LinkedListNode.c in Sources */,
+				1F6F4FD21B1E297400C2777B /* VAPObject.c in Sources */,
+				1F6F4FD11B1E297400C2777B /* main.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -499,6 +543,7 @@
 				1F6F4FC51B1E24AC00C2777B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
