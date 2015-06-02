@@ -157,18 +157,20 @@ bool VAPArrayShouldResize(VAPArray *array) {
     return (NULL != array) && (array->_capacity != VAPArrayPreferedCapacity(array));
 }
 
+#warning i don't like this logik
 static
 uint64_t VAPArrayPreferedCapacity(VAPArray *array) {
     if (NULL != array) {
         uint64_t localCount = VAPArrayGetCount(array);
         uint64_t localCapacity = VAPArrayGetCapacity(array);
-        if (localCount <= localCapacity) {
+        if (localCapacity >= localCount) {
+            
             return localCapacity;
         }
         
         if (localCapacity < localCount) {
-            return  localCapacity + 1 + localCount * 0.65;
             
+            return  localCapacity + 1 + localCount * 0.65;
         }
     }
 

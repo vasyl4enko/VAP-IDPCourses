@@ -94,7 +94,9 @@ void VAPHumanoidFamillyTest(void) {
     //marry doncova & chehov
     VAPHumanMarry(doncova, chehov);
     
-    VAPHumanMarry(doncova, VAPHumanCreateWithParameters("Batman", 42, VAPGenderMale));
+    VAPHuman *batman = VAPHumanCreateWithParameters("Batman", 42, VAPGenderMale);
+    
+    VAPHumanMarry(doncova, batman);
     
     //get partner doncova
     assert(chehov == VAPHumanGetPartner(doncova));
@@ -146,8 +148,9 @@ void VAPHumanoidFamillyTest(void) {
     
     //release third child
     VAPObjectRelease(thirdChild);
-           
     
+    //release third batman
+    VAPObjectRelease(batman);
 }
 
 
