@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 Aleksandr Vasylchenko. All rights reserved.
 //
 
-#ifndef __VAP_IDPCources__LinkedListNode__
-#define __VAP_IDPCources__LinkedListNode__
+#ifndef __VAP_IDPCources__VAPLinkedListNode__
+#define __VAP_IDPCources__VAPLinkedListNode__
 
 #include <stdio.h>
 
@@ -39,4 +39,4 @@ void *VAPLinkedListNodeGetObject(VAPLinkedListNode *node);
 extern
 void VAPLinkedListNodeSetObject(VAPLinkedListNode *node, void *object);
 
-#endif /* defined(__VAP_IDPCources__LinkedListNode__) */
+#endif /* defined(__VAP_IDPCources__VAPLinkedListNode__) */

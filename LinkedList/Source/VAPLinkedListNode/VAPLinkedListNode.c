@@ -6,11 +6,12 @@
 //  Copyright (c) 2015 Aleksandr Vasylchenko. All rights reserved.
 //
 
-#include "LinkedListNode.h"
+#include "VAPLinkedListNode.h"
 
 extern
 VAPLinkedListNode *VAPLinkedListNodeCreateWithObject(void *object) {
     VAPLinkedListNode *node = VAPObjectCreateType(VAPLinkedListNode);
+    VAPLinkedListNodeSetObject(node, object);
     
     return node;
 }
@@ -25,13 +26,14 @@ VAPLinkedListNode *VAPLinkedListNodeGetNextNode(VAPLinkedListNode *node) {
     return NULL != node ? node->_nextNode : NULL;
 }
 
-extern
+
 void VAPLinkedListNodeSetNextNode(VAPLinkedListNode *node, VAPLinkedListNode *nextNode) {
-    if (NULL != node) {
-        if (NULL == VAPLinkedListNodeGetNextNode(node)) {
-            node->_nextNode = nextNode;
+    if (NULL != node && node->_nextNode != nextNode) {
+
+            VAPLinkedListNode *localNextNode = VAPLinkedListNodeGetNextNode(node);
             VAPObjectRetain(nextNode);
-        }
+            VAPObjectRelease(localNextNode);
+            node->_nextNode = nextNode;
     }
 }
 
@@ -40,5 +42,10 @@ void *VAPLinkedListNodeGetObject(VAPLinkedListNode *node) {
     return NULL != node ? node->_object : NULL;
 }
 
-extern
-void VAPLinkedListNodeSetObject(VAPLinkedListNode *node, void *object);
+void VAPLinkedListNodeSetObject(VAPLinkedListNode *node, void *object) {
+    if (NULL != node) {
+        VAPObjectRetain(object);
+        VAPObjectRelease(node->_object);
+        node->_object = object;
+    }
+}
