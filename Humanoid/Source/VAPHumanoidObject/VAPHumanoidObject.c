@@ -59,6 +59,7 @@ void __VAPHumanDeallocate(void *object) {
     VAPObjectRelease(VAPHumanGetName(human));
     VAPArray *array = VAPHumanGetChildren(human);
     VAPArrayRemoveAllObjects(array);
+    VAPObjectRelease(array);
  
     __VAPObjectDeallocate(human);
 }
@@ -69,7 +70,7 @@ void VAPHumanMarry(VAPHuman *human, VAPHuman *partner) {
         VAPGender humanGender = VAPHumanGetGender(human);
         VAPGender partnerGender = VAPHumanGetGender(partner);
         if (humanGender != partnerGender) {
-            if (!(VAPHumanIsMarriedWithPartner(human, partner)) && !(VAPHumanIsMarried(human) || VAPHumanIsMarried(partner))) {
+            if (!(VAPHumanIsMarried(human) || VAPHumanIsMarried(partner))) {
                 if (humanGender == VAPGenderMale) {
                     VAPObjectRetain(partner);
                 } else if (partnerGender == VAPGenderMale) {
@@ -94,7 +95,6 @@ void VAPHumanDivorce(VAPHuman *human) {
                 human->_partner = NULL;
                 partner->_partner = NULL;
                 VAPObjectRelease(human);
-                
             }
         }
     }
@@ -163,17 +163,20 @@ uint8_t VAPHumanGetChildrenCount(VAPHuman *humanoid) {
 }
 
 bool VAPHumanIsMarriedWithPartner(VAPHuman *human, VAPHuman *partner) {
-    if (NULL != human && NULL != partner) {
-        if (VAPHumanGetPartner(human) == partner && VAPHumanGetPartner(partner) == human) {
-            return true;
-        }
-    }
-    return false;
+//    if (NULL != human && NULL != partner) {
+//        if (VAPHumanGetPartner(human) == partner && VAPHumanGetPartner(partner) == human) {
+//            return true;
+//        }
+//    }
+//    return false;
+    
+    return (VAPHumanGetPartner(human) == partner) && (VAPHumanGetPartner(partner) == human);
 }
 
 bool VAPHumanIsMarried(VAPHuman *human) {
 
-    return NULL != human ? NULL != human->_partner ? true : false : false;
+//    return NULL != human ? NULL != human->_partner ? true : false : false;
+    return (NULL != human) && (NULL != human->_partner);
 }
 
 #pragma mark -

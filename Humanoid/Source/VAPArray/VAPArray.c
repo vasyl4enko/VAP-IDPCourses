@@ -36,6 +36,17 @@ void VAPArrayResizeIfNeeded(VAPArray *array);
 #pragma mark -
 #pragma mark Public Declaration
 
+void __VAPArrayDeallocate(void *object) {
+    VAPArray *array = object;
+    VAPArrayRemoveAllObjects(object);
+    if (NULL != array->_elements) {
+        free(array->_elements);
+        array->_elements = NULL;
+    }
+    
+    __VAPObjectDeallocate(object);
+}
+
 bool VAPArrayIsContainsObject(VAPArray *array, void *element) {
     bool isContains = false;
     if (NULL != array && NULL != element) {
@@ -84,7 +95,6 @@ void VAPArrayAddObject(VAPArray *array, void *object) {
             VAPArraySetCount(array, count + 1);
             VAPObjectRetain(object);
             array->_elements[count] = object;
-            
         }
     }
 }
@@ -106,14 +116,13 @@ void VAPArrayRemoveObjectAtIndex(VAPArray *array, uint64_t index) {
         elements[count - 1] = NULL;
         VAPArraySetCount(array, count - 1);
     }
-    
 }
 
 void VAPArrayRemoveAllObjects(VAPArray *array) {
     if (NULL != array) {
         uint64_t count = VAPArrayGetCount(array);
-        for (uint64_t index = 0; index < count; index++) {
-            VAPArrayRemoveObjectAtIndex(array, 0);
+        for (uint64_t index = count; index > 0; index--) {
+            VAPArrayRemoveObjectAtIndex(array, index - 1);
         }
         VAPArraySetCapacity(array, 0);
     }
@@ -125,6 +134,7 @@ void VAPArrayRemoveAllObjects(VAPArray *array) {
 static
 void VAPArraySetCount(VAPArray *array, uint64_t count) {
     if (NULL != array) {
+        
         assert(kVAPArrayMaximumCapacity >= count);
         
         array->_count = count;
@@ -135,21 +145,20 @@ void VAPArraySetCount(VAPArray *array, uint64_t count) {
 static
 void VAPArraySetCapacity(VAPArray *array, uint64_t capacity) {
     if (NULL != array && array->_capacity != capacity) {
+        
         assert(kVAPArrayMaximumCapacity >= capacity);
         
         size_t size = capacity * sizeof(*array->_elements);
         if (0 == size && array->_elements != NULL) {
             free(array->_elements);
-            array->_elements = 0;
+            array->_elements = NULL;
         } else {
-            array->_elements = realloc(*array->_elements, size);
+            array->_elements = realloc(array->_elements, size);
             
             assert(NULL != array->_elements);
         }
-        
         array->_capacity = capacity;
     }
-    
 }
 
 static
@@ -157,7 +166,6 @@ bool VAPArrayShouldResize(VAPArray *array) {
     return (NULL != array) && (array->_capacity != VAPArrayPreferedCapacity(array));
 }
 
-#warning i don't like this logik
 static
 uint64_t VAPArrayPreferedCapacity(VAPArray *array) {
     if (NULL != array) {
@@ -170,7 +178,7 @@ uint64_t VAPArrayPreferedCapacity(VAPArray *array) {
         
         if (localCapacity < localCount) {
             
-            return  localCapacity + 1 + localCount * 0.65;
+            return  2 * localCount;
         }
     }
 
@@ -183,16 +191,4 @@ void VAPArrayResizeIfNeeded(VAPArray *array){
         VAPArraySetCapacity(array, VAPArrayPreferedCapacity(array));
     }
 }
-
-void __VAPArrayDeallocate(void *object) {
-    VAPArray *array = object;
-    VAPArrayRemoveAllObjects(object);
-    
-    if (NULL != array->_elements) {
-        free(array->_elements);
-        array->_elements = NULL;
-    }
-    __VAPObjectDeallocate(object);
-}
-
 
