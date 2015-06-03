@@ -9,8 +9,26 @@
 #include "VAPLinkedListTests.h"
 
 #pragma mark -
+#pragma mark Private Declaration
+
+static
+void VAPLinkedListBehaviour();
+
+
+#pragma mark -
 #pragma mark Public Implementation
 
-void VAPLinkedListBehaviourTest();
+void VAPLinkedListBehaviourTests() {
+    VAPLinkedListBehaviour();
+}
 
+#pragma mark -
+#pragma mark Private Implementation
+
+
+void VAPLinkedListBehaviour() {
+    //  create list
+    //  is Empty
+    //  
+}
 

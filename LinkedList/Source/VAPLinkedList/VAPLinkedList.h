@@ -24,6 +24,25 @@ typedef struct VAPLinkedListNode VAPLinkedListNode;
     uint64_t _count;
 }   VAPLinkedList;
 
+extern
+void __VAPLinkedListDeallocate(void *object);
 
+extern
+void VAPLinkedListIsEmpty(VAPLinkedList *list);
+
+extern
+void VAPLinkedListAddNode(VAPLinkedList *list, VAPLinkedListNode *node);
+
+extern
+void VAPLinkedListAddObject(VAPLinkedList *list, void *object);
+
+extern
+void VAPLinkedListRemoveAllObjects(VAPLinkedList *list);
+
+extern
+void VAPLinkedListRemoveObjectAtIndex(VAPLinkedList *list, uint64_t index);
+
+extern
+VAPLinkedListNode *VAPLinkedListGetFirstNode(VAPLinkedList *node);
 
 #endif /* defined(__VAP_IDPCources__VAPLinkedList__) */

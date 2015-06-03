@@ -12,6 +12,6 @@
 #include <stdio.h>
 
 extern
-void VAPLinkedListBehaviourTest();
+void VAPLinkedListBehaviourTests();
 
 #endif /* defined(__VAP_IDPCources__VAPLinkedListTests__) */
