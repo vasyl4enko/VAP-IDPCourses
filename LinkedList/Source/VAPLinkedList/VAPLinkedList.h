@@ -10,6 +10,7 @@
 #define __VAP_IDPCources__VAPLinkedList__
 
 #include <stdio.h>
+#include <stdbool.h>
 
 #include "VAPObject.h"
 #include "VAPLinkedListNode.h"
@@ -17,7 +18,7 @@
 
 typedef struct VAPLinkedListNode VAPLinkedListNode;
 
- typedef struct  {
+typedef struct {
     VAPObject _super;
     
     VAPLinkedListNode *_head;
@@ -28,13 +29,18 @@ extern
 void __VAPLinkedListDeallocate(void *object);
 
 extern
-void VAPLinkedListIsEmpty(VAPLinkedList *list);
+bool VAPLinkedListIsEmpty(VAPLinkedList *list);
 
+//extern if need to statik
+//void VAPLinkedListAddNode(VAPLinkedList *list, VAPLinkedListNode *node);
 extern
-void VAPLinkedListAddNode(VAPLinkedList *list, VAPLinkedListNode *node);
+void VAPLinkedListAddObjectAtIndex(VAPLinkedList *list, void *object, uint64_t index);
 
 extern
 void VAPLinkedListAddObject(VAPLinkedList *list, void *object);
+
+extern
+void VAPLinkedListAddObjectAtStart(VAPLinkedList *list, void *object);
 
 extern
 void VAPLinkedListRemoveAllObjects(VAPLinkedList *list);
