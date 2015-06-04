@@ -29,26 +29,27 @@ void VAPHumanoidObjectTest() {
 #pragma mark Private Implement
 
 void VAPHumanoidFamillyTest(void) {
+    
     //create male person
     VAPHuman *chehov = VAPHumanCreateWithParameters("Chehov", 34, VAPGenderMale);
     
-    //reference count should be 1
-    assert(1 == VAPGetReferenceCount(chehov));
+        //reference count should be 1
+        assert(1 == VAPGetReferenceCount(chehov));
     
     //create female person
     VAPHuman *ahmatova = VAPHumanCreateWithParameters("Ahmatova", 28, VAPGenderFemale);
     
-    //reference count should be 1
-    assert(1 == VAPGetReferenceCount(ahmatova));
+        //reference count should be 1
+        assert(1 == VAPGetReferenceCount(ahmatova));
     
     //marry chehov & ahmatova
     VAPHumanMarry(chehov, ahmatova);
     
-    //reference count of female obj should be 2
-    assert(2 == VAPGetReferenceCount(ahmatova));
+        //reference count of female obj should be 2
+        assert(2 == VAPGetReferenceCount(ahmatova));
     
-    //reference count of male obj should be 1
-    assert(1 == VAPGetReferenceCount(chehov));
+        //reference count of male obj should be 1
+        assert(1 == VAPGetReferenceCount(chehov));
     
     //birth child
     VAPHuman *firstChild = VAPHumanCreateChild(ahmatova, chehov);
@@ -59,12 +60,14 @@ void VAPHumanoidFamillyTest(void) {
     //get array with children
     VAPArray *children = VAPHumanGetChildren(chehov);
     
-    for (uint64_t index = 0; index < VAPHumanGetChildrenCount(chehov); index++) {
-       assert(3 == VAPGetReferenceCount(VAPArrayGetObjectAtIndex(children, index)))  ;
-    }
+        //cycle which check reference count children
+        for (uint64_t index = 0; index < VAPHumanGetChildrenCount(chehov); index++) {
+            assert(3 == VAPGetReferenceCount(VAPArrayGetObjectAtIndex(children, index)))  ;
+        }
     
-    //create second male person
+    //create second female person
     VAPHuman *doncova = VAPHumanCreateWithParameters("Doncova", 40, VAPGenderFemale);
+    
     
     //reference count should be 1
     assert(1 == VAPGetReferenceCount(doncova));
@@ -72,76 +75,84 @@ void VAPHumanoidFamillyTest(void) {
     //divorce
     VAPHumanDivorce(ahmatova);
     
-    //get partner ahmatova
-    assert(NULL == VAPHumanGetPartner(ahmatova));
+        //get partner ahmatova
+        assert(NULL == VAPHumanGetPartner(ahmatova));
     
-    //get partner chehov
-    assert(NULL == VAPHumanGetPartner(chehov));
+        //get partner chehov
+        assert(NULL == VAPHumanGetPartner(chehov));
     
-    //reference count should be 1
-    assert(1 == VAPGetReferenceCount(ahmatova));
+        //reference count should be 1
+        assert(1 == VAPGetReferenceCount(ahmatova));
+    
+        //release ahmatova
+        VAPObjectRelease(ahmatova);
     
     
-    //release ahmatova
-    VAPObjectRelease(ahmatova);
-    
-    
-    //cycle with children
-    for (uint64_t index = 0; index < VAPHumanGetChildrenCount(chehov); index++) {
-        assert(2 == VAPGetReferenceCount(VAPArrayGetObjectAtIndex(children, index)));
-    }
+        //cycle with children
+        for (uint64_t index = 0; index < VAPHumanGetChildrenCount(chehov); index++) {
+            assert(2 == VAPGetReferenceCount(VAPArrayGetObjectAtIndex(children, index)));
+        }
     
     //marry doncova & chehov
     VAPHumanMarry(doncova, chehov);
     
+    //create Batman
     VAPHuman *batman = VAPHumanCreateWithParameters("Batman", 42, VAPGenderMale);
     
+    //batman try to destroy happy russian family
     VAPHumanMarry(doncova, batman);
     
-    //get partner doncova
-    assert(chehov == VAPHumanGetPartner(doncova));
+        //get partner doncova
+        assert(chehov == VAPHumanGetPartner(doncova));
     
-    //get partner chehov
-    assert(doncova == VAPHumanGetPartner(chehov));
+        //get partner chehov
+        assert(doncova == VAPHumanGetPartner(chehov));
     
-    //
+        //Batman couldn't destroy. He's alone and he very sad
+        assert(NULL == VAPHumanGetPartner(batman));
+    
+    
+    //create next child
     VAPHuman *thirdChild = VAPHumanCreateChild(chehov, doncova);
     
     //get chehov's children
     children = VAPHumanGetChildren(chehov);
     
-    //get reference count child at index 0 of parrent chehov
-    assert(2 == VAPGetReferenceCount(VAPArrayGetObjectAtIndex(children, 0)));
+        //get reference count child at index 0 of parrent chehov
+        assert(2 == VAPGetReferenceCount(VAPArrayGetObjectAtIndex(children, 0)));
     
-    //get reference count child at index 1 of parrent chehov
-    assert(2 == VAPGetReferenceCount(VAPArrayGetObjectAtIndex(children, 1)));
+        //get reference count child at index 1 of parrent chehov
+        assert(2 == VAPGetReferenceCount(VAPArrayGetObjectAtIndex(children, 1)));
     
-    //get reference count child at index 2 of parrent chehov
-    assert(3 == VAPGetReferenceCount(VAPArrayGetObjectAtIndex(children, 2)));
+        //get reference count child at index 2 of parrent chehov
+        assert(3 == VAPGetReferenceCount(VAPArrayGetObjectAtIndex(children, 2)));
     
-    //get chehov's children
+    //get doncova's children
     children = VAPHumanGetChildren(doncova);
     
-    //get reference count child at index 0 of parrent doncova
-    assert(3 == VAPGetReferenceCount(VAPArrayGetObjectAtIndex(children, 0)));
+        //get reference count child at index 0 of parrent doncova
+        assert(3 == VAPGetReferenceCount(VAPArrayGetObjectAtIndex(children, 0)));
     
     //release doncova
     VAPObjectRelease(doncova);
     
-    //release chehov
-    VAPObjectRelease(chehov);
+    //check reference count of firstChild
+    assert(2 == VAPGetReferenceCount(firstChild));
+    
+    //release first child
+    VAPObjectRelease(firstChild);
     
     //check reference count of firstChild
     assert(1 == VAPGetReferenceCount(firstChild));
+    
+    //release chehov
+    VAPObjectRelease(chehov);
     
     //check reference count of secondChild
     assert(1 == VAPGetReferenceCount(secondChild));
     
     //check reference count of thirdChild
     assert(1 == VAPGetReferenceCount(thirdChild));
-    
-    //release first child
-    VAPObjectRelease(firstChild);
     
     //release second child
     VAPObjectRelease(secondChild);

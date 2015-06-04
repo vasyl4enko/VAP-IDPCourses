@@ -56,7 +56,8 @@ void __VAPHumanDeallocate(void *object) {
     VAPHumanDivorce(human);
     VAPHumanSetFather(human, NULL);
     VAPHumanSetMother(human, NULL);
-    VAPObjectRelease(VAPHumanGetName(human));
+//    VAPObjectRelease(VAPHumanGetName(human));
+    VAPHumanSetName(human, NULL);
     VAPArray *array = VAPHumanGetChildren(human);
     VAPArrayRemoveAllObjects(array);
     VAPObjectRelease(array);
@@ -183,13 +184,10 @@ bool VAPHumanIsMarried(VAPHuman *human) {
 #pragma mark Private Implementation
 
 void VAPHumanSetName(VAPHuman *humanoid, VAPString *name) {
-    if (NULL != humanoid && NULL != name) {
-        VAPString *oldName = VAPHumanGetName(humanoid);
-        if (oldName != name) {
+    if (NULL != humanoid) {
             VAPObjectRetain(name);
-            VAPObjectRelease(oldName);
+            VAPObjectRelease(humanoid->_name);
             humanoid->_name = name;
-        }
     }
 }
 
