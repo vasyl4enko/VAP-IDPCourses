@@ -32,7 +32,7 @@ extern
 void VAPHumanDivorce(VAPHuman *human);
 
 extern
-void VAPHumanMarry(VAPHuman *human, VAPHuman *partner);
+bool VAPHumanMarry(VAPHuman *human, VAPHuman *partner);
 
 extern
 VAPHuman *VAPHumanCreateChild(VAPHuman *human, VAPHuman *partner);
@@ -75,9 +75,6 @@ void VAPHumanSetMarried(VAPHuman *humanoid);
 
 extern
 uint8_t VAPHumanGetChildrenCount(VAPHuman *humanoid);
-
-extern
-bool VAPHumanIsMarriedWithPartner(VAPHuman *human, VAPHuman *partner);
 
 extern
 bool VAPHumanIsMarried(VAPHuman *human);

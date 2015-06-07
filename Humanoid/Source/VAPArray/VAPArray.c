@@ -33,17 +33,14 @@ uint64_t VAPArrayPreferedCapacity(VAPArray *array);
 static
 void VAPArrayResizeIfNeeded(VAPArray *array);
 
+static
+void VAPArraySetObjectAtIndex(VAPArray *array, void *object, uint64_t index);
+
 #pragma mark -
 #pragma mark Public Declaration
 
 void __VAPArrayDeallocate(void *object) {
-    VAPArray *array = object;
     VAPArrayRemoveAllObjects(object);
-    if (NULL != array->_elements) {
-        free(array->_elements);
-        array->_elements = NULL;
-    }
-    
     __VAPObjectDeallocate(object);
 }
 
@@ -88,13 +85,31 @@ uint64_t VAPArrayGetCapacity(VAPArray *array) {
     return NULL != array ? array->_capacity : 0;
 }
 
+
+void VAPArraySetObjectAtIndex(VAPArray *array, void *object, uint64_t index) {
+    assert(index < kVAPArrayMaximumCapacity);
+    
+    if (NULL != array) {
+        void *localObject = VAPArrayGetObjectAtIndex(array, index-1);
+        if (localObject != object) {
+            VAPObjectRetain(object);
+            VAPObjectRelease(localObject);
+            array->_elements[index] = object;
+        
+        }
+    }
+}
+
 void VAPArrayAddObject(VAPArray *array, void *object) {
     if (NULL != array && object != NULL) {
         uint64_t count = VAPArrayGetCount(array);
         if (!VAPArrayIsContainsObject(array, object)) {
+            
             VAPArraySetCount(array, count + 1);
-            VAPObjectRetain(object);
-            array->_elements[count] = object;
+            VAPArraySetObjectAtIndex(array, object, count);
+//            VAPObjectRetain(object);
+//            array->_elements[count] = object;
+            
         }
     }
 }
@@ -119,76 +134,83 @@ void VAPArrayRemoveObjectAtIndex(VAPArray *array, uint64_t index) {
 }
 
 void VAPArrayRemoveAllObjects(VAPArray *array) {
+//    if (NULL != array) {
+//        uint64_t count = VAPArrayGetCount(array);
+//        for (uint64_t index = count; index > 0; index--) {
+//            VAPArrayRemoveObjectAtIndex(array, index - 1);
+//        }
+//        VAPArraySetCapacity(array, 0); // set count 0.
+//    }
+    
     if (NULL != array) {
         uint64_t count = VAPArrayGetCount(array);
-        for (uint64_t index = count; index > 0; index--) {
-            VAPArrayRemoveObjectAtIndex(array, index - 1);
+        for (uint64_t index = 0; index < count; index++) {
+            VAPObjectRelease(array->_elements[index]);
         }
-        VAPArraySetCapacity(array, 0);
+        VAPArraySetCount(array, 0);
     }
 }
 
 #pragma mark -
 #pragma mark Private Implementation
 
-static
+
 void VAPArraySetCount(VAPArray *array, uint64_t count) {
+    assert(count < kVAPArrayMaximumCapacity-1);
+    
     if (NULL != array) {
-        
-        assert(kVAPArrayMaximumCapacity >= count);
-        
         array->_count = count;
         VAPArrayResizeIfNeeded(array);
     }
 }
 
-static
+
 void VAPArraySetCapacity(VAPArray *array, uint64_t capacity) {
-    if (NULL != array && array->_capacity != capacity) {
-        
-        assert(kVAPArrayMaximumCapacity >= capacity);
-        
-        size_t size = capacity * sizeof(*array->_elements);
-        if (0 == size && array->_elements != NULL) {
-            free(array->_elements);
-            array->_elements = NULL;
-        } else {
-            array->_elements = realloc(array->_elements, size);
-            
-            assert(NULL != array->_elements);
-        }
-        array->_capacity = capacity;
-    }
-}
-
-static
-bool VAPArrayShouldResize(VAPArray *array) {
-    return (NULL != array) && (array->_capacity != VAPArrayPreferedCapacity(array));
-}
-
-static
-uint64_t VAPArrayPreferedCapacity(VAPArray *array) {
+    assert(capacity < kVAPArrayMaximumCapacity - 1);
+    
     if (NULL != array) {
-        uint64_t localCount = VAPArrayGetCount(array);
-        uint64_t localCapacity = VAPArrayGetCapacity(array);
-        if (localCapacity >= localCount) {
-            
-            return localCapacity;
+        if (array->_capacity != capacity) {
+            array->_capacity = capacity;
+            array->_elements = realloc(array->_elements, capacity * sizeof(*array->_elements));
+        }
+    }
+}
+
+
+bool VAPArrayShouldResize(VAPArray *array) {
+    
+    return NULL != array && array->_capacity != VAPArrayPreferedCapacity(array);
+}
+
+
+uint64_t VAPArrayPreferedCapacity(VAPArray *array) {
+    uint64_t preferedCapacity = 0;
+    if (NULL != array) {
+        uint64_t count = VAPArrayGetCount(array);
+        uint64_t capacity = VAPArrayGetCapacity(array);
+        if (count == 0 && count != capacity) {
+            if (NULL != array->_elements) {
+                free(array->_elements);
+                array->_elements = NULL;
+            }
+            return preferedCapacity;
         }
         
-        if (localCapacity < localCount) {
-            
-            return  2 * localCount;
+        if (count > capacity) {
+            preferedCapacity = count + capacity + 1;
+        } else {
+            preferedCapacity = capacity;
         }
     }
 
-    return 0;
+    return preferedCapacity;
 }
 
-static
+
 void VAPArrayResizeIfNeeded(VAPArray *array){
     if (VAPArrayShouldResize(array)) {
         VAPArraySetCapacity(array, VAPArrayPreferedCapacity(array));
     }
+
 }
 

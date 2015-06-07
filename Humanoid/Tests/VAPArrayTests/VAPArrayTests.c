@@ -86,6 +86,7 @@ void VAPArrayBehaviorTest(void) {
     
     //add object and object 3 to array
     VAPArrayAddObject(array, object);
+    assert(2 == VAPArrayGetCount(array));
     VAPArrayAddObject(array, object3);
     
     //count of objects in array 3
