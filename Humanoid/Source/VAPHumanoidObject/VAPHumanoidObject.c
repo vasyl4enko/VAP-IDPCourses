@@ -104,6 +104,14 @@ VAPHuman *VAPHumanCreateChild(VAPHuman *human, VAPHuman *partner) {
     return child;
 }
 
+void VAPHumanRemoveChildAtIndex(VAPHuman *human, uint64_t index) {
+    assert(index < kMaxChildrenCount);
+#warning doesn't work
+    if (NULL != human) {
+        VAPArrayRemoveObjectAtIndex(VAPHumanGetChildren(human), index);
+    }
+}
+
 #pragma mark -
 #pragma mark Accessors
 
@@ -151,8 +159,6 @@ uint8_t VAPHumanGetChildrenCount(VAPHuman *humanoid) {
     return NULL != humanoid ? VAPArrayGetCount(VAPHumanGetChildren(humanoid)) : 0;
 
 }
-
-
 
 bool VAPHumanIsMarried(VAPHuman *human) {
 

@@ -38,6 +38,9 @@ extern
 VAPHuman *VAPHumanCreateChild(VAPHuman *human, VAPHuman *partner);
 
 extern
+void VAPHumanRemoveChildAtIndex(VAPHuman *human, uint64_t index);
+
+extern
 VAPArray *VAPHumanGetChildren(VAPHuman *humanoid);
 
 extern

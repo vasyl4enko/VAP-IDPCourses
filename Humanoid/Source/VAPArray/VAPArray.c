@@ -92,10 +92,11 @@ void VAPArraySetObjectAtIndex(VAPArray *array, void *object, uint64_t index) {
     if (NULL != array) {
         void *localObject = VAPArrayGetObjectAtIndex(array, index);
         if (localObject != object) {
-            VAPObjectRetain(object);
-            if (index != VAPArrayGetCount(array)) {
+            
+            if (index != VAPArrayGetCount(array) - 1) {
                 VAPObjectRelease(localObject);
             }
+            VAPObjectRetain(object);
             array->_elements[index] = object;
         
         }
@@ -128,6 +129,7 @@ void VAPArrayRemoveObjectAtIndex(VAPArray *array, uint64_t index) {
         for (uint64_t localIndex = index + 1; localIndex < count; localIndex++) {
             array->_elements[localIndex - 1] = array->_elements[localIndex];
         }
+//        VAPArraySetObjectAtIndex(array, NULL, index);
         
         void **elements = VAPArrayGetElements(array);
         elements[count - 1] = NULL;
@@ -158,7 +160,7 @@ void VAPArrayRemoveAllObjects(VAPArray *array) {
 
 
 void VAPArraySetCount(VAPArray *array, uint64_t count) {
-    assert(count < kVAPArrayMaximumCapacity-1);
+    assert(count < kVAPArrayMaximumCapacity - 1);
     
     if (NULL != array) {
         array->_count = count;
@@ -169,6 +171,13 @@ void VAPArraySetCount(VAPArray *array, uint64_t count) {
 
 void VAPArraySetCapacity(VAPArray *array, uint64_t capacity) {
     assert(capacity < kVAPArrayMaximumCapacity - 1);
+    uint64_t count = VAPArrayGetCount(array);
+    if (count == 0 && capacity == 0) {
+        if (NULL != array->_elements) {
+            free(array->_elements);
+            array->_elements = NULL;
+        }
+    }
     
     if (NULL != array) {
         if (array->_capacity != capacity) {
@@ -190,11 +199,7 @@ uint64_t VAPArrayPreferedCapacity(VAPArray *array) {
     if (NULL != array) {
         uint64_t count = VAPArrayGetCount(array);
         uint64_t capacity = VAPArrayGetCapacity(array);
-        if (count == 0 && count != capacity) {
-            if (NULL != array->_elements) {
-                free(array->_elements);
-                array->_elements = NULL;
-            }
+        if (count == 0) {
             return preferedCapacity;
         }
         

@@ -50,10 +50,10 @@ void VAPHumanoidFamillyTest(void) {
     
         //reference count of male obj should be 1
         assert(1 == VAPGetReferenceCount(chehov));
-    
+
     //birth child
     VAPHuman *firstChild = VAPHumanCreateChild(ahmatova, chehov);
-    
+
     //create next child
     VAPHuman *secondChild = VAPHumanCreateChild(ahmatova, chehov);
     
@@ -110,7 +110,6 @@ void VAPHumanoidFamillyTest(void) {
     
         //Batman couldn't destroy. He's alone and he very sad
         assert(NULL == VAPHumanGetPartner(batman));
-    
     
     //create next child
     VAPHuman *thirdChild = VAPHumanCreateChild(chehov, doncova);
