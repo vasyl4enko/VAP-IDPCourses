@@ -90,10 +90,12 @@ void VAPArraySetObjectAtIndex(VAPArray *array, void *object, uint64_t index) {
     assert(index < kVAPArrayMaximumCapacity);
     
     if (NULL != array) {
-        void *localObject = VAPArrayGetObjectAtIndex(array, index-1);
+        void *localObject = VAPArrayGetObjectAtIndex(array, index);
         if (localObject != object) {
             VAPObjectRetain(object);
-            VAPObjectRelease(localObject);
+            if (index != VAPArrayGetCount(array)) {
+                VAPObjectRelease(localObject);
+            }
             array->_elements[index] = object;
         
         }
