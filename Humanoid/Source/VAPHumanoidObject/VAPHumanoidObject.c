@@ -106,7 +106,6 @@ VAPHuman *VAPHumanCreateChild(VAPHuman *human, VAPHuman *partner) {
 
 void VAPHumanRemoveChildAtIndex(VAPHuman *human, uint64_t index) {
     assert(index < kMaxChildrenCount);
-#warning doesn't work
     if (NULL != human) {
         VAPArrayRemoveObjectAtIndex(VAPHumanGetChildren(human), index);
     }

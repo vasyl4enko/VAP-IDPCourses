@@ -125,9 +125,9 @@ void VAPHumanoidFamillyTest(void) {
     
         //  get reference count child at index 2 of parrent chehov
         assert(3 == VAPGetReferenceCount(VAPArrayGetObjectAtIndex(children, 2)));
-#warning bug - bad delete last object
+
         //  I leave you my father
-        VAPHumanRemoveChildAtIndex(chehov, 1);
+        VAPHumanRemoveChildAtIndex(chehov, 2);
     
         //check reference count of thirdChild
         assert(2 == VAPGetReferenceCount(thirdChild));
@@ -135,8 +135,8 @@ void VAPHumanoidFamillyTest(void) {
     //get doncova's children
     children = VAPHumanGetChildren(doncova);
     
-        //get reference count child at index 0 of parrent doncova
-        assert(3 == VAPGetReferenceCount(VAPArrayGetObjectAtIndex(children, 0)));
+        //get reference count removed child from chehov at index 0 of parrent doncova
+        assert(2 == VAPGetReferenceCount(VAPArrayGetObjectAtIndex(children, 0)));
     
     //release doncova
     VAPObjectRelease(doncova);
