@@ -171,18 +171,20 @@ void VAPArraySetCount(VAPArray *array, uint64_t count) {
 
 void VAPArraySetCapacity(VAPArray *array, uint64_t capacity) {
     assert(capacity < kVAPArrayMaximumCapacity - 1);
-    uint64_t count = VAPArrayGetCount(array);
-    if (count == 0 && capacity == 0) {
-        if (NULL != array->_elements) {
-            free(array->_elements);
-            array->_elements = NULL;
-        }
-    }
+    
     
     if (NULL != array) {
-        if (array->_capacity != capacity) {
+        uint64_t count = VAPArrayGetCount(array);
+        if (array->_capacity != capacity && capacity != 0) {
             array->_capacity = capacity;
             array->_elements = realloc(array->_elements, capacity * sizeof(*array->_elements));
+        }
+        
+        if (count == 0 && capacity == 0) {
+            if (NULL != array->_elements) {
+                free(array->_elements);
+                array->_elements = NULL;
+            }
         }
     }
 }
