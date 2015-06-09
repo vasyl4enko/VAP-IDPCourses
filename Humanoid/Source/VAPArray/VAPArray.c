@@ -178,6 +178,8 @@ void VAPArraySetCapacity(VAPArray *array, uint64_t capacity) {
         if (array->_capacity != capacity && capacity != 0) {
             array->_capacity = capacity;
             array->_elements = realloc(array->_elements, capacity * sizeof(*array->_elements));
+            
+            assert(NULL != array->_elements);
         }
         
         if (count == 0 && capacity == 0) {
