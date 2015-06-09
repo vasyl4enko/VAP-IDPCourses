@@ -30,13 +30,13 @@ void VAPArrayBehaviorTest(void) {
     VAPArray *array = VAPObjectCreateType(VAPArray);
     
     //create array
-    VAPArray *array2 = VAPObjectCreateType(VAPArray);
+//    VAPArray *array2 = VAPObjectCreateType(VAPArray);
     
     //reference count 1
     assert(1 == VAPGetReferenceCount(array));
     
     //reference count 1
-    assert(1 == VAPGetReferenceCount(array2));
+//    assert(1 == VAPGetReferenceCount(array2));
     
     //create object
     VAPObject *object = VAPObjectCreateType(VAPObject);
@@ -73,7 +73,7 @@ void VAPArrayBehaviorTest(void) {
     //count of objects in array 2
     assert(2 == VAPArrayGetCount(array));
     
-    
+#warning remove object
     //remove object at index
     VAPArrayRemoveObjectAtIndex(array, 0);
     
@@ -98,8 +98,10 @@ void VAPArrayBehaviorTest(void) {
     //compare object and object from array
     assert(VAPGetReferenceCount(object) == VAPGetReferenceCount(objectFromArray));
     
+#warning if set objectat index then assert object 3 else object 2
+    
     //is object contains in array
-    assert(true == VAPArrayIsContainsObject(array, object2));
+    assert(true == VAPArrayIsContainsObject(array, object2)); //
     
     //remove all objects
     VAPArrayRemoveAllObjects(array);
@@ -120,7 +122,7 @@ void VAPArrayBehaviorTest(void) {
     VAPObjectRelease(array);
     
     //release array2
-    VAPObjectRelease(array2);
+//    VAPObjectRelease(array2);
     
    
 }

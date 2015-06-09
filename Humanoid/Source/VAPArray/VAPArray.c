@@ -92,7 +92,7 @@ void VAPArraySetObjectAtIndex(VAPArray *array, void *object, uint64_t index) {
     if (NULL != array) {
         void *localObject = VAPArrayGetObjectAtIndex(array, index);
         if (localObject != object) {
-            
+#warning change logik
             if (index != VAPArrayGetCount(array) - 1) {
                 VAPObjectRelease(localObject);
             }
@@ -121,15 +121,16 @@ void VAPArrayRemoveObjectAtIndex(VAPArray *array, uint64_t index) {
     if (NULL != array) {
         uint64_t count = VAPArrayGetCount(array);
         
-        assert(VAPArrayGetCount(array) > index);
+        assert(kVAPArrayMaximumCapacity > index);
         
-        void *object = VAPArrayGetObjectAtIndex(array, index);
-        VAPObjectRelease(object);
-        array->_elements[index] = NULL;
+//        void *object = VAPArrayGetObjectAtIndex(array, index);
+//        VAPObjectRelease(object);
+//        array->_elements[index] = NULL;
+        VAPArraySetObjectAtIndex(array, NULL, index);
         for (uint64_t localIndex = index + 1; localIndex < count; localIndex++) {
             array->_elements[localIndex - 1] = array->_elements[localIndex];
         }
-//        VAPArraySetObjectAtIndex(array, NULL, index);
+        
         
         void **elements = VAPArrayGetElements(array);
         elements[count - 1] = NULL;

@@ -111,20 +111,26 @@ void VAPHumanoidFamillyTest(void) {
         //Batman couldn't destroy. He's alone and he very sad
         assert(NULL == VAPHumanGetPartner(batman));
     
-    //create next child
+    //  create next child
     VAPHuman *thirdChild = VAPHumanCreateChild(chehov, doncova);
     
-    //get chehov's children
+    //  get chehov's children
     children = VAPHumanGetChildren(chehov);
     
-        //get reference count child at index 0 of parrent chehov
+        //  get reference count child at index 0 of parrent chehov
         assert(2 == VAPGetReferenceCount(VAPArrayGetObjectAtIndex(children, 0)));
     
-        //get reference count child at index 1 of parrent chehov
+        //  get reference count child at index 1 of parrent chehov
         assert(2 == VAPGetReferenceCount(VAPArrayGetObjectAtIndex(children, 1)));
     
-        //get reference count child at index 2 of parrent chehov
+        //  get reference count child at index 2 of parrent chehov
         assert(3 == VAPGetReferenceCount(VAPArrayGetObjectAtIndex(children, 2)));
+#warning bug - bad delete last object
+        //  I leave you my father
+        VAPHumanRemoveChildAtIndex(chehov, 1);
+    
+        //check reference count of thirdChild
+        assert(2 == VAPGetReferenceCount(thirdChild));
     
     //get doncova's children
     children = VAPHumanGetChildren(doncova);
@@ -140,9 +146,6 @@ void VAPHumanoidFamillyTest(void) {
     
     //release first child
     VAPObjectRelease(firstChild);
-    
-    //check reference count of firstChild
-    assert(1 == VAPGetReferenceCount(firstChild));
     
     //release chehov
     VAPObjectRelease(chehov);
