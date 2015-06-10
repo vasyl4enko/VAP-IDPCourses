@@ -121,8 +121,6 @@ void VAPArrayRemoveObjectAtIndex(VAPArray *array, uint64_t index) {
         for (uint64_t localIndex = index + 1; localIndex < count; localIndex++) {
             array->_elements[localIndex - 1] = array->_elements[localIndex];
         }
-        
-        
         void **elements = VAPArrayGetElements(array);
         elements[count - 1] = NULL;
         VAPArraySetCount(array, count - 1);
@@ -156,9 +154,7 @@ void VAPArraySetCount(VAPArray *array, uint64_t count) {
 void VAPArraySetCapacity(VAPArray *array, uint64_t capacity) {
     assert(capacity < kVAPArrayMaximumCapacity - 1);
     
-    
     if (NULL != array) {
-        uint64_t count = VAPArrayGetCount(array);
         size_t size = capacity * sizeof(*array->_elements);
         if (array->_capacity != capacity && capacity != 0) {
             array->_capacity = capacity;
@@ -166,11 +162,9 @@ void VAPArraySetCapacity(VAPArray *array, uint64_t capacity) {
             array->_elements = realloc(array->_elements, size);
             
             assert(NULL != array->_elements);
-//            void **startPointer = array->_elements + array->_count;
-//            memset(startPointer, 0, size - sizeCount);
         }
         
-        if (count == 0 && capacity == 0) {
+        if (0 == capacity) {
             if (NULL != array->_elements) {
                 free(array->_elements);
                 array->_elements = NULL;
@@ -196,7 +190,7 @@ uint64_t VAPArrayPreferedCapacity(VAPArray *array) {
         uint64_t count = VAPArrayGetCount(array);
         uint64_t capacity = VAPArrayGetCapacity(array);
         if (count == 0) {
-            return preferedCapacity = 0;
+            return 0;
         }
         
         if (count > capacity) {

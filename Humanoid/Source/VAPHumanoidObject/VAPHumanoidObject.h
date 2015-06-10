@@ -26,7 +26,7 @@ extern
 VAPHuman *VAPHumanCreateWithParameters(char *name, uint16_t age, VAPGender gender);
 
 extern
-void VAPHumanSetChild(VAPHuman *humanoid, VAPHuman *child);
+void VAPHumanAddChild(VAPHuman *humanoid, VAPHuman *child);
 
 extern
 void VAPHumanDivorce(VAPHuman *human);
@@ -39,6 +39,9 @@ VAPHuman *VAPHumanCreateChild(VAPHuman *human, VAPHuman *partner);
 
 extern
 void VAPHumanRemoveChildAtIndex(VAPHuman *human, uint64_t index);
+
+extern
+void VAPHumanRemoveChild(VAPHuman *human, VAPHuman *child);
 
 extern
 VAPArray *VAPHumanGetChildren(VAPHuman *humanoid);
