@@ -34,7 +34,7 @@ bool VAPLinkedListIsEmpty(VAPLinkedList *list);
 //extern if need to statik
 //void VAPLinkedListAddNode(VAPLinkedList *list, VAPLinkedListNode *node);
 extern
-void VAPLinkedListAddObjectAtIndex(VAPLinkedList *list, void *object, uint64_t index);
+void VAPLinkedListSetObjectAtIndex(VAPLinkedList *list, void *object, uint64_t index);
 
 extern
 void VAPLinkedListAddObject(VAPLinkedList *list, void *object);
@@ -49,6 +49,9 @@ extern
 void VAPLinkedListRemoveObjectAtIndex(VAPLinkedList *list, uint64_t index);
 
 extern
-VAPLinkedListNode *VAPLinkedListGetFirstNode(VAPLinkedList *node);
+void *VAPLinkedListGetFirstObject(VAPLinkedList *list);
+
+extern
+void *VAPLinkedListGetObjectAtIndex(VAPLinkedList *list, uint64_t index);
 
 #endif /* defined(__VAP_IDPCources__VAPLinkedList__) */
