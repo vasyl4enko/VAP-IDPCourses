@@ -145,11 +145,11 @@ VAPHuman *VAPHumanGetPartner(VAPHuman *humanoid) {
 }
 
 void VAPHumanSetMother(VAPHuman *humanoid, VAPHuman *mother) {
-    VAPAssignSetter(humanoid, mother, VAPHuman);
+    VAPAssignSetter(humanoid, _mother, mother);
 }
 
 void VAPHumanSetFather(VAPHuman *humanoid, VAPHuman *father) {
-    VAPAssignSetter(humanoid, father, VAPHuman);
+    VAPAssignSetter(humanoid, _father, father);
 }
 
 VAPString *VAPHumanGetName(VAPHuman *humanoid) {
@@ -158,7 +158,7 @@ VAPString *VAPHumanGetName(VAPHuman *humanoid) {
 }
 
 void VAPHumanSetAge(VAPHuman *humanoid, uint16_t age) {
-    VAPAssignSetter(humanoid, age, VAPHuman);
+    VAPAssignSetter(humanoid, _age, age);
 }
 
 uint16_t VAPHumanGetAge(VAPHuman *humanoid) {
@@ -167,7 +167,7 @@ uint16_t VAPHumanGetAge(VAPHuman *humanoid) {
 }
 
 void VAPHumanSetGender(VAPHuman *humanoid, VAPGender gender) {
-    VAPAssignSetter(humanoid, gender, VAPHuman);
+    VAPAssignSetter(humanoid, _gender, gender);
 }
 
 VAPGender VAPHumanGetGender(VAPHuman *humanoid) {
@@ -190,11 +190,7 @@ bool VAPHumanIsMarried(VAPHuman *human) {
 #pragma mark Private Implementation
 
 void VAPHumanSetName(VAPHuman *humanoid, VAPString *name) {
-    if (NULL != humanoid) {
-        VAPObjectRetain(name);
-        VAPObjectRelease(humanoid->_name);
-        humanoid->_name = name;
-    }
+    VAPRetainSetter(humanoid, _name, name);
 }
 
 void VAPHumanAddChild(VAPHuman *humanoid, VAPHuman *child) {
@@ -213,12 +209,7 @@ void VAPHumanAddChild(VAPHuman *humanoid, VAPHuman *child) {
 
 void VAPHumanSetChildren(VAPHuman *humanoid, VAPArray *children) {
     if (NULL != humanoid) {
-        VAPArray *oldChildren = VAPHumanGetChildren(humanoid);
-        if (oldChildren != children) {
-            VAPObjectRetain(children);
-            VAPObjectRelease(oldChildren);
-            humanoid->_children = children;
-        }
+        VAPRetainSetter(humanoid, _children, children);
     }
 }
 
