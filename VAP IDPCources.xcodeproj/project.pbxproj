@@ -16,6 +16,7 @@
 		1F05B3131B2B1269008CA94F /* VAPMacroc.c in Sources */ = {isa = PBXBuildFile; fileRef = 1F05B3101B2B1269008CA94F /* VAPMacroc.c */; };
 		1F05B3141B2B1269008CA94F /* VAPMacroc.c in Sources */ = {isa = PBXBuildFile; fileRef = 1F05B3101B2B1269008CA94F /* VAPMacroc.c */; };
 		1F05B3161B2B7E36008CA94F /* VAPObject.c in Sources */ = {isa = PBXBuildFile; fileRef = 1F1C525F1B08F9AE0057621A /* VAPObject.c */; };
+		1F05B3171B2DF8D9008CA94F /* VAPString.c in Sources */ = {isa = PBXBuildFile; fileRef = 1F1C52631B0A4A6D0057621A /* VAPString.c */; };
 		1F1325951AF93E180047139E /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 1F1325941AF93E180047139E /* main.c */; };
 		1F13259E1AF977A20047139E /* VAPTestGenerateMethods.c in Sources */ = {isa = PBXBuildFile; fileRef = 1F13259C1AF977A20047139E /* VAPTestGenerateMethods.c */; };
 		1F1C525C1B0292DC0057621A /* VAPHumanoidObjectTests.c in Sources */ = {isa = PBXBuildFile; fileRef = 1F1C525A1B0292DC0057621A /* VAPHumanoidObjectTests.c */; };
@@ -564,6 +565,7 @@
 			files = (
 				1F05B30B1B29F327008CA94F /* VAPLinkedList.c in Sources */,
 				1F05B30C1B29F327008CA94F /* VAPLinkedListNode.c in Sources */,
+				1F05B3171B2DF8D9008CA94F /* VAPString.c in Sources */,
 				1F05B3141B2B1269008CA94F /* VAPMacroc.c in Sources */,
 				1F05B30A1B29F327008CA94F /* main.c in Sources */,
 				1F05B3161B2B7E36008CA94F /* VAPObject.c in Sources */,

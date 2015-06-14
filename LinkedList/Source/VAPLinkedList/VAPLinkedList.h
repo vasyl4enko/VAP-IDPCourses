@@ -40,9 +40,6 @@ extern
 void VAPLinkedListAddObject(VAPLinkedList *list, void *object);
 
 extern
-void VAPLinkedListAddObjectAtStart(VAPLinkedList *list, void *object);
-
-extern
 void VAPLinkedListRemoveAllObjects(VAPLinkedList *list);
 
 extern

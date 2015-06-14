@@ -7,13 +7,23 @@
 //
 
 #include "VAPLinkedList.h"
+#include "VAPMacros.h"
 #include <assert.h>
 
 #pragma mark -
 #pragma mark Private Declaration
 
 static
+void VAPLinkedListSetHead(VAPLinkedList *list, VAPLinkedListNode *node);
+
+static
 VAPLinkedListNode *VAPLinkedListGetHead(VAPLinkedList *list);
+
+static
+VAPLinkedListNode *VAPLinkedListGetNodeBeforeIndex(VAPLinkedList *list, uint64_t index);
+
+static
+void VAPLinkedListSetCount(VAPLinkedList *list, uint64_t count);
 
 #pragma mark -
 #pragma mark Public Implementation
@@ -26,41 +36,40 @@ void __VAPLinkedListDeallocate(void *object) {
 }
 
 bool VAPLinkedListIsEmpty(VAPLinkedList *list) {
-    return (NULL != list) && (VAPLinkedListGetFirstObject(list));
+    return (NULL != list) && !(VAPLinkedListGetFirstObject(list));
 }
 
 void VAPLinkedListSetObjectAtIndex(VAPLinkedList *list, void *object, uint64_t index) {
     if (NULL != list) {
-#warning use getter in assert!
         assert(index < list->_count);
-        
-#warning look at 80 - 85
-        VAPLinkedListNode *head = VAPLinkedListGetHead(list);
-        for (uint64_t iterator = 0; iterator < index; iterator++) {
-            if (iterator == index) {
-                VAPLinkedListNodeSetObject(head, object);
-            } else {
-                head = VAPLinkedListNodeGetNextNode(head);
-            }
+        if (index == 0) {
+            VAPLinkedListAddObject(list, object);
+        } else {
+            VAPLinkedListNode *beforeNode = VAPLinkedListGetNodeBeforeIndex(list, index);
+            VAPLinkedListNode *nextNode = VAPLinkedListNodeGetNextNode(beforeNode);
+            VAPLinkedListNode *node = VAPLinkedListNodeCreateWithObject(object);
+            VAPLinkedListNodeSetNextNode(node, nextNode);
+            VAPLinkedListNodeSetNextNode(beforeNode, node);
         }
+        
+        VAPLinkedListSetCount(list, list->_count + 1);
     }
 }
-#warning mess
-extern
-void VAPLinkedListAddObject(VAPLinkedList *list, void *object);
 
-void VAPLinkedListAddObjectAtStart(VAPLinkedList *list, void *object) {
-    if (NULL != list && NULL != object) {
+void VAPLinkedListAddObject(VAPLinkedList *list, void *object) {
+    if (NULL != list) {
         VAPLinkedListNode *newFirstNode = VAPLinkedListNodeCreateWithObject(object);
         VAPLinkedListNodeSetNextNode(newFirstNode, list->_head);
         VAPObjectRelease(list->_head);
-        list->_head = newFirstNode;
+//        list->_head = newFirstNode;
+        VAPLinkedListSetHead(list, newFirstNode);
+        VAPLinkedListSetCount(list, list->_count + 1);
     }
 }
-#warning mess
+#warning message
 extern
 void VAPLinkedListRemoveAllObjects(VAPLinkedList *list);
-#warning mess
+#warning message
 extern
 void VAPLinkedListRemoveObjectAtIndex(VAPLinkedList *list, uint64_t index);
 
@@ -72,12 +81,11 @@ void *VAPLinkedListGetFirstObject(VAPLinkedList *list) {
 
 void *VAPLinkedListGetObjectAtIndex(VAPLinkedList *list, uint64_t index) {
     void *result = NULL;
-    if (NULL != list) {
+    if (NULL != list && !VAPLinkedListIsEmpty(list)) {
         assert(index < list->_count);
         
-        
         VAPLinkedListNode *head = VAPLinkedListGetHead(list);
-        for (uint64_t iterator = 0; iterator < index; iterator++) {
+        for (uint64_t iterator = 0; iterator <= index; iterator++) {
             if (iterator == index) {
                 result = VAPLinkedListNodeGetObject(head);
             } else {
@@ -92,6 +100,36 @@ void *VAPLinkedListGetObjectAtIndex(VAPLinkedList *list, uint64_t index) {
 #pragma mark -
 #pragma mark Private Implementation
 
+void VAPLinkedListSetHead(VAPLinkedList *list, VAPLinkedListNode *node) {
+    VAPRetainSetter(list, _head, node);
+}
+
 VAPLinkedListNode *VAPLinkedListGetHead(VAPLinkedList *list) {
     return NULL != list ? list->_head : NULL;
+}
+
+
+VAPLinkedListNode *VAPLinkedListGetNodeBeforeIndex(VAPLinkedList *list, uint64_t index) {
+    
+    if (NULL != list && !VAPLinkedListIsEmpty(list)) {
+        assert(index < list->_count);
+        
+        VAPLinkedListNode *head = VAPLinkedListGetHead(list);
+        VAPLinkedListNode *nextNode;
+        uint64_t iterator = 0;
+        while (NULL != (nextNode = VAPLinkedListNodeGetNextNode(head))) {
+            if (iterator == index - 1) {
+                return head;
+            }
+            head = nextNode;
+            iterator++;
+        }
+    }
+    
+    return NULL;
+}
+
+static
+void VAPLinkedListSetCount(VAPLinkedList *list, uint64_t count) {
+    VAPAssignSetter(list, _count, count);
 }
