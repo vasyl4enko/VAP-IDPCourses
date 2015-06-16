@@ -37,8 +37,7 @@ bool VAPLinkedListIsEmpty(VAPLinkedList *list);
 extern
 void VAPLinkedListAddObject(VAPLinkedList *list, void *object);
 
-extern
-void VAPLinkedListAddObjectAtTheTail(VAPLinkedList *list, void *object);
+
 
 extern
 void VAPLinkedListRemoveAllObjects(VAPLinkedList *list);

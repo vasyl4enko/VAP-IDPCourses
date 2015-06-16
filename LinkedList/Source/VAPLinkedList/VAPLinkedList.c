@@ -49,30 +49,6 @@ void VAPLinkedListAddObject(VAPLinkedList *list, void *object) {
     }
 }
 
-void VAPLinkedListAddObjectAtTheTail(VAPLinkedList *list, void *object) {
-    if (NULL != list) {
-        if (VAPLinkedListIsEmpty(list)) {
-            VAPLinkedListNode *node = VAPLinkedListNodeCreateWithObject(object);
-            VAPLinkedListSetHead(list, node);
-            VAPLinkedListSetCount(list, list->_count + 1);
-        } else {
-            VAPLinkedListNode *head = VAPLinkedListGetHead(list);
-            VAPLinkedListNode *nextNode;
-            uint64_t iterator = 0;
-            uint64_t count = VAPLinkedListGetCount(list);
-            while (iterator < count) {
-                nextNode = VAPLinkedListNodeGetNextNode(head);
-                if (NULL == nextNode) {
-                    VAPLinkedListNodeSetNextNode(head, VAPLinkedListNodeCreateWithObject(object));
-                } else {
-                    head = nextNode;
-                }
-                iterator++;
-            }
-        }
-    }
-}
-
 void VAPLinkedListRemoveAllObjects(VAPLinkedList *list) {
     
     VAPLinkedListSetHead(list, NULL);
@@ -99,7 +75,7 @@ void VAPLinkedListRemoveObject(VAPLinkedList *list, void *object) {
             }
         } else {
             VAPObjectRetain(nextNode);
-            VAPObjectRelease(head);
+
             VAPLinkedListSetHead(list, NULL);
             VAPLinkedListSetHead(list, nextNode);
             
