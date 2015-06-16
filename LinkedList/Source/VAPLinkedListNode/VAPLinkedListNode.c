@@ -21,7 +21,7 @@ void __VAPLinkedListNodeDeallocate(void *object){
     VAPLinkedListNodeSetNextNode(object, NULL);
     VAPLinkedListNodeSetObject(object, NULL);
     
-    VAPObjectRelease(object);
+    __VAPObjectDeallocate(object);
 }
 
 VAPLinkedListNode *VAPLinkedListNodeGetNextNode(VAPLinkedListNode *node) {
@@ -36,14 +36,10 @@ void VAPLinkedListNodeSetNextNode(VAPLinkedListNode *node, VAPLinkedListNode *ne
 
 
 void *VAPLinkedListNodeGetObject(VAPLinkedListNode *node) {
+    
     return NULL != node ? node->_object : NULL;
 }
 
 void VAPLinkedListNodeSetObject(VAPLinkedListNode *node, void *object) {
-//    if (NULL != node) {
-//        VAPObjectRetain(object);
-//        VAPObjectRelease(node->_object);
-//        node->_object = object;
-//    }
     VAPRetainSetter(node, _object, object);
 }

@@ -112,6 +112,14 @@ void VAPLinkedListBehaviour() {
     assert(0 == VAPLinkedListGetCount(list));
     
     
+    
+    
+    
+    
+    VAPLinkedListAddObject(list, NULL);
+    //  Check list count. It will be 0
+    assert(1 == VAPLinkedListGetCount(list));
+    
     VAPObjectRelease(list);
     VAPObjectRelease(obj);
     VAPObjectRelease(obj2);
