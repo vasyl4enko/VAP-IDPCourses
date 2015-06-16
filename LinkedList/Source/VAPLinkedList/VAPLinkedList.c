@@ -56,34 +56,34 @@ void VAPLinkedListRemoveAllObjects(VAPLinkedList *list) {
 }
 
 
-void VAPLinkedListRemoveObject(VAPLinkedList *list, void *object) {
-    if (NULL != list) {
-        VAPLinkedListNode *head = VAPLinkedListGetHead(list);
-        VAPLinkedListNode *nextNode =VAPLinkedListNodeGetNextNode(head);
-        
-        if (VAPLinkedListNodeGetObject(head) != object) {
-            while (NULL != head) {
-                nextNode = VAPLinkedListNodeGetNextNode(head);
-                if (object == VAPLinkedListNodeGetObject(head)) {
-                    VAPLinkedListNode *beforeNode = VAPLinkedListGetNodeBeforeObject(list, object);
-                    VAPLinkedListNodeSetNextNode(beforeNode, nextNode);
-                    VAPObjectRelease(head);
-                    VAPLinkedListSetCount(list, VAPLinkedListGetCount(list) - 1);
-                    break;
-                }
-                head = nextNode;
-            }
-        } else {
-            VAPObjectRetain(nextNode);
-
-            VAPLinkedListSetHead(list, NULL);
-            VAPLinkedListSetHead(list, nextNode);
-            
-            VAPLinkedListSetCount(list, VAPLinkedListGetCount(list) - 1);
-        }
-        
-    }
-}
+//void VAPLinkedListRemoveObject(VAPLinkedList *list, void *object) {
+//    if (NULL != list) {
+//        VAPLinkedListNode *head = VAPLinkedListGetHead(list);
+//        VAPLinkedListNode *nextNode =VAPLinkedListNodeGetNextNode(head);
+//        
+//        if (VAPLinkedListNodeGetObject(head) != object) {
+//            while (NULL != head) {
+//                nextNode = VAPLinkedListNodeGetNextNode(head);
+//                if (object == VAPLinkedListNodeGetObject(head)) {
+//                    VAPLinkedListNode *beforeNode = VAPLinkedListGetNodeBeforeObject(list, object);
+//                    VAPLinkedListNodeSetNextNode(beforeNode, nextNode);
+//                    VAPObjectRelease(head);
+//                    VAPLinkedListSetCount(list, VAPLinkedListGetCount(list) - 1);
+//                    break;
+//                }
+//                head = nextNode;
+//            }
+//        } else {
+//            VAPObjectRetain(nextNode);
+//
+//            VAPLinkedListSetHead(list, NULL);
+//            VAPLinkedListSetHead(list, nextNode);
+//            
+//            VAPLinkedListSetCount(list, VAPLinkedListGetCount(list) - 1);
+//        }
+//        
+//    }
+//}
 
 
 void *VAPLinkedListGetFirstObject(VAPLinkedList *list) {
