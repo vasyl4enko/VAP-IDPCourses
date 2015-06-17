@@ -49,17 +49,43 @@ void VAPLinkedListBehaviour() {
     assert(1 == VAPGetReferenceCount(obj3));
     assert(1 == VAPGetReferenceCount(obj4));
     
-    // Add all elements to head
+    
+    assert(0 == VAPLinkedListGetCount(list));
+    
+    // Add first element to list
     VAPLinkedListAddObject(list, obj);
+    
+    // check reference count == 2
+    assert(2 == VAPGetReferenceCount(obj));
+    
+    // check count of list == 1
+    assert(1 == VAPLinkedListGetCount(list));
+    
+    // Add obj2 element to list
     VAPLinkedListAddObject(list, obj2);
+    
+    // check reference count == 2
+    assert(2 == VAPGetReferenceCount(obj2));
+    
+    // check count of list == 2
+    assert(2 == VAPLinkedListGetCount(list));
+    
+    // Add obj3 element to list
     VAPLinkedListAddObject(list, obj3);
+    
+    // check reference count == 2
+    assert(2 == VAPGetReferenceCount(obj3));
+    
+    // check count of list == 3
+    assert(3 == VAPLinkedListGetCount(list));
+    
+    // Add obj4 element to list
     VAPLinkedListAddObject(list, obj4);
     
+    // check count of list == 1
+    assert(4 == VAPLinkedListGetCount(list));
     
-    //  Check reference count this objects. It's will be 2;
-    assert(2 == VAPGetReferenceCount(obj));
-    assert(2 == VAPGetReferenceCount(obj2));
-    assert(2 == VAPGetReferenceCount(obj3));
+    // check reference count == 2
     assert(2 == VAPGetReferenceCount(obj4));
     
     //  Check list count. It will be 4
