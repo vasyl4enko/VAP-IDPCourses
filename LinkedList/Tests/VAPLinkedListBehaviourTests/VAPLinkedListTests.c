@@ -30,129 +30,216 @@ void VAPLinkedListBehaviourTests() {
 
 
 void VAPLinkedListBehaviour() {
-    //firstly create empty linked list
+    //Firstly create empty linked list
     VAPLinkedList *list = VAPObjectCreateType(VAPLinkedList);
     
-    //  Is list emty?
+    //  Linked list should be empty
     assert(true == VAPLinkedListIsEmpty(list));
     
-    //let's create some objects for linked list
-    
-    VAPObject *obj = VAPObjectCreateType(VAPObject);
-    VAPObject *obj2 = VAPObjectCreateType(VAPObject);
-    VAPObject *obj3 = VAPObjectCreateType(VAPObject);
-    VAPObject *obj4 = VAPObjectCreateType(VAPObject);
-    
-    //  Check reference count this objects. It's will be 1;
-    assert(1 == VAPGetReferenceCount(obj));
-    assert(1 == VAPGetReferenceCount(obj2));
-    assert(1 == VAPGetReferenceCount(obj3));
-    assert(1 == VAPGetReferenceCount(obj4));
-    
-    
     assert(0 == VAPLinkedListGetCount(list));
     
-    // Add first element to list
-    VAPLinkedListAddObject(list, obj);
+    //  Reference count of list == 1
+    assert(1 == VAPGetReferenceCount(list));
     
-    // check reference count == 2
-    assert(2 == VAPGetReferenceCount(obj));
+    //let's create first object
+    VAPObject *object = VAPObjectCreateType(VAPObject);
     
-    // check count of list == 1
+    //  object should not be nil
+    assert(NULL != object);
+    
+    //  object reference count should be 1
+    assert(1 == VAPGetReferenceCount(object));
+    
+    //add object to list
+    VAPLinkedListAddObject(list, object);
+    
+    //  object reference count should be 2
+    assert(2 == VAPGetReferenceCount(object));
+    
+    //  Linked list has one object
+    assert(false == VAPLinkedListIsEmpty(list));
+    
     assert(1 == VAPLinkedListGetCount(list));
     
-    // Add obj2 element to list
-    VAPLinkedListAddObject(list, obj2);
+    //let's try to add identical object
+    VAPLinkedListAddObject(list, object);
     
-    // check reference count == 2
-    assert(2 == VAPGetReferenceCount(obj2));
+    //  object reference count should be 2
+    assert(2 == VAPGetReferenceCount(object));
     
-    // check count of list == 2
+    //  Linked list has one object
+    assert(1 == VAPLinkedListGetCount(list));
+    
+    //Create second object
+    VAPObject *object2 = VAPObjectCreateType(VAPObject);
+    
+    //  object2 should not be nil
+    assert(NULL != object2);
+    
+    //  object2 reference count should be 1
+    assert(1 == VAPGetReferenceCount(object2));
+    
+    // the first object should be "object"
+    assert(object == VAPLinkedListGetFirstObject(list));
+    
+    //add object2 to head
+    VAPLinkedListAddObject(list, object2);
+    
+    //  object2 reference count should be 2
+    assert(2 == VAPGetReferenceCount(object2));
+    
+    //  Linked list has two object
     assert(2 == VAPLinkedListGetCount(list));
     
-    // Add obj3 element to list
-    VAPLinkedListAddObject(list, obj3);
+    //  the first object should be "object2"
+    assert(object2 == VAPLinkedListGetFirstObject(list));
     
-    // check reference count == 2
-    assert(2 == VAPGetReferenceCount(obj3));
+    //Create third object
+    VAPObject *object3 = VAPObjectCreateType(VAPObject);
     
-    // check count of list == 3
+    //  object3 should not be nil
+    assert(NULL != object3);
+    
+    //  object3 reference count should be 1
+    assert(1 == VAPGetReferenceCount(object3));
+    
+    //add object3 to tail
+    VAPLinkedListAddObjectAtTheTail(list, object3);
+    
+    //  object3 reference count should be 2
+    assert(2 == VAPGetReferenceCount(object3));
+    
+    //  Linked list has three object
     assert(3 == VAPLinkedListGetCount(list));
     
-    // Add obj4 element to list
-    VAPLinkedListAddObject(list, obj4);
+    //  the first object should be "object2" also
+    assert(object2 == VAPLinkedListGetFirstObject(list));
     
-    // check count of list == 1
+    //Create fourth object
+    VAPObject *object4 = VAPObjectCreateType(VAPObject);
+    
+    //  object4 should not be nil
+    assert(NULL != object4);
+    
+    //  object4 reference count should be 1
+    assert(1 == VAPGetReferenceCount(object4));
+    
+    //add object4 to head
+    VAPLinkedListAddObject(list, object4);
+    
+    //  object4 reference count should be 2
+    assert(2 == VAPGetReferenceCount(object4));
+    
+    //  Linked list has four object
     assert(4 == VAPLinkedListGetCount(list));
     
-    // check reference count == 2
-    assert(2 == VAPGetReferenceCount(obj4));
+    //  the first object should be "object4"
+    assert(object4 == VAPLinkedListGetFirstObject(list));
     
-    //  Check list count. It will be 4
-    assert(4 == VAPLinkedListGetCount(list));
+    //check all objects in list
+    assert(true == VAPLinkedListIsContainsObject(list, object4));
+    assert(true == VAPLinkedListIsContainsObject(list, object2));
+    assert(true == VAPLinkedListIsContainsObject(list, object));
+    assert(true == VAPLinkedListIsContainsObject(list, object3));
     
-    //Let's remove obj3 from linked list
-    VAPLinkedListRemoveObject(list, obj3);
     
-    //  Check list count. It will be 3
+    //remove head. this is object 2
+    VAPLinkedListRemoveObject(list, object4);
+    
+    //is object4 contains in list
+    assert(false == VAPLinkedListIsContainsObject(list, object4));
+    
+    //  object4 reference count should be 1
+    assert(1 == VAPGetReferenceCount(object4));
+    
+    //Get head
+    assert(object2 == VAPLinkedListGetFirstObject(list));
+    
+    //Linked list has three objects
     assert(3 == VAPLinkedListGetCount(list));
     
-    //  Is contains obj3 in linked list. It will be false
-    assert(false == VAPLinkedListIsContainsObject(list, obj3));
+    //remove object
+    VAPLinkedListRemoveObject(list, object);
     
-    //  Is contains obj in linked list. It will be true.
-    assert(true == VAPLinkedListIsContainsObject(list, obj));
+    //is object contains in list
+    assert(false == VAPLinkedListIsContainsObject(list, object));
     
-    //  Is contains obj2 in linked list. It will be true.
-    assert(true == VAPLinkedListIsContainsObject(list, obj2));
+    //  object reference count should be 1
+    assert(1 == VAPGetReferenceCount(object));
     
-    //  Is contains obj4 in linked list. It will be true.
-    assert(true == VAPLinkedListIsContainsObject(list, obj4));
-    
-    //Let's remove obj4 from linked list
-    VAPLinkedListRemoveObject(list, obj4);
-    
-    //  Is contains obj4 in linked list. It will be true.
-    assert(false == VAPLinkedListIsContainsObject(list, obj4));
-    
-    //  Is contains obj in linked list. It will be true.
-    assert(true == VAPLinkedListIsContainsObject(list, obj));
-    
-    //  Is contains obj2 in linked list. It will be true.
-    assert(true == VAPLinkedListIsContainsObject(list, obj2));
-    
-    //  Check list count. It will be 2
+    //Linked list has two objects
     assert(2 == VAPLinkedListGetCount(list));
     
-    assert(2 == VAPGetReferenceCount(obj));
-    assert(2 == VAPGetReferenceCount(obj2));
-    assert(1 == VAPGetReferenceCount(obj3));
-    assert(1 == VAPGetReferenceCount(obj4));
+    //remove object2
+    VAPLinkedListRemoveObject(list, object2);
     
-    // Remove all objects
+    //is object2 contains in list
+    assert(false == VAPLinkedListIsContainsObject(list, object2));
     
+    //Get head
+    assert(object3 == VAPLinkedListGetFirstObject(list));
+    
+    //Linked list has one objects
+    assert(1 == VAPLinkedListGetCount(list));
+    
+    //  object2 reference count should be 1
+    assert(1 == VAPGetReferenceCount(object2));
+    
+    //remove last object
+    VAPLinkedListRemoveObject(list, object3);
+    
+    //is object3 contains in list
+    assert(false == VAPLinkedListIsContainsObject(list, object3));
+    
+    //Get head
+    assert(NULL == VAPLinkedListGetFirstObject(list));
+    
+    //Linked list has one objects
+    assert(0 == VAPLinkedListGetCount(list));
+    
+    //  object2 reference count should be 1
+    assert(1 == VAPGetReferenceCount(object3));
+    
+    
+    //add all objects to list
+    VAPLinkedListAddObject(list, object);
+    VAPLinkedListAddObject(list, object2);
+    VAPLinkedListAddObject(list, object3);
+    VAPLinkedListAddObject(list, object4);
+    
+    //  check reference count
+    assert(2 == VAPGetReferenceCount(object));
+    assert(2 == VAPGetReferenceCount(object2));
+    assert(2 == VAPGetReferenceCount(object3));
+    assert(2 == VAPGetReferenceCount(object4));
+    
+    //  Linked list has four objects
+    assert(4 == VAPLinkedListGetCount(list));
+    
+    //delete all objects
     VAPLinkedListRemoveAllObjects(list);
     
-    //  Check list count. It will be 0
-
+    //  Linked list has 0 objects
     assert(0 == VAPLinkedListGetCount(list));
     
+    //check all objects in list
+    assert(false == VAPLinkedListIsContainsObject(list, object4));
+    assert(false == VAPLinkedListIsContainsObject(list, object2));
+    assert(false == VAPLinkedListIsContainsObject(list, object));
+    assert(false == VAPLinkedListIsContainsObject(list, object3));
     
+    //  check reference count
+    assert(1 == VAPGetReferenceCount(object));
+    assert(1 == VAPGetReferenceCount(object2));
+    assert(1 == VAPGetReferenceCount(object3));
+    assert(1 == VAPGetReferenceCount(object4));
     
-    
-    
-    
-    VAPLinkedListAddObject(list, NULL);
-    //  Check list count. It will be 0
-    assert(1 == VAPLinkedListGetCount(list));
-    
+
     VAPObjectRelease(list);
-    VAPObjectRelease(obj);
-    VAPObjectRelease(obj2);
-    VAPObjectRelease(obj3);
-    VAPObjectRelease(obj4);
- 
-    //  is Empty
-    //  
+    VAPObjectRelease(object);
+    VAPObjectRelease(object2);
+    VAPObjectRelease(object3);
+    VAPObjectRelease(object4);
+
 }
 
