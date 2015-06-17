@@ -43,39 +43,12 @@ void VAPLinkedListAddObject(VAPLinkedList *list, void *object) {
     if (NULL != list) {
         VAPLinkedListNode *newNode = VAPLinkedListNodeCreateWithObject(object);
         VAPLinkedListNode *head = VAPLinkedListGetHead(list);
-        VAPLinkedListNodeSetNextNode(newNode, head); // if first set null
+        VAPLinkedListNodeSetNextNode(newNode, head);
         VAPLinkedListSetHead(list, newNode);
         VAPLinkedListSetCount(list, VAPLinkedListGetCount(list) + 1);
         VAPObjectRelease(newNode);
     }
 }
-
-// false or true.... didn't tested... probaby wrong
-//void VAPLinkedListAddObjectAtTheTail(VAPLinkedList *list, void *object) {
-//    if (NULL != list) {
-//        if (VAPLinkedListIsEmpty(list)) {
-//            VAPLinkedListNode *node = VAPLinkedListNodeCreateWithObject(object);
-//            VAPLinkedListSetHead(list, node);
-//            VAPLinkedListSetCount(list, VAPLinkedListGetCount(list) + 1);
-//        } else {
-//            VAPLinkedListNode *head = VAPLinkedListGetHead(list);
-//            VAPLinkedListNode *nextNode;
-//            uint64_t iterator = 0;
-//            uint64_t count = VAPLinkedListGetCount(list);
-//            while (iterator < count) {
-//                nextNode = VAPLinkedListNodeGetNextNode(head);
-//                if (NULL == nextNode) {
-//                    VAPLinkedListNodeSetNextNode(head, VAPLinkedListNodeCreateWithObject(object));
-//                    VAPLinkedListSetCount(list, VAPLinkedListGetCount(list) + 1);
-//                } else {
-//                    head = nextNode;
-//                }
-//                iterator++;
-//            }
-//        }
-//    }
-//}
-
 
 void VAPLinkedListRemoveAllObjects(VAPLinkedList *list) {
     if (NULL != list) {
