@@ -50,7 +50,7 @@ void VAPLinkedListAddObject(VAPLinkedList *list, void *object) {
     }
 }
 
-// false or true.... didn't tested... 
+// false or true.... didn't tested... probaby wrong
 //void VAPLinkedListAddObjectAtTheTail(VAPLinkedList *list, void *object) {
 //    if (NULL != list) {
 //        if (VAPLinkedListIsEmpty(list)) {
