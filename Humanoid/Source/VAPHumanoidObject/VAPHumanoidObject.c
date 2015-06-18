@@ -71,7 +71,7 @@ bool VAPHumanMarry(VAPHuman *human, VAPHuman *partner) {
     if (NULL != human && NULL != partner && human != partner) {
         VAPGender humanGender = VAPHumanGetGender(human);
         VAPGender partnerGender = VAPHumanGetGender(partner);
-        if (humanGender != partnerGender) {
+        if (humanGender != partnerGender  && humanGender != VAPGenderOther && partnerGender != VAPGenderOther) {
             if (!(VAPHumanIsMarried(human) || VAPHumanIsMarried(partner))) {
                 VAPObjectRetain(humanGender == VAPGenderMale ? partner : human);
                 human->_partner = partner;
