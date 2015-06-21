@@ -7,9 +7,11 @@
 //
 
 #include <stdio.h>
+#include "VAPLinkedList.h"
+#include "VAPString.h"
 
 int main(int argc, const char * argv[]) {
-    // insert code here...
-    
+    VAPLinkedListBehaviourTests();
+
     return 0;
 }

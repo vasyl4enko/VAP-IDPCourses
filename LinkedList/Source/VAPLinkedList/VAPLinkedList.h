@@ -31,24 +31,25 @@ void __VAPLinkedListDeallocate(void *object);
 extern
 bool VAPLinkedListIsEmpty(VAPLinkedList *list);
 
-//extern if need to statik
-//void VAPLinkedListAddNode(VAPLinkedList *list, VAPLinkedListNode *node);
-extern
-void VAPLinkedListAddObjectAtIndex(VAPLinkedList *list, void *object, uint64_t index);
-
 extern
 void VAPLinkedListAddObject(VAPLinkedList *list, void *object);
 
 extern
-void VAPLinkedListAddObjectAtStart(VAPLinkedList *list, void *object);
+void VAPLinkedListAddObjectAtTheTail(VAPLinkedList *list, void *object);
 
 extern
 void VAPLinkedListRemoveAllObjects(VAPLinkedList *list);
 
 extern
-void VAPLinkedListRemoveObjectAtIndex(VAPLinkedList *list, uint64_t index);
+void VAPLinkedListRemoveObject(VAPLinkedList *list, void *object);
 
 extern
-VAPLinkedListNode *VAPLinkedListGetFirstNode(VAPLinkedList *node);
+void *VAPLinkedListGetFirstObject(VAPLinkedList *list);
+
+extern
+uint64_t VAPLinkedListGetCount(VAPLinkedList *list);
+
+extern
+bool VAPLinkedListIsContainsObject(VAPLinkedList *list, void *object);
 
 #endif /* defined(__VAP_IDPCources__VAPLinkedList__) */
