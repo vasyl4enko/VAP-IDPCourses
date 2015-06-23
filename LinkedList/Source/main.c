@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include "VAPLinkedList.h"
 #include "VAPString.h"
+#include "VAPLinkedListTests.h"
 
 int main(int argc, const char * argv[]) {
     VAPLinkedListBehaviourTests();
