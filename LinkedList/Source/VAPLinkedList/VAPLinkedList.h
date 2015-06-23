@@ -16,6 +16,7 @@
 #include "VAPLinkedListNode.h"
 
 
+
 typedef struct VAPLinkedListNode VAPLinkedListNode;
 
 typedef struct {
@@ -23,6 +24,7 @@ typedef struct {
     
     VAPLinkedListNode *_head;
     uint64_t _count;
+    uint64_t _mutationsCount;
 }   VAPLinkedList;
 
 extern
@@ -51,5 +53,11 @@ uint64_t VAPLinkedListGetCount(VAPLinkedList *list);
 
 extern
 bool VAPLinkedListIsContainsObject(VAPLinkedList *list, void *object);
+
+extern
+void VAPLinkedListSetMutationCount(VAPLinkedList *list, uint64_t mutationsCount);
+
+extern
+uint64_t VAPLinkedListGetMutationCount(VAPLinkedList *list);
 
 #endif /* defined(__VAP_IDPCources__VAPLinkedList__) */

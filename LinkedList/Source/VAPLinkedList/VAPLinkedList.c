@@ -6,9 +6,11 @@
 //  Copyright (c) 2015 Aleksandr Vasylchenko. All rights reserved.
 //
 
+#include <assert.h>
+
 #include "VAPLinkedList.h"
 #include "VAPMacros.h"
-#include <assert.h>
+#include "VAPLinkedListPrivate.h"
 
 #pragma mark -
 #pragma mark Private Declaration
@@ -168,7 +170,37 @@ VAPLinkedListNode *VAPLinkedListGetNodeBeforeObject(VAPLinkedList *list, void *o
     return NULL;
 }
 
-static
+
 void VAPLinkedListSetCount(VAPLinkedList *list, uint64_t count) {
     VAPAssignSetter(list, _count, count);
+    if (0 == count) {
+        VAPLinkedListPrivateSetMutationCount(list, 0);
+    } else {
+        VAPLinkedListPrivateSetMutationCount(list, VAPLinkedListPrivateGetMutationCount(list) + count);
+    }
 }
+
+void VAPLinkedListPrivateSetMutationCount(VAPLinkedList *list, uint64_t mutationsCount) {
+    if (NULL != list) {
+        list->_mutationsCount = mutationsCount;
+    }
+}
+
+uint64_t VAPLinkedListPrivateGetMutationCount(VAPLinkedList *list) {
+    return NULL != list ? list->_mutationsCount : 0;
+}
+
+
+void VAPLinkedListPrivateSetHead(VAPLinkedList *list, VAPLinkedListNode *node) {
+    VAPRetainSetter(list, _head, node);
+}
+
+
+VAPLinkedListNode *VAPLinkedListPrivateGetHead(VAPLinkedList *list) {
+    return NULL != list ? list->_head : NULL;
+}
+
+
+
+
+
