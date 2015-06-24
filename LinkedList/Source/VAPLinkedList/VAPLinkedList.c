@@ -85,26 +85,33 @@ void VAPLinkedListRemoveAllObjects(VAPLinkedList *list) {
     }
 }
 
-
 void VAPLinkedListRemoveObject(VAPLinkedList *list, void *object) {
     if (NULL != list) {
         VAPLinkedListNode *head = VAPLinkedListGetHead(list);
         VAPLinkedListNode *nextNode;
+        if (object == VAPLinkedListNodeGetObject(head)) {
+            VAPLinkedListSetHead(list, VAPLinkedListNodeGetNextNode(head));
+            VAPLinkedListSetCount(list, VAPLinkedListGetCount(list) - 1);
+            head = NULL;
+        }
         
         while (NULL != head) {
             nextNode = VAPLinkedListNodeGetNextNode(head);
             if (object == VAPLinkedListNodeGetObject(head)) {
                 VAPLinkedListNode *beforeNode = VAPLinkedListGetNodeBeforeObject(list, object);
-                if (NULL == beforeNode) {
-                    VAPLinkedListSetHead(list, nextNode);
-                } else {
-                    VAPLinkedListNodeSetNextNode(beforeNode, nextNode);
-                }
-                
+                VAPLinkedListNodeSetNextNode(beforeNode, nextNode);
                 VAPLinkedListSetCount(list, VAPLinkedListGetCount(list) - 1);
                 break;
             }
-            head = nextNode;
+            
+            if (object == VAPLinkedListNodeGetObject(nextNode)) {
+                
+                VAPLinkedListNodeSetNextNode(head, VAPLinkedListNodeGetNextNode(nextNode));
+                VAPLinkedListSetCount(list, VAPLinkedListGetCount(list) - 1);
+                break;
+            }
+            
+            head = VAPLinkedListNodeGetNextNode(nextNode);
         }
     }
 }
@@ -124,15 +131,13 @@ uint64_t VAPLinkedListGetCount(VAPLinkedList *list) {
 bool VAPLinkedListIsContainsObject(VAPLinkedList *list, void *object) {
     if (NULL != list) {
         VAPLinkedListNode *head = VAPLinkedListGetHead(list);
-        VAPLinkedListNode *nextNode;
         
         while (NULL != head) {
-            nextNode = VAPLinkedListNodeGetNextNode(head);
             if (object == VAPLinkedListNodeGetObject(head)) {
                 
                 return true;
             }
-            head = nextNode;
+            head = VAPLinkedListNodeGetNextNode(head);
         }
     }
     
@@ -151,13 +156,18 @@ VAPLinkedListNode *VAPLinkedListGetHead(VAPLinkedList *list) {
     return NULL != list ? list->_head : NULL;
 }
 
-
+#warning i want to refactoring
 VAPLinkedListNode *VAPLinkedListGetNodeBeforeObject(VAPLinkedList *list, void *object) {
     
     if (NULL != list) {
         VAPLinkedListNode *head = VAPLinkedListGetHead(list);
         VAPLinkedListNode *nextNode;
-
+        
+        if (object == VAPLinkedListNodeGetObject(head)) {
+            
+            head = NULL;
+        }
+        
         while (NULL != (nextNode = VAPLinkedListNodeGetNextNode(head)) || NULL != head) {
             if (object == VAPLinkedListNodeGetObject(nextNode)) {
                 
@@ -169,7 +179,6 @@ VAPLinkedListNode *VAPLinkedListGetNodeBeforeObject(VAPLinkedList *list, void *o
     
     return NULL;
 }
-
 
 void VAPLinkedListSetCount(VAPLinkedList *list, uint64_t count) {
     VAPAssignSetter(list, _count, count);

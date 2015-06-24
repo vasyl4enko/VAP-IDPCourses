@@ -74,15 +74,13 @@ void *VAPEnumeratorGetNextObject(VAPEnumerator *enumerator) {
             
             if (NULL == VAPEnumeratorGetNode(enumerator) && VAPEnumeratorIsValid(enumerator)) {
                 node = VAPLinkedListPrivateGetHead(list);
-                VAPEnumeratorSetNode(enumerator, node);
-                VAPEnumeratorListValidation(enumerator,node);
-                return VAPLinkedListNodeGetObject(node);
             } else {
                 node = VAPLinkedListNodeGetNextNode(VAPEnumeratorGetNode(enumerator));
-                VAPEnumeratorSetNode(enumerator, node);
-                VAPEnumeratorListValidation(enumerator,node);
-                return VAPLinkedListNodeGetObject(node);
             }
+            VAPEnumeratorSetNode(enumerator, node);
+            VAPEnumeratorListValidation(enumerator,node);
+            
+            return VAPLinkedListNodeGetObject(node);
         }
     }
     return NULL;
@@ -133,3 +131,6 @@ void VAPEnumeratorListValidation(VAPEnumerator *enumerator, VAPLinkedListNode *n
   
     }
 }
+
+
+
