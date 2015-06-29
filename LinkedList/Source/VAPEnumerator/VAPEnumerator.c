@@ -9,6 +9,7 @@
 #include <assert.h>
 
 #include "VAPEnumerator.h"
+#include "VAPEnumeratorPrivate.h"
 #include "VAPMacros.h"
 //#include "VAPLinkedListNode.h"
 
@@ -24,9 +25,6 @@ VAPLinkedList *VAPEnumeratorGetList(VAPEnumerator *enumerator);
 
 static
 void VAPEnumeratorSetNode(VAPEnumerator *enumerator, VAPLinkedListNode *node);
-
-static
-VAPLinkedListNode *VAPEnumeratorGetNode(VAPEnumerator *enumerator);
 
 static
 void VAPEnumeratorSetIsValid(VAPEnumerator *enumerator, bool valid);
@@ -66,7 +64,7 @@ VAPEnumerator *VAPEnumeratorCreateWithList(VAPLinkedList *list) {
 
 void *VAPEnumeratorGetNextObject(VAPEnumerator *enumerator) {
     if (NULL != enumerator) {
-        if (VAPEnumeratorIsValid(enumerator)) {
+        if (true == VAPEnumeratorIsValid(enumerator)) {
             VAPLinkedList *list = VAPEnumeratorGetList(enumerator);
             VAPLinkedListNode *node;
             
@@ -83,6 +81,7 @@ void *VAPEnumeratorGetNextObject(VAPEnumerator *enumerator) {
             return VAPLinkedListNodeGetObject(node);
         }
     }
+    
     return NULL;
 }
 
@@ -128,7 +127,6 @@ void VAPEnumeratorListValidation(VAPEnumerator *enumerator, VAPLinkedListNode *n
         } else {
             VAPEnumeratorSetIsValid(enumerator, false);
         }
-  
     }
 }
 

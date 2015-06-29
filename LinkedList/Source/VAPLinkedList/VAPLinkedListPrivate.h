@@ -14,6 +14,14 @@
 #include "VAPLinkedList.h"
 #include "VAPLinkedListNode.h"
 
+typedef struct {
+    void *previousNode;
+    void *node;
+    void *object;
+} VAPLinkedListNodeContext;
+
+typedef bool (*VAPLinkediListComparisonFunction)(VAPLinkedListNode *node,VAPLinkedListNodeContext *context);
+
 extern
 void VAPLinkedListPrivateSetMutationCount(VAPLinkedList *list, uint64_t mutationsCount);
 
@@ -25,5 +33,20 @@ void VAPLinkedListPrivateSetHead(VAPLinkedList *list, VAPLinkedListNode *node);
 
 extern
 VAPLinkedListNode *VAPLinkedListPrivateGetHead(VAPLinkedList *list);
+
+extern
+VAPLinkedListNode *VAPLinkedListPrivateGetNodeWithContext(VAPLinkedList *list,
+                                                                  VAPLinkediListComparisonFunction comparator,
+                                                                  VAPLinkedListNodeContext *context);
+extern
+VAPLinkedListNode *VAPLinkedListPrivateGetPreviousNodeWithContext(VAPLinkedList *list,
+                                                          VAPLinkediListComparisonFunction comparator,
+                                                          VAPLinkedListNodeContext *context);
+
+extern
+bool VAPLinkedListPrivateContainsObject(VAPLinkedListNode *node, VAPLinkedListNodeContext context);
+
+extern
+bool VAPLinkedListPrivateContainsPreviousObject(VAPLinkedListNode *node,VAPLinkedListNodeContext context);
 
 #endif

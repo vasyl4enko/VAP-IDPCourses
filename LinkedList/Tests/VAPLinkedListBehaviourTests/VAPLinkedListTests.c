@@ -138,20 +138,6 @@ void VAPLinkedListBehaviour() {
     //  the first object should be "object4"
     assert(object4 == VAPLinkedListGetFirstObject(list));
     
-//    VAPObjectRetain(object4);
-//    
-//    VAPObjectRetain(object2);
-//    VAPObjectRetain(object2);
-//    
-//    VAPObjectRetain(object);
-//    VAPObjectRetain(object);
-//    VAPObjectRetain(object);
-//    
-//    
-//    VAPObjectRetain(object3);
-//    VAPObjectRetain(object3);
-//    VAPObjectRetain(object3);
-//    VAPObjectRetain(object3);
     
     //check all objects in list
     assert(true == VAPLinkedListIsContainsObject(list, object4));
@@ -160,27 +146,13 @@ void VAPLinkedListBehaviour() {
     assert(true == VAPLinkedListIsContainsObject(list, object3));
     
 //    VAPEnumerator *enumerator = VAPEnumeratorCreateWithList(list);
-    
+//    
 //    while (VAPEnumeratorIsValid(enumerator)) {
 //        VAPObject *obj = VAPEnumeratorGetNextObject(enumerator);
 //        printf("%llu\n",VAPGetReferenceCount(obj));
 //    }
-    
-    
-//    VAPObjectRelease(object4);
 //    
-//    VAPObjectRelease(object2);
-//    VAPObjectRelease(object2);
-//    
-//    VAPObjectRelease(object);
-//    VAPObjectRelease(object);
-//    VAPObjectRelease(object);
-//    
-//    
-//    VAPObjectRelease(object3);
-//    VAPObjectRelease(object3);
-//    VAPObjectRelease(object3);
-//    VAPObjectRelease(object3);
+//    VAPObjectRelease(enumerator);
     
     //remove head. this is object 2
     VAPLinkedListRemoveObject(list, object4);
