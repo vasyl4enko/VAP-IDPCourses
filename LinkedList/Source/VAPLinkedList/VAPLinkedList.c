@@ -56,34 +56,34 @@ void VAPLinkedListAddObjectAtTheTail(VAPLinkedList *list, void *object) {
         if (VAPLinkedListIsEmpty(list)) {
             VAPLinkedListAddObject(list, object);
         } else {
-//            VAPLinkedListNodeContext context;
-//            memset(&context, 0, sizeof(context));
-//            context.object = object;
-//            VAPLinkedListNode *contextNode = VAPLinkedListPrivateGetNodeWithContext(list,
-//                                                                 VAPLinkedListPrivateContainsPreviousObject,
-//                                                                 &context);
-//            if (NULL != contextNode && NULL == VAPLinkedListNodeGetNextNode(contextNode)) {
-//                VAPLinkedListNode *tailNode = VAPLinkedListNodeCreateWithObject(object);
-//                VAPLinkedListNodeSetNextNode(context.node, tailNode);
-//                VAPLinkedListSetCount(list, VAPLinkedListGetCount(list) + 1);
-//                VAPObjectRelease(tailNode);
-//            }
-            VAPLinkedListNode *head = VAPLinkedListGetHead(list);
-            VAPLinkedListNode *nextNode;
-            uint64_t iterator = 0;
-            uint64_t count = VAPLinkedListGetCount(list);
-            while (iterator < count) {
-                nextNode = VAPLinkedListNodeGetNextNode(head);
-                if (NULL == nextNode) {
-                    VAPLinkedListNode *tailNode = VAPLinkedListNodeCreateWithObject(object);
-                    VAPLinkedListNodeSetNextNode(head, tailNode);
-                    VAPLinkedListSetCount(list, VAPLinkedListGetCount(list) + 1);
-                    VAPObjectRelease(tailNode);
-                    break;
-                }
-                head = nextNode;
-                iterator++;
+            VAPLinkedListNodeContext context;
+            memset(&context, 0, sizeof(context));
+            context.object = object;
+            VAPLinkedListNode *contextNode = VAPLinkedListPrivateGetNodeWithContext(list,
+                                                                 VAPLinkedListPrivateContainsPreviousObject,
+                                                                 &context);
+            if (NULL != contextNode && NULL == VAPLinkedListNodeGetNextNode(contextNode)) {
+                VAPLinkedListNode *tailNode = VAPLinkedListNodeCreateWithObject(object);
+                VAPLinkedListNodeSetNextNode(context.node, tailNode);
+                VAPLinkedListSetCount(list, VAPLinkedListGetCount(list) + 1);
+                VAPObjectRelease(tailNode);
             }
+//            VAPLinkedListNode *head = VAPLinkedListGetHead(list);
+//            VAPLinkedListNode *nextNode;
+//            uint64_t iterator = 0;
+//            uint64_t count = VAPLinkedListGetCount(list);
+//            while (iterator < count) {
+//                nextNode = VAPLinkedListNodeGetNextNode(head);
+//                if (NULL == nextNode) {
+//                    VAPLinkedListNode *tailNode = VAPLinkedListNodeCreateWithObject(object);
+//                    VAPLinkedListNodeSetNextNode(head, tailNode);
+//                    VAPLinkedListSetCount(list, VAPLinkedListGetCount(list) + 1);
+//                    VAPObjectRelease(tailNode);
+//                    break;
+//                }
+//                head = nextNode;
+//                iterator++;
+//            }
         }
     }
 }
