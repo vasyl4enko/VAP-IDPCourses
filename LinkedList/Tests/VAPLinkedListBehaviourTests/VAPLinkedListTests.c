@@ -53,7 +53,7 @@ void VAPLinkedListBehaviour() {
     assert(1 == VAPGetReferenceCount(object));
     
     //add object to list
-    VAPLinkedListAddObject(list, object);
+    VAPLinkedListAddFirstObject(list, object);
     
     //  object reference count should be 2
     assert(2 == VAPGetReferenceCount(object));
@@ -64,7 +64,7 @@ void VAPLinkedListBehaviour() {
     assert(1 == VAPLinkedListGetCount(list));
     
     //let's try to add identical object
-    VAPLinkedListAddObject(list, object);
+    VAPLinkedListAddFirstObject(list, object);
     
     //  object reference count should be 2
     assert(2 == VAPGetReferenceCount(object));
@@ -85,7 +85,7 @@ void VAPLinkedListBehaviour() {
     assert(object == VAPLinkedListGetFirstObject(list));
     
     //add object2 to head
-    VAPLinkedListAddObject(list, object2);
+    VAPLinkedListAddFirstObject(list, object2);
     
     //  object2 reference count should be 2
     assert(2 == VAPGetReferenceCount(object2));
@@ -106,7 +106,7 @@ void VAPLinkedListBehaviour() {
     assert(1 == VAPGetReferenceCount(object3));
     
     //add object3 to tail
-    VAPLinkedListAddObjectAtTheTail(list, object3);
+    VAPLinkedListAddLastObject(list, object3);
     
     //  object3 reference count should be 2
     assert(2 == VAPGetReferenceCount(object3));
@@ -127,7 +127,7 @@ void VAPLinkedListBehaviour() {
     assert(1 == VAPGetReferenceCount(object4));
     
     //add object4 to head
-    VAPLinkedListAddObject(list, object4);
+    VAPLinkedListAddFirstObject(list, object4);
     
     //  object4 reference count should be 2
     assert(2 == VAPGetReferenceCount(object4));
@@ -213,10 +213,10 @@ void VAPLinkedListBehaviour() {
     
     
     //add all objects to list
-    VAPLinkedListAddObject(list, object);
-    VAPLinkedListAddObject(list, object2);
-    VAPLinkedListAddObject(list, object3);
-    VAPLinkedListAddObject(list, object4);
+    VAPLinkedListAddFirstObject(list, object);
+    VAPLinkedListAddFirstObject(list, object2);
+    VAPLinkedListAddFirstObject(list, object3);
+    VAPLinkedListAddFirstObject(list, object4);
     
     //  check reference count
     assert(2 == VAPGetReferenceCount(object));

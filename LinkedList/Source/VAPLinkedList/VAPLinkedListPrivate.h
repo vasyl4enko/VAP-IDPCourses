@@ -20,7 +20,7 @@ typedef struct {
     void *object;
 } VAPLinkedListNodeContext;
 
-typedef bool (*VAPLinkediListComparisonFunction)(VAPLinkedListNode *node,VAPLinkedListNodeContext *context);
+typedef bool (*VAPLinkediListComparisonFunction)(VAPLinkedListNode *node,VAPLinkedListNodeContext context);
 
 extern
 void VAPLinkedListPrivateSetMutationCount(VAPLinkedList *list, uint64_t mutationsCount);
@@ -35,18 +35,18 @@ extern
 VAPLinkedListNode *VAPLinkedListPrivateGetHead(VAPLinkedList *list);
 
 extern
-VAPLinkedListNode *VAPLinkedListPrivateGetNodeWithContext(VAPLinkedList *list,
+VAPLinkedListNode *VAPLinkedListGetNodeWithContext(VAPLinkedList *list,
                                                                   VAPLinkediListComparisonFunction comparator,
                                                                   VAPLinkedListNodeContext *context);
 extern
-VAPLinkedListNode *VAPLinkedListPrivateGetPreviousNodeWithContext(VAPLinkedList *list,
+VAPLinkedListNode *VAPLinkedListGetPreviousNodeWithContext(VAPLinkedList *list,
                                                           VAPLinkediListComparisonFunction comparator,
                                                           VAPLinkedListNodeContext *context);
 
 extern
-bool VAPLinkedListPrivateContainsObject(VAPLinkedListNode *node, VAPLinkedListNodeContext context);
+bool VAPLinkedListContainsObject(VAPLinkedListNode *node, VAPLinkedListNodeContext context);
 
 extern
-bool VAPLinkedListPrivateContainsPreviousObject(VAPLinkedListNode *node,VAPLinkedListNodeContext context);
+bool VAPLinkedListContainsPreviousObject(VAPLinkedListNode *node,VAPLinkedListNodeContext context);
 
 #endif
