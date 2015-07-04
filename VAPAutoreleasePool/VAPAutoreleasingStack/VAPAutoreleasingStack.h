@@ -14,22 +14,25 @@
 
 #include "VAPObject.h"
 
+extern const uint64_t kVAPAutoreleasingStackMaxSize;
 
 typedef struct VAPAutoreleasingStack VAPAutoreleasingStack;
 
 struct VAPAutoreleasingStack{
     VAPObject _super;
-    
-    void **data;
-    uint64_t count;
-    size_t size;
+    void **_data;
+    uint64_t _count;
+    size_t _size;
 };
 
 
 typedef enum {
-    VAPAutoreleasingPopUntilNULL,
+    VAPAutoreleasingPopNULL,
     VAPAutoreleasingPopObject
 } VAPAutoreleasingPopType;
+
+extern
+void __VAPAutoreleasingStackDeallocate(void *object);
 
 extern
 VAPAutoreleasingStack *VAPAutoreleasingStackCreateWithSize(size_t size);
